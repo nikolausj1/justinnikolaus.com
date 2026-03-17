@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Alexa in Space | Justin Nikolaus</title>
+  <meta name="description" content="Designing a voice experience for NASA's Artemis 1 mission - showcasing how voice interactions can help future astronauts aboard the Orion spacecraft.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Justin Nikolaus — Product Design Portfolio">
+  <meta property="og:description" content="Product Designer with 15+ years designing AI-driven, multimodal, and wearable experiences across emerging devices.">
+  <meta property="og:image" content="https://justinnikolaus.com/portfolio/images/og-preview.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Justin Nikolaus</a>
+      <button class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html" class="nav__link">Home</a></li>
+        <li><a href="../about.html" class="nav__link">About</a></li>
+        <li><a href="../contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1 class="project-header__title">Alexa in Space</h1>
+    </div>
+  </section>
+
+  <!-- Project Body -->
+  <section class="project-body">
+    <div class="project-layout">
+      <aside class="project-sidebar">
+        <div class="project-meta">
+          <div class="project-meta__item">
+            <span class="project-meta__label">Company</span>
+            <span class="project-meta__value">Amazon</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Role</span>
+            <span class="project-meta__value">Design Project Lead</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Responsibility</span>
+            <span class="project-meta__value">Voice interaction design for novel environments</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Year</span>
+            <span class="project-meta__value">2022</span>
+          </div>
+        </div>
+      </aside>
+      <div class="project-content">
+
+      <figure>
+        <img src="../images/projects/alexainspace/header.png" alt="Alexa in Space project header" data-lightbox>
+      </figure>
+
+      <h2>Overview</h2>
+      <p>I worked with Lockheed Martin and NASA to design a voice experience to showcase how voice interactions can help future astronauts. The goal was to gain industry acceptance of voice interfaces on crewed missions and increase Alexa brand perception. This work flew as a secondary payload on board Orion and was tested throughout the Artemis 1 mission around the moon. Due to limited resources and my drive to raise the bar, I took on many roles across the project: design project lead, prototyper, hardware collaborator, user researcher, and on-camera host.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-overview.png" alt="Users' voice sent to space from Mission Control" data-lightbox>
+        <figcaption>Users' voice sent to space from Mission Control</figcaption>
+      </figure>
+
+      <h2>Research</h2>
+      <p>I conducted astronaut interviews to uncover real friction points and use cases for voice interfaces in space. Greg &ldquo;Box&rdquo; Johnson, pilot for Space Shuttle missions STS-125 &amp; STS-400, was especially excited about this new method of interacting with the vehicle. I also ran workshops with NASA flight controllers and directors to identify critical use cases, layering those insights on top of extensive desk research into spaceflight operations.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-interview.png" alt="A few astronauts and experts I interviewed" data-lightbox>
+        <figcaption>A few astronauts and experts I interviewed</figcaption>
+      </figure>
+
+      <h2>Design</h2>
+      <p>A key insight from research was that for Alexa to earn a place on the mission manifest, it needed to go beyond home use cases like music and news. Users needed access to real information from the spacecraft. I designed an answer framework with four components: Implicit Confirmation, Attribution and Qualifiers, Answer, and Bonus Content. For professional users I prioritized brevity; for civilians I included Bonus Content to surprise and delight.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-answers.png" alt="Answer design framework components" data-lightbox>
+      </figure>
+
+      <h2>Prototype &amp; Testing</h2>
+      <p>I prototyped the voice experience in VoiceFlow and deployed it to a small Intel NUC with microphone and speaker running a custom build of the Alexa Voice Service. For testing, I set up two rooms, one simulating the spacecraft and another representing Mission Control, with an artificial communications delay to mimic the Deep Space Network.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-prototype.png" alt="I prototyped the voice experience and deployed it to devices in my lab" data-lightbox>
+        <figcaption>I prototyped the voice experience and deployed it to devices in my lab</figcaption>
+      </figure>
+
+      <p>When the pandemic hit, I invented a remote testing method: the latest software build ran in Sunnyvale operated by my engineering lead, I conducted sessions from Seattle, and users joined from around the world via video conferencing with choreographed engineering support. This approach gave us continuous feedback throughout the project.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-remote-test.png" alt="Remote user testing" data-lightbox>
+        <figcaption>Remote user testing</figcaption>
+      </figure>
+
+      <h2>Model Testing</h2>
+      <p>Due to the unique hardware, QA had difficulty testing all voice experiences in a timely manner. I conceptualized and designed a web app to collect voice data for automated testing. Working with one engineer, we built it in two weeks. The tool allowed the team to gather voice recordings from people across the world to improve performance, and is now available for anyone at Amazon to use.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-webapp.png" alt="Web app to gather voice data" data-lightbox>
+        <figcaption>Web app to gather voice data</figcaption>
+      </figure>
+
+      <h2>Hardware Design</h2>
+      <p>I conceptualized and delivered the industrial design of the top plate of the payload (speaker grills). I'd be happy to walk through my process and how I created a hidden easter egg. It took a lot of math and deep collaboration with the Lockheed Martin fabrication team to pull it off.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/photo2.png" alt="My early Photoshop render of the payload top-plate design" data-lightbox>
+        <figcaption>My early Photoshop render of the payload top-plate design</figcaption>
+      </figure>
+
+      <h2>Launch &amp; Mission</h2>
+      <p>My extensive knowledge of both the experience and technical aspects led leadership to recommend I represent Amazon for press and media events. I spoke about the importance of user-centered design at a space conference, presented the potential of voice interfaces to Fortune 500 C-suite attendees, and gave a live interview during the rocket launch countdown.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-promo.png" alt="Various speaking engagements" data-lightbox>
+        <figcaption>Various speaking engagements</figcaption>
+      </figure>
+
+      <p>Once the mission was underway, I shifted to on-camera host, leading special guests through the experience at Mission Control in Houston. At every point along the 26-day mission, Alexa performed beautifully, delighting celebrities, thousands of STEM students, government officials, NASA flight directors, and former astronauts.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-mission.png" alt="Hosting Nick Jonas at Mission Control in Houston" data-lightbox>
+        <figcaption>Hosting Nick Jonas at Mission Control in Houston</figcaption>
+      </figure>
+
+      <h2>Impact</h2>
+      <p>The project drove 95% positive to neutral PR with 78 dedicated stories. I talked to journalists at <a href="https://www.fastcompany.com/90780286/inside-callisto-a-spaceship-alexa-to-help-astronauts-work-and-phone-home" target="_blank" rel="noopener">Fast Company</a>, <a href="https://www.popsci.com/technology/callisto-amazon-alexa-lockheed-cisco-webex/" target="_blank" rel="noopener">Popular Science</a>, <a href="https://mashable.com/article/nasa-space-moon-amazon-alexa" target="_blank" rel="noopener">Mashable</a>, and the <a href="https://www.theverge.com/2022/11/17/23325038/nasa-alexa-space-amazon-orion-callisto-hands-on-artemis-i" target="_blank" rel="noopener">Verge</a> to increase awareness of the project with the general public. Additionally, I was featured in two different employee spotlight articles on <a href="https://www.aboutamazon.com/news/devices/alexa-prepares-for-liftoff" target="_blank" rel="noopener">Amazon News</a> and <a href="https://amazon.design/stories/alexas-space-upgrade" target="_blank" rel="noopener">Amazon Design</a>.</p>
+
+      <p>My work generated 2M dialogs in the public Alexa skill and an overall halo effect of 1M dialogs on Knowledge domain utterances related to moon and space, 18% over our goal. The success of the project opened the door to working on future space integrations with Lockheed Martin and other space partners.</p>
+
+      <figure>
+        <img src="../images/projects/alexainspace/ais-press.png" alt="Screenshots and quotes from a few of the articles published" data-lightbox>
+        <figcaption>Screenshots and quotes from a few of the articles published</figcaption>
+      </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <nav class="project-nav">
+    <div class="container container--narrow">
+      <a href="alexavoiceservices.html">
+        <img src="../images/previews/alexavoiceservices-preview.png" alt="Alexa Voice Services" class="project-nav__thumb">
+        <div>
+          <div class="project-nav__label">Next Project</div>
+          <div class="project-nav__title">Alexa Voice Services</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Lightbox -->
+  <dialog id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__title">Let's Talk</h2>
+      <div>
+        <div class="footer__heading">Email</div>
+        <a href="mailto:justin@justinnikolaus.com" class="footer__link">justin@justinnikolaus.com</a>
+      </div>
+      <div>
+        <div class="footer__heading">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/justinnikolaus" target="_blank" rel="noopener" class="footer__link">linkedin.com/in/justinnikolaus</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Justin Nikolaus. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

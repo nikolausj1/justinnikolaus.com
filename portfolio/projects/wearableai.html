@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Wearable AI | Justin Nikolaus</title>
+  <meta name="description" content="Exploring how a wearable voice agent could assist naturally in everyday situations by understanding context rather than waiting for commands.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Justin Nikolaus — Product Design Portfolio">
+  <meta property="og:description" content="Product Designer with 15+ years designing AI-driven, multimodal, and wearable experiences across emerging devices.">
+  <meta property="og:image" content="https://justinnikolaus.com/portfolio/images/og-preview.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Justin Nikolaus</a>
+      <button class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html" class="nav__link">Home</a></li>
+        <li><a href="../about.html" class="nav__link">About</a></li>
+        <li><a href="../contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1 class="project-header__title">Wearable AI</h1>
+    </div>
+  </section>
+
+  <!-- Project Body -->
+  <section class="project-body">
+    <div class="project-layout">
+      <aside class="project-sidebar">
+        <div class="project-meta">
+          <div class="project-meta__item">
+            <span class="project-meta__label">Company</span>
+            <span class="project-meta__value">Amazon</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Role</span>
+            <span class="project-meta__value">Design Lead</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Responsibility</span>
+            <span class="project-meta__value">Concept development, interaction design, incubation pitch</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Year</span>
+            <span class="project-meta__value">2025</span>
+          </div>
+        </div>
+      </aside>
+      <div class="project-content">
+
+      <figure>
+        <img src="../images/projects/wearableai/header.png" alt="Wearable AI project header" data-lightbox>
+      </figure>
+
+      <h2>Overview</h2>
+      <p>Current voice assistants require deliberate invocation: a wake word, a button press, a conscious decision to stop and ask. I led an incubation project exploring what a voice agent could look like if it understood the context around you well enough to assist at the right moment, through the most unobtrusive channel available. This was internal work, so I can share my design approach and thinking here but not the implementation.</p>
+
+      <h2>Design Challenges</h2>
+      <p>The core design challenge wasn't technical, it was behavioral. When you give an agent the ability to listen and understand context, you have to answer a set of uncomfortable questions before you write a single spec:</p>
+      <ul>
+        <li>When should the agent speak up, and when should it stay silent? Getting this wrong in either direction ruins the experience.</li>
+        <li>How do you distinguish between speech directed at the agent and speech directed at other people? The cost of getting this wrong in a social setting is high.</li>
+        <li>What's the threshold for proactive help? Too eager feels invasive. Too conservative makes the product useless.</li>
+        <li>How does the agent handle noisy, ambiguous, or conflicting signals without defaulting to annoying false positives?</li>
+      </ul>
+      <p>I designed a behavioral framework around the principle that the agent should earn the right to intervene. Low-confidence situations default to silence. The agent's engagement level scales with how clearly the user needs help, from fully passive to actively responsive. The interaction model had to feel less like a device you operate and more like a perceptive companion that knows when to help and when to stay out of the way.</p>
+
+      <h2>Scope</h2>
+      <p>I developed the full concept, defined the interaction model and behavioral principles, built a working prototype, and pitched the project to secure organizational support. This was early-stage incubation. My role was shaping the vision and demonstrating why it was worth investing in.</p>
+
+      <h2>Impact</h2>
+      <p>The concept was presented internally and generated strong interest as a credible direction for ambient voice interaction. The behavioral framework I designed, particularly the principle that agent engagement should scale with user need rather than defaulting to always-on, became a reference point for thinking about proactive AI experiences.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <nav class="project-nav">
+    <div class="container container--narrow">
+      <a href="trellodeskboard.html">
+        <img src="../images/previews/trellodeskboard-preview.png" alt="Trello Deskboard" class="project-nav__thumb">
+        <div>
+          <div class="project-nav__label">Next Project</div>
+          <div class="project-nav__title">Trello Deskboard</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Lightbox -->
+  <dialog id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__title">Let's Talk</h2>
+      <div>
+        <div class="footer__heading">Email</div>
+        <a href="mailto:justin@justinnikolaus.com" class="footer__link">justin@justinnikolaus.com</a>
+      </div>
+      <div>
+        <div class="footer__heading">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/justinnikolaus" target="_blank" rel="noopener" class="footer__link">linkedin.com/in/justinnikolaus</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Justin Nikolaus. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

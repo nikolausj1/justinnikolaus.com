@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trello Deskboard | Justin Nikolaus</title>
+  <meta name="description" content="A dedicated desk-mounted display for a Trello to-do list, built with a Raspberry Pi, 3D-printed enclosure, and AI-assisted development.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Justin Nikolaus — Product Design Portfolio">
+  <meta property="og:description" content="Product Designer with 15+ years designing AI-driven, multimodal, and wearable experiences across emerging devices.">
+  <meta property="og:image" content="https://justinnikolaus.com/portfolio/images/og-preview.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Justin Nikolaus</a>
+      <button class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html" class="nav__link">Home</a></li>
+        <li><a href="../about.html" class="nav__link">About</a></li>
+        <li><a href="../contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1 class="project-header__title">Trello Deskboard</h1>
+    </div>
+  </section>
+
+  <!-- Project Body -->
+  <section class="project-body">
+    <div class="project-layout">
+      <aside class="project-sidebar">
+        <div class="project-meta">
+          <div class="project-meta__item">
+            <span class="project-meta__label">Company</span>
+            <span class="project-meta__value">Personal</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Role</span>
+            <span class="project-meta__value">Designer + Developer</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Responsibility</span>
+            <span class="project-meta__value">Hardware, UI design, 3D modeling, AI-assisted development</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Year</span>
+            <span class="project-meta__value">2025</span>
+          </div>
+        </div>
+      </aside>
+      <div class="project-content">
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/09_final_product.png" alt="Trello Deskboard on a desk" data-lightbox>
+      </figure>
+
+      <h2>Overview</h2>
+      <p>Trello is available on mobile, desktop, and web, but seeing my to-do list always means managing windows or pulling out my phone. I wanted something simpler: a small dedicated screen on my desk that always shows my current list. Like a digital Post-it note stuck to my monitor. It was also a good excuse to build another Raspberry Pi project.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/01_busy_desktop_screenshot.png" alt="Desktop with Trello buried among many open windows" data-lightbox>
+        <figcaption>The problem: Trello buried among a cluttered desktop</figcaption>
+      </figure>
+
+      <h2>Hardware</h2>
+      <p>The component stack is straightforward: a Raspberry Pi 4 Model B, a 3.5-inch TFT LCD display, a MicroSD card, a Micro HDMI cable, and a USB-C power supply. I chose components small enough to sit on a desk without competing for workspace.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/02_raspberryPI_and_LCD_hardware.png" alt="Raspberry Pi and LCD hardware components" data-lightbox>
+        <figcaption>Raspberry Pi 4 and 3.5-inch TFT LCD display</figcaption>
+      </figure>
+
+      <h2>Process: Spec-Driven AI Development</h2>
+      <p>All project documentation lives in markdown files: meeting notes, drafts, project history, and preferences. This means any file can be included as context for an LLM. The approach starts with defining goals, users, and constraints in a PRD, then translating the design into functional requirements and mockups. Those artifacts become structured inputs for the AI coding agent. I think of it as vibe coding with more definition. Structure reduces randomness, specs become prompts, and design artifacts become instructions.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/04_prd_markdown.png" alt="PRD written in markdown" data-lightbox>
+        <figcaption>Goals and constraints defined in a structured PRD</figcaption>
+      </figure>
+
+      <p>The development environment was VS Code with the Cline extension running Claude Sonnet 4, connected to the Raspberry Pi via SSH. Working directly on the device avoided compatibility issues between development and production environments. Version control was handled through my <a href="https://github.com/nikolausj1/trello_display" target="_blank" rel="noopener">public GitHub repo</a>.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/05_vscode_cline.png" alt="VS Code with Cline extension connected to Raspberry Pi" data-lightbox>
+        <figcaption>VS Code + Cline extension, SSH into the Raspberry Pi</figcaption>
+      </figure>
+
+      <h2>Design</h2>
+      <p>The UI is dark so it does not glare while working at night. It stays simple and consistent with Trello's visual language so there is no mental disconnect between the app and the display. The software connects to the Trello API with a private key to pull the to-do list directly.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/06_darkUI_todo_list.png" alt="Dark UI showing Trello to-do list" data-lightbox>
+        <figcaption>Dark theme UI designed for a small desk display</figcaption>
+      </figure>
+
+      <h2>Scope</h2>
+      <p>The original goal was view-only, but the need to mark items as done became immediately obvious. I added the ability to archive (complete) items from the display. I kept scope small by not including the ability to add new items, since there is already a flow for that through the Trello app and a voice shortcut bound to my iPhone's action button.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/07_archive_flow.png" alt="Archive flow iterations" data-lightbox>
+        <figcaption>Iterating on the archive interaction</figcaption>
+      </figure>
+
+      <h2>Enclosure</h2>
+      <p>The enclosure I modeled in Fusion 360 and printed on a Bambu P1S. I used simple pin connections to allow the back panel to detach for accessing the hardware. Next time I would use magnets instead to reduce stress on the small connection points.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/08_3d_model.png" alt="Fusion 360 3D model of the enclosure" data-lightbox>
+        <figcaption>3D model in Fusion 360</figcaption>
+      </figure>
+
+      <h2>Result</h2>
+      <p>The Trello Deskboard is currently running on my desk in my home office. It does exactly what I wanted: my to-do list is always visible without touching a phone or managing windows. Next updates include simplifying the archive UI by replacing the confirmation dialog with a single undo button and countdown, and adding presence detection via a mmWave sensor to turn the screen off when I leave the room, which helps with thermals and hardware longevity.</p>
+
+      <figure>
+        <img src="../images/projects/trellodeskboard/09_final_product.png" alt="Trello Deskboard running on a desk" data-lightbox>
+        <figcaption>The finished Trello Deskboard in use</figcaption>
+      </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <nav class="project-nav">
+    <div class="container container--narrow">
+      <a href="contextengine.html">
+        <img src="../images/previews/contextengine-preview.png" alt="Emotionally Aware AI" class="project-nav__thumb">
+        <div>
+          <div class="project-nav__label">Next Project</div>
+          <div class="project-nav__title">Emotionally Aware AI</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Lightbox -->
+  <dialog id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__title">Let's Talk</h2>
+      <div>
+        <div class="footer__heading">Email</div>
+        <a href="mailto:justin@justinnikolaus.com" class="footer__link">justin@justinnikolaus.com</a>
+      </div>
+      <div>
+        <div class="footer__heading">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/justinnikolaus" target="_blank" rel="noopener" class="footer__link">linkedin.com/in/justinnikolaus</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Justin Nikolaus. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

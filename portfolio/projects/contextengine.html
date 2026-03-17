@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Emotionally Aware AI | Justin Nikolaus</title>
+  <meta name="description" content="Prototype exploration of how a voice agent can respond more appropriately by combining what a user says with nonverbal and situational context.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Justin Nikolaus — Product Design Portfolio">
+  <meta property="og:description" content="Product Designer with 15+ years designing AI-driven, multimodal, and wearable experiences across emerging devices.">
+  <meta property="og:image" content="https://justinnikolaus.com/portfolio/images/og-preview.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Justin Nikolaus</a>
+      <button class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html" class="nav__link">Home</a></li>
+        <li><a href="../about.html" class="nav__link">About</a></li>
+        <li><a href="../contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1 class="project-header__title">Emotionally Aware AI</h1>
+    </div>
+  </section>
+
+  <!-- Project Body -->
+  <section class="project-body">
+    <div class="project-layout">
+      <aside class="project-sidebar">
+        <div class="project-meta">
+          <div class="project-meta__item">
+            <span class="project-meta__label">Company</span>
+            <span class="project-meta__value">Amazon</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Role</span>
+            <span class="project-meta__value">Concept, Design &amp; Prototype Lead</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Responsibility</span>
+            <span class="project-meta__value">AI prototyping, emerging technology research</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Year</span>
+            <span class="project-meta__value">2024</span>
+          </div>
+        </div>
+      </aside>
+      <div class="project-content">
+
+      <figure>
+        <img src="../images/projects/contextengine/header.png" alt="Emotionally Aware AI project header" data-lightbox>
+      </figure>
+
+      <h2>Overview</h2>
+      <p>Voice assistants respond to words, but they often miss the emotional and situational subtext. The same phrase can be sincere, sarcastic, or distressed depending on tone, expression, and environment. When the agent ignores that context, responses can feel awkward, insensitive, or tone-deaf. I led an incubation project exploring how a voice agent could respond more appropriately by combining what a user says with nonverbal and situational signals. This was internal work, so I can share my approach and thinking here but not the implementation.</p>
+
+      <h2>Design Thinking</h2>
+      <p>The core design challenge was defining when and how an agent should act on emotional context. The questions I wrestled with:</p>
+      <ul>
+        <li>How should an agent respond when it detects someone is upset but they haven't explicitly said so?</li>
+        <li>How assertive should it be? At what point does emotional awareness cross into feeling surveillant?</li>
+        <li>What happens when signals conflict, like positive words paired with negative tone?</li>
+        <li>How do you keep responses empathetic without being intrusive or presumptuous?</li>
+      </ul>
+      <p>I designed a set of principles to guide the system's behavior. The agent should be conservative when confidence is low, falling back to neutral rather than guessing. When multiple signals agree with high confidence, the agent can adapt its tone and pacing. When signals conflict, the agent should acknowledge ambiguity rather than assume one signal is correct. The goal was an experience that feels natural and attentive, not one that feels like it's analyzing you.</p>
+
+      <h2>Scope</h2>
+      <p>I owned this project from concept through working prototype. I defined the interaction model, designed the response framework, created end-to-end flows covering how the agent should behave across a range of scenarios, and shaped the demo narrative. I worked with a design technologist to build the environment and connect services. The working prototype was demonstrated live to a curated audience of senior leaders and distinguished engineers across the company.</p>
+
+      <h2>Impact</h2>
+      <p>Leadership responded strongly to the prototype, with alignment that this direction represents a credible path forward for voice interaction. Multiple teams have since used the interaction framework and design principles from this work as a reference point for their own products.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <nav class="project-nav">
+    <div class="container container--narrow">
+      <a href="alexainspace.html">
+        <img src="../images/previews/alexainspace-preview.png" alt="Alexa in Space" class="project-nav__thumb">
+        <div>
+          <div class="project-nav__label">Next Project</div>
+          <div class="project-nav__title">Alexa in Space</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Lightbox -->
+  <dialog id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__title">Let's Talk</h2>
+      <div>
+        <div class="footer__heading">Email</div>
+        <a href="mailto:justin@justinnikolaus.com" class="footer__link">justin@justinnikolaus.com</a>
+      </div>
+      <div>
+        <div class="footer__heading">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/justinnikolaus" target="_blank" rel="noopener" class="footer__link">linkedin.com/in/justinnikolaus</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Justin Nikolaus. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

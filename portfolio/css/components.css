@@ -1,0 +1,197 @@
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.875rem 2rem;
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent-hover);
+  color: #fff;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn--outline:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   Project Cards (2-column grid)
+   ======================================== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  row-gap: var(--space-2xl);
+}
+
+.project-card {
+  display: block;
+}
+
+.project-card__img-wrap {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.project-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+  background-color: var(--color-bg-alt);
+}
+
+.project-card:hover .project-card__img {
+  transform: scale(1.03);
+}
+
+.project-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.project-card__name {
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.project-card__year {
+  font-size: var(--text-small);
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-card__year::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.project-card__category {
+  font-size: var(--text-small);
+  color: var(--color-text-tertiary);
+  margin-top: 0.25rem;
+}
+
+/* ========================================
+   Expertise Cards
+   ======================================== */
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.expertise-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-normal);
+}
+
+.expertise-card:hover {
+  border-color: var(--color-accent-light);
+}
+
+.expertise-card__title {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-xs);
+}
+
+.expertise-card__desc {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+
+.hero {
+  padding: var(--space-section) 0 0;
+}
+
+.hero__headline {
+  font-size: var(--text-hero);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.03em;
+  max-width: 900px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__sub {
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  line-height: var(--line-height-normal);
+}
+
+.hero__intro {
+  margin-top: var(--space-2xl);
+  max-width: 700px;
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   CTA Section
+   ======================================== */
+
+.cta {
+  text-align: center;
+  padding: var(--space-3xl) 0 var(--space-xl) 0;
+}
+
+.cta__headline {
+  font-size: var(--text-page-title);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.cta__sub {
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}

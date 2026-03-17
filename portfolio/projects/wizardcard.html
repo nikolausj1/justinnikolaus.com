@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Animated Wizard Card | Justin Nikolaus</title>
+  <meta name="description" content="A Raspberry Pi-powered animated wizard card inside a Harry Potter Chocolate Frog tin. Open the lid and a random wizard portrait comes to life.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Justin Nikolaus — Product Design Portfolio">
+  <meta property="og:description" content="Product Designer with 15+ years designing AI-driven, multimodal, and wearable experiences across emerging devices.">
+  <meta property="og:image" content="https://justinnikolaus.com/portfolio/images/og-preview.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">Justin Nikolaus</a>
+      <button class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="../index.html" class="nav__link">Home</a></li>
+        <li><a href="../about.html" class="nav__link">About</a></li>
+        <li><a href="../contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Header -->
+  <section class="project-header">
+    <div class="container">
+      <h1 class="project-header__title">Animated Wizard Card</h1>
+    </div>
+  </section>
+
+  <!-- Project Body -->
+  <section class="project-body">
+    <div class="project-layout">
+      <aside class="project-sidebar">
+        <div class="project-meta">
+          <div class="project-meta__item">
+            <span class="project-meta__label">Company</span>
+            <span class="project-meta__value">Personal Project</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Role</span>
+            <span class="project-meta__value">Designer & Maker</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Responsibility</span>
+            <span class="project-meta__value">Hardware, Software, Design</span>
+          </div>
+          <div class="project-meta__item">
+            <span class="project-meta__label">Year</span>
+            <span class="project-meta__value">2026</span>
+          </div>
+        </div>
+      </aside>
+      <div class="project-content">
+
+      <figure>
+        <img src="../images/projects/wizardcard/demo.gif" alt="Animated wizard card playing inside a Chocolate Frog tin" data-lightbox>
+      </figure>
+
+      <h2>Overview</h2>
+      <p>My kids were so excited to visit Honeydukes at the Wizarding World in Universal Studios Florida and get their hands on some Chocolate Frogs. They loved the tins and the wizard cards inside, which had a cool effect using lenticular printing. But I wanted to make them better. More realistic. Moving portraits, just like in the films. So I built one.</p>
+      <p>This is a real Chocolate Frog tin with an animated wizard portrait inside. When you open the lid, a random wizard comes to life on a tiny screen embedded in the card. Close the lid and it goes dark, ready to surprise you with a different wizard next time. Dumbledore, the four Hogwarts founders -- they're all in there.</p>
+
+      <figure>
+        <img src="../images/projects/wizardcard/01_final_build.jpg" alt="Hand holding open Chocolate Frog tin with animated wizard card visible" data-lightbox>
+        <figcaption>The finished tin with a wizard portrait on screen</figcaption>
+      </figure>
+
+      <h2>How It Works</h2>
+      <p>A magnetic reed switch mounted near the lid edge detects a small neodymium magnet glued inside the lid. When the lid opens, the magnet separates from the switch, the Pi wakes the display and plays a randomly selected wizard animation. When the lid closes, the magnet triggers the switch again and the screen clears to black. A printed cardboard mat with a portrait-shaped cutout frames the LCD to look like a real Chocolate Frog card from the films.</p>
+
+      <figure>
+        <img src="../images/projects/wizardcard/04_final_build.jpg" alt="Close-up of the reed switch and neodymium magnet inside the tin lid" data-lightbox>
+        <figcaption>Reed switch in the base detects the magnet in the lid</figcaption>
+      </figure>
+
+      <h2>Hardware</h2>
+      <p>The component stack fits entirely inside a standard Chocolate Frog tin with no modifications to the enclosure: a Raspberry Pi Zero 2 WH drives a 2.4-inch Waveshare LCD via SPI, powered by a PiSugar 3 rechargeable battery so there are no wires. No soldering required. The Pi has pre-soldered headers, the PiSugar connects via pogo pins, and the LCD uses dupont wires secured with hot glue.</p>
+
+      <figure>
+        <img src="../images/projects/wizardcard/05_final_build.jpg" alt="Raspberry Pi Zero 2 WH with PiSugar battery and LCD display outside the tin" data-lightbox>
+        <figcaption>Pi Zero 2 WH, PiSugar 3 battery, and Waveshare 2.4" LCD</figcaption>
+      </figure>
+
+      <figure>
+        <img src="../images/projects/wizardcard/02_final_build.jpg" alt="Inside the Chocolate Frog tin showing wiring and components" data-lightbox>
+        <figcaption>Everything fits inside the tin</figcaption>
+      </figure>
+
+      <figure>
+        <img src="../images/projects/wizardcard/03_final_build.jpg" alt="Build showing LCD mounted on cardboard mat with wiring to Pi inside tin" data-lightbox>
+        <figcaption>LCD mounted behind the printed card overlay</figcaption>
+      </figure>
+
+      <h2>Result</h2>
+      <p>The wizard animations were created with Kling AI from still portrait images. Each animation is 8 seconds at 24fps, played to the framebuffer via ffmpeg. The full build guide, source code, printable card templates, and Kling prompts are all available on <a href="https://github.com/nikolausj1/chocolate-frog-tin" target="_blank" rel="noopener">GitHub</a>.</p>
+
+      <figure>
+        <video controls playsinline preload="metadata" style="width:100%; border-radius:8px;">
+          <source src="../images/projects/wizardcard/wizardcard-demo.mp4" type="video/mp4">
+        </video>
+      </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <nav class="project-nav">
+    <div class="container container--narrow">
+      <a href="alexaplus.html">
+        <img src="../images/previews/alexaplus-preview.png" alt="Alexa Plus" class="project-nav__thumb">
+        <div>
+          <div class="project-nav__label">Next Project</div>
+          <div class="project-nav__title">Next-Gen Conversational AI</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Lightbox -->
+  <dialog id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="">
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__title">Let's Talk</h2>
+      <div>
+        <div class="footer__heading">Email</div>
+        <a href="mailto:justin@justinnikolaus.com" class="footer__link">justin@justinnikolaus.com</a>
+      </div>
+      <div>
+        <div class="footer__heading">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/justinnikolaus" target="_blank" rel="noopener" class="footer__link">linkedin.com/in/justinnikolaus</a>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Justin Nikolaus. All Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
