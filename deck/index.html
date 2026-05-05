@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical AI 2026 - Slides &amp; Speaker Notes</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1f232c;
+    --ink: #e7e9ee;
+    --muted: #9aa3b2;
+    --accent: #f6a623;
+    --line: #2a2f3a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(15,17,21,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 24px; display: flex; align-items: baseline; gap: 16px;
+  }
+  header.site h1 { font-size: 18px; margin: 0; font-weight: 600; }
+  header.site .meta { color: var(--muted); font-size: 13px; }
+  header.site .toc-toggle {
+    margin-left: auto; background: var(--panel-2); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 6px 12px; cursor: pointer; font-size: 13px;
+  }
+  header.site .toc-toggle:hover { border-color: var(--accent); }
+  .layout { display: grid; grid-template-columns: 280px 1fr; max-width: 1400px; margin: 0 auto; }
+  nav.toc {
+    position: sticky; top: 60px; align-self: start;
+    height: calc(100vh - 60px); overflow-y: auto;
+    border-right: 1px solid var(--line);
+    padding: 16px 12px; background: var(--bg);
+  }
+  nav.toc h2 { font-size: 12px; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; letter-spacing: 0.06em; }
+  nav.toc ul { list-style: none; padding: 0; margin: 0; }
+  nav.toc li a {
+    display: block; padding: 6px 8px; border-radius: 4px;
+    color: var(--ink); font-size: 13px;
+  }
+  nav.toc li a:hover { background: var(--panel-2); text-decoration: none; }
+  main { padding: 32px 28px 80px; }
+  .slide-card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 22px; margin-bottom: 28px;
+    scroll-margin-top: 80px;
+  }
+  .slide-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+  .slide-num {
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    background: rgba(246,166,35,0.1); padding: 3px 10px; border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+  .slide-title { margin: 0; font-size: 18px; font-weight: 600; color: var(--ink); }
+  .slide-img-wrap { background: #000; border-radius: 8px; overflow: hidden; }
+  .slide-img-wrap img { display: block; width: 100%; height: auto; }
+  .slide-notes { margin-top: 18px; padding: 16px 18px;
+    background: var(--panel-2); border-left: 3px solid var(--accent);
+    border-radius: 6px; }
+  .slide-notes h3 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+  .slide-notes p { margin: 0 0 10px; font-size: 15px; }
+  .slide-notes p:last-child { margin-bottom: 0; }
+  .slide-notes p.empty { color: var(--muted); font-style: italic; }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.toc { display: none; }
+    nav.toc.open { display: block; position: fixed; top: 60px; left: 0; right: 0;
+      width: 100%; height: calc(100vh - 60px); z-index: 40; }
+    main { padding: 20px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<header class="site">
+  <h1>Practical AI 2026 &mdash; Slide Review</h1>
+  <span class="meta">60 slides &middot; speaker notes</span>
+  <button class="toc-toggle" onclick="document.querySelector('nav.toc').classList.toggle('open')">Contents</button>
+</header>
+<div class="layout">
+  <nav class="toc">
+    <h2>Slides</h2>
+    <ul>
+      <li><a href="#slide-1">1. Practical AI</a></li><li><a href="#slide-2">2. Justin Nikolaus</a></li><li><a href="#slide-3">3. PRACTICAL AI</a></li><li><a href="#slide-4">4. 1</a></li><li><a href="#slide-5">5. 01 What is AI</a></li><li><a href="#slide-6">6. What is AI?</a></li><li><a href="#slide-7">7. What is AI?</a></li><li><a href="#slide-8">8. What is AI?</a></li><li><a href="#slide-9">9. What is AI?</a></li><li><a href="#slide-10">10. The AI Tool Landscape</a></li><li><a href="#slide-11">11. The AI Tool Landscape</a></li><li><a href="#slide-12">12. 01 What is AI</a></li><li><a href="#slide-13">13. 01 What is AI</a></li><li><a href="#slide-14">14. 01 What is AI</a></li><li><a href="#slide-15">15. 01 What is AI</a></li><li><a href="#slide-16">16. 01 What is AI</a></li><li><a href="#slide-17">17. What AI to Use</a></li><li><a href="#slide-18">18. What Model to Use</a></li><li><a href="#slide-19">19. What Model to Use</a></li><li><a href="#slide-20">20. Tools &amp; Features</a></li><li><a href="#slide-21">21. 2</a></li><li><a href="#slide-22">22. 02 When should I use ai?</a></li><li><a href="#slide-23">23. 02 When should I use ai?</a></li><li><a href="#slide-24">24. 02 When should I use ai?</a></li><li><a href="#slide-25">25. 02 When should I use ai?</a></li><li><a href="#slide-26">26. 3</a></li><li><a href="#slide-27">27. 03 HOw To Use AI</a></li><li><a href="#slide-28">28. 03 HOw To Use AI</a></li><li><a href="#slide-29">29. 03 HOw To Use AI</a></li><li><a href="#slide-30">30. 03 HOw To Use AI</a></li><li><a href="#slide-31">31. 03 HOw To Use AI</a></li><li><a href="#slide-32">32. 03 HOw To Use AI</a></li><li><a href="#slide-33">33. 03 HOw To Use AI</a></li><li><a href="#slide-34">34. 03 HOw To Use AI</a></li><li><a href="#slide-35">35. 03 HOw To Use AI</a></li><li><a href="#slide-36">36. 03 HOw To Use AI</a></li><li><a href="#slide-37">37. 03 HOw To Use AI</a></li><li><a href="#slide-38">38. 03 HOw To Use AI</a></li><li><a href="#slide-39">39. 4</a></li><li><a href="#slide-40">40. Tip: Ask Me Questions</a></li><li><a href="#slide-41">41. Tip: Help Me Create a Prompt</a></li><li><a href="#slide-42">42. 04 Prompting Tips</a></li><li><a href="#slide-43">43. 04 Prompting Tips</a></li><li><a href="#slide-44">44. Tip: Match Your Tone</a></li><li><a href="#slide-45">45. Tip: Upload Files</a></li><li><a href="#slide-46">46. Tip: Upload Files</a></li><li><a href="#slide-47">47. 5</a></li><li><a href="#slide-48">48. Beyond Prompting</a></li><li><a href="#slide-49">49. Beyond Prompting</a></li><li><a href="#slide-50">50. Beyond Prompting</a></li><li><a href="#slide-51">51. Beyond Prompting</a></li><li><a href="#slide-52">52. Beyond Prompting</a></li><li><a href="#slide-53">53. Beyond Prompting</a></li><li><a href="#slide-54">54. Beyond Prompting</a></li><li><a href="#slide-55">55. Beyond Prompting</a></li><li><a href="#slide-56">56. Beyond Prompting</a></li><li><a href="#slide-57">57. Beyond Prompting</a></li><li><a href="#slide-58">58. Beyond Prompting</a></li><li><a href="#slide-59">59. Beyond Prompting</a></li><li><a href="#slide-60">60. Justin Nikolaus</a></li>
+    </ul>
+  </nav>
+  <main>
+    
+    <section class="slide-card" id="slide-1">
+      <header class="slide-head">
+        <span class="slide-num">Slide 1</span>
+        <h2 class="slide-title">Practical AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-01.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-01.jpg" alt="Slide 1">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>bb</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-2">
+      <header class="slide-head">
+        <span class="slide-num">Slide 2</span>
+        <h2 class="slide-title">Justin Nikolaus</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-02.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-02.jpg" alt="Slide 2">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I&#x27;m Justin Nikolaus. I’ve been working in the field of AI one way or another for the last 10 years. I&#x27;ve designed AI-powered experiences for Windows at Microsoft, worked on everyones favorite home assistant Alexa for Amazon, and the most exciting - at least for a space-nerd like myself – is I created an AI voice experience to make astronauts work and life easier in space for NASA. Daily, I&#x27;m reading technical papers, experimenting with cutting-edge AI techniques, and I thought I could package some of the information I’ve learned into a practical, easy-to-understand talk that can shed light on some foundations of AI.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-3">
+      <header class="slide-head">
+        <span class="slide-num">Slide 3</span>
+        <h2 class="slide-title">PRACTICAL AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-03.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-03.jpg" alt="Slide 3">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And thats what Im talking about today: <br>Start with an explanation of AI. <br>Then good scenarios to use it. <br>Followed by a practical framework and some prompting tips you can use. <br>Then ending with the direction AI is headed. </p><p>So, let’s jump in.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-4">
+      <header class="slide-head">
+        <span class="slide-num">Slide 4</span>
+        <h2 class="slide-title">1</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-04.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-04.jpg" alt="Slide 4">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I&#x27;ve discovered that people who struggle with AI usually skip the fundamentals. So let&#x27;s start there - what is AI really?</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-5">
+      <header class="slide-head">
+        <span class="slide-num">Slide 5</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-05.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-05.jpg" alt="Slide 5">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>There are two main buckets. Predictive AI - that&#x27;s your Netflix recommendations and weather forecasts. And the other one, the one that we’re focusing on today, is Generative AI. It creates NEW things - text, images, code, video, music.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-6">
+      <header class="slide-head">
+        <span class="slide-num">Slide 6</span>
+        <h2 class="slide-title">What is AI?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-06.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-06.jpg" alt="Slide 6">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I&#x27;m going to quickly explain how AI is created and how it works. We could spend a full hour on this, but I&#x27;ll just give you a practical foundation.  #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-7">
+      <header class="slide-head">
+        <span class="slide-num">Slide 7</span>
+        <h2 class="slide-title">What is AI?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-07.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-07.jpg" alt="Slide 7">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Companies gather billions of documents… Books, every Wikipedia article, websites, research papers - and feed them through thousands of powerful computers for months. It costs over 100 million dollars just to train one model like ChatGPT. But what the computer is actually doing isn’t memorizing facts, it’s learning patterns - understanding how human language works; and the patterns of human thought. #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-8">
+      <header class="slide-head">
+        <span class="slide-num">Slide 8</span>
+        <h2 class="slide-title">What is AI?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-08.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-08.jpg" alt="Slide 8">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Then, after that, they teach the AI model how to have helpful conversations and train it on examples of good AI responses. Then, they test and review it for quality and safety—to make sure it doesn&#x27;t tell people to do illegal things. #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-9">
+      <header class="slide-head">
+        <span class="slide-num">Slide 9</span>
+        <h2 class="slide-title">What is AI?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-09.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-09.jpg" alt="Slide 9">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Then, when it&#x27;s ready and they release it to the public, you send it a request. And it generates responses one word at a time. For each word, it then thinks, &#x27;Based on all the patterns I’ve learned in training and the current conversation I’m having, what word comes next?&#x27; It’s choosing the word it thinks should come next based on the patterns that it learned in its training. And it does that for the that word, and the next word, and the next word, until it feels that the answer is complete.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-10">
+      <header class="slide-head">
+        <span class="slide-num">Slide 10</span>
+        <h2 class="slide-title">The AI Tool Landscape</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-10.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-10.jpg" alt="Slide 10">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Two types of AI tools to know about. General tools like ChatGPT, Claude, and Gemini that can handle almost anything - they&#x27;re like having a knowledgeable assistant who can tackle any task you throw at them. #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-11">
+      <header class="slide-head">
+        <span class="slide-num">Slide 11</span>
+        <h2 class="slide-title">The AI Tool Landscape</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-11.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-11.jpg" alt="Slide 11">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Then there’s specialized tools. They have deep knowledge of specific domains. Perplexity searches the web, Jasper specializes in marketing, and Gamma creates presentations. They come pre-tuned with industry-specific knowledge. Some of them are even powered by the general tools on the left. </p><p>You don&#x27;t need every tool - just the ones that solve problems you actually have.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-12">
+      <header class="slide-head">
+        <span class="slide-num">Slide 12</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-12.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-12.jpg" alt="Slide 12">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I’ll show you a quick example for fun of ChatGPTs new Images 2.0 tool that creates and manipulates images better than anything I’ve seen. Better than I could do with Photoshop.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-13">
+      <header class="slide-head">
+        <span class="slide-num">Slide 13</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-13.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-13.jpg" alt="Slide 13">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I started by uploading a photo of myself to the service and then asked it to show me wearing a leather jacket and here&#x27;s what I got back. #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-14">
+      <header class="slide-head">
+        <span class="slide-num">Slide 14</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-14.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-14.jpg" alt="Slide 14">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Pretty good. Then I made it even harder and asked to show me skydiving #.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-15">
+      <header class="slide-head">
+        <span class="slide-num">Slide 15</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-15.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-15.jpg" alt="Slide 15">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Pretty impressive. That would have been a lot of work for me to do that by hand with Photoshop. Then, just to see what it would do, I asked for it to show me drinking a glass of red wine while skydiving. #</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-16">
+      <header class="slide-head">
+        <span class="slide-num">Slide 16</span>
+        <h2 class="slide-title">01 What is AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-16.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-16.jpg" alt="Slide 16">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Wow. Looks like I’m having a great time. These all took just a few seconds without any real prompting skills - and I just wanted to show you what’s possible with these tools.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-17">
+      <header class="slide-head">
+        <span class="slide-num">Slide 17</span>
+        <h2 class="slide-title">What AI to Use</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-17.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-17.jpg" alt="Slide 17">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>These are the three most popular contenders in the general chat category. They are OpenAI&#x27;s ChatGPT, Anthropic&#x27;s Claude, and Google&#x27;s Gemini.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-18">
+      <header class="slide-head">
+        <span class="slide-num">Slide 18</span>
+        <h2 class="slide-title">What Model to Use</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-18.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-18.jpg" alt="Slide 18">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Within these services, you now have two main speeds to choose from.<br>Fast Mode: You ask, it answers. Great for most day-to-day questions.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-19">
+      <header class="slide-head">
+        <span class="slide-num">Slide 19</span>
+        <h2 class="slide-title">What Model to Use</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-19.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-19.jpg" alt="Slide 19">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Thinking Mode is where the model pauses and deliberates internally before starting to write. It is slower, but it is the one to reach for on hard, multi-step problems: analyzing data, debugging code, planning something complex. <br>Today, many tools do this automatically when they sense a hard problem. But it is worth knowing the toggle exists so you can force it when it matters.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-20">
+      <header class="slide-head">
+        <span class="slide-num">Slide 20</span>
+        <h2 class="slide-title">Tools &amp; Features</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-20.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-20.jpg" alt="Slide 20">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Each platform has different tools and features. Things like Deep Research, Agent Mode, and Skills. Connectors and MCP. New capabilities are constantly being added and there are too many to go through now, but I have them all listed and explained on my online toolkit that I&#x27;ll share with you at the end of my talk.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-21">
+      <header class="slide-head">
+        <span class="slide-num">Slide 21</span>
+        <h2 class="slide-title">2</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-21.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-21.jpg" alt="Slide 21">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>So now we know what AI is, let’s talk about when to use it.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-22">
+      <header class="slide-head">
+        <span class="slide-num">Slide 22</span>
+        <h2 class="slide-title">02 When should I use ai?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-22.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-22.jpg" alt="Slide 22">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>At work, I obviously use AI all the time. I use it to draft design briefs - I drop in my notes and the outline I want it to follow, and it helps get me started with that first draft. I need to read a lot of very long technical papers. But I always have AI summarize first. And I have AI review the transcripts of every meeting I&#x27;m in, to track decisions and action items while I stay present in the meeting.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-23">
+      <header class="slide-head">
+        <span class="slide-num">Slide 23</span>
+        <h2 class="slide-title">02 When should I use ai?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-23.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-23.jpg" alt="Slide 23">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>But it&#x27;s not just for work. I use it for a lot of things at home. One is creating custom bedtime stories in the style of Magic Treehouse. The kids get a kick out of hearing their names and the things they like in the story.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-24">
+      <header class="slide-head">
+        <span class="slide-num">Slide 24</span>
+        <h2 class="slide-title">02 When should I use ai?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-24.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-24.jpg" alt="Slide 24">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>AI is a powerful tool for creativity, summarization, and streamlining repetitive tasks. But it’s not designed to replace experts in high-stakes areas like law, medicine, or finance. <br>Now people are using AI for all of these already. I am not telling you never to do it. I am telling you to do it carefully. Get a second opinion. Verify the specifics. Do not replace a real expert when the stakes are high. And remember, there are moments where a human touch is valued, like wedding vows or a sympathy note.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-25">
+      <header class="slide-head">
+        <span class="slide-num">Slide 25</span>
+        <h2 class="slide-title">02 When should I use ai?</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-25.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-25.jpg" alt="Slide 25">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Before sharing any work data with AI tools, check your company&#x27;s policy. Most large companies now have an enterprise version of these models. If yours does, use that. Just remember to treat anything you share with public AI tools, as potentially public information.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-26">
+      <header class="slide-head">
+        <span class="slide-num">Slide 26</span>
+        <h2 class="slide-title">3</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-26.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-26.jpg" alt="Slide 26">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Now we know what AI is and how it works, let&#x27;s get to the practical part - how to actually work with your new AI partner.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-27">
+      <header class="slide-head">
+        <span class="slide-num">Slide 27</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-27.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-27.jpg" alt="Slide 27">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I’m going to share a simple framework that transforms vague requests into powerful prompts. <br>#First is Role - tell it to be a specific expert. This helps focus the AI. <br>#Task - your clear goal. What you whant to accomplish.  <br>#Context - the background it needs to know. <br>#Format - how you want the response structured. </p><p> The more specific you are, the more tailored and useful your results become.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-28">
+      <header class="slide-head">
+        <span class="slide-num">Slide 28</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-28.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-28.jpg" alt="Slide 28">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Lets test this with a scenario of: making chicken for dinner. </p><p>And we write: “give me a good chicken recipe for dinner” </p><p>If this were a Google search, it would take you a few generic recipes. <br>If you fed this to AI, it won&#x27;t have enough specifics to generate a great response.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-29">
+      <header class="slide-head">
+        <span class="slide-num">Slide 29</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-29.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-29.jpg" alt="Slide 29">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Let’s use the framework. I have the scaffolding up here, so that we can fill it in</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-30">
+      <header class="slide-head">
+        <span class="slide-num">Slide 30</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-30.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-30.jpg" alt="Slide 30">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p># We start with Role… what kind of expertise is needed: “act as a culinary instructor”. # Then we clarify the goal of the prompt. We want them to create a recipe. <br>#Then we provide relevant context: How many people, the vibe, what ingredients you have, and any dietary restrictions.<br>#And finally, the format that you want such as options for substitutions and even plating ideas.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-31">
+      <header class="slide-head">
+        <span class="slide-num">Slide 31</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-31.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-31.jpg" alt="Slide 31">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And here is the response… Lemon Erb Pan Roasted Chicken. Sounds good. <br>IT has the ingredients,</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-32">
+      <header class="slide-head">
+        <span class="slide-num">Slide 32</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-32.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-32.jpg" alt="Slide 32">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Prep steps that you can do ahead of time</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-33">
+      <header class="slide-head">
+        <span class="slide-num">Slide 33</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-33.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-33.jpg" alt="Slide 33">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Cooking instructions with timing</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-34">
+      <header class="slide-head">
+        <span class="slide-num">Slide 34</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-34.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-34.jpg" alt="Slide 34">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And those plating suggestions that we asked for. You can follow this and have a nice chicken dinner. I took it one step further….</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-35">
+      <header class="slide-head">
+        <span class="slide-num">Slide 35</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-35.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-35.jpg" alt="Slide 35">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And asked it to create a visual of that recipe that could be used as a step-by-step guide that looks like it&#x27;s in a high-quality cooking magazine. <br>But the point is we&#x27;re able to use the framework to get all the information that we needed.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-36">
+      <header class="slide-head">
+        <span class="slide-num">Slide 36</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-36.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-36.jpg" alt="Slide 36">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Now that you have a framework… the next biggest thing to get great results isn&#x27;t writing the perfect prompt on the first try. It&#x27;s having a conversation. Your framework prompt is just the beginning. When you get that first response, treat it like a first draft from a talented colleague. Say &#x27;This is too technical’ or &#x27;Add more data to support this point.&#x27; The AI applies your feedback without losing the context from your original request.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-37">
+      <header class="slide-head">
+        <span class="slide-num">Slide 37</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-37.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-37.jpg" alt="Slide 37">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>AI can do a lot, but we are still valuable as humans. We are the taste makers, we know what we want, its our judgement and values that are important in this process. So I suggest to not just copy and paste the first response. Work with it until it is exactly what you want in the way you want to say it.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-38">
+      <header class="slide-head">
+        <span class="slide-num">Slide 38</span>
+        <h2 class="slide-title">03 HOw To Use AI</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-38.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-38.jpg" alt="Slide 38">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Ok, now let&#x27;s take a look at the entire workflow and put all the pieces together. <br># First, we determine if it&#x27;s a good use case for AI.  <br># If it is, we can use our Prompt Framework to create a foundation for our conversation. <br># Then we refine the output with follow-up requests, to narrow in to what we want. <br># Then we review it as a human for accuracy and style.  <br># And at the end, we can make small manual edits that might be too cumbersome to instruct AI to do for us, things that we can easily do ourselves.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-39">
+      <header class="slide-head">
+        <span class="slide-num">Slide 39</span>
+        <h2 class="slide-title">4</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-39.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-39.jpg" alt="Slide 39">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Ok, now we are going to get into some very practical tips you can use with AI. I&#x27;m not going to spend a long time on each one, but don&#x27;t worry, these and more are listed on the Toolkit that I will share.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-40">
+      <header class="slide-head">
+        <span class="slide-num">Slide 40</span>
+        <h2 class="slide-title">Tip: Ask Me Questions</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-40.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-40.jpg" alt="Slide 40">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>I’m going to start with one of my favorite tips:  And it’s: Add “ask me one question at a time, until you have enough information to give me a great answer” to the end of your prompts. Instead of guessing what you need, the AI will ask you!  I use this a lot. I like this because the AI can use my last answer to think of new questions. Remember, it uses the full context of the entire conversation to decide what word should come next in its responses.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-41">
+      <header class="slide-head">
+        <span class="slide-num">Slide 41</span>
+        <h2 class="slide-title">Tip: Help Me Create a Prompt</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-41.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-41.jpg" alt="Slide 41">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Unsure how to write your prompt? Ask for help. Include “Help me create a prompt for this,” and it will create a structured prompt. It&#x27;s like having a prompt coach built right in! I use this alot for deep research when the response sometimes take up to 60 minutes to complete.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-42">
+      <header class="slide-head">
+        <span class="slide-num">Slide 42</span>
+        <h2 class="slide-title">04 Prompting Tips</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-42.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-42.jpg" alt="Slide 42">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Here are two phrases that give me good results:<br># Rewrite: This is your go-to when something is close but not quite right. You can pair it with tone, audience, or intent—like &quot;Rewrite this to sound more confident&quot; or &quot;Rewrite this for a LinkedIn post.&quot;</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-43">
+      <header class="slide-head">
+        <span class="slide-num">Slide 43</span>
+        <h2 class="slide-title">04 Prompting Tips</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-43.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-43.jpg" alt="Slide 43">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>The next one is Elaborate. This works especially well when you&#x27;ve got rough notes or bullet points and need help fleshing them out into a paragraph or document.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-44">
+      <header class="slide-head">
+        <span class="slide-num">Slide 44</span>
+        <h2 class="slide-title">Tip: Match Your Tone</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-44.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-44.jpg" alt="Slide 44">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>The next tip is tone matching. This is a technique to have the AI’s response style match your writing style. Give the model some examples of text you have already created. This could be emails you have written, documents, even text messages. Then ask it to rewrite its response, matching your tone and style.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-45">
+      <header class="slide-head">
+        <span class="slide-num">Slide 45</span>
+        <h2 class="slide-title">Tip: Upload Files</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-45.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-45.jpg" alt="Slide 45">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>We have focused on text requests so far, but you can upload a variety of files as part of your context for your request.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-46">
+      <header class="slide-head">
+        <span class="slide-num">Slide 46</span>
+        <h2 class="slide-title">Tip: Upload Files</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-46.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-46.jpg" alt="Slide 46">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>For instance, if you were having a dinner party and wanted to make drinks for your guests, you could take a picture of the alcohol you have at home. And then prompt “I have people coming over and want to make some cocktails. Here is what I have in stock. What are some easy-to-make cocktail recipes?”</p><p>AI will look at the photo and start generating recipes for you. The featured cocktail at the bar was actually generated from this prompt.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-47">
+      <header class="slide-head">
+        <span class="slide-num">Slide 47</span>
+        <h2 class="slide-title">5</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-47.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-47.jpg" alt="Slide 47">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>So far, we’ve talked about what AI is and how to write better prompts.<br>That is still important. But in 2026, the people getting the most value from AI creating new workflows. This is where we move out of the 100-level class and it gets more advanced. You don’t have to use these methods, but I want to share the direction things are moving.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-48">
+      <header class="slide-head">
+        <span class="slide-num">Slide 48</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-48.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-48.jpg" alt="Slide 48">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Early AI advice focused on wording. <br>That helps, but it’s not the main issue. The real problem is missing context. If you dont give it enough, the AI fills in the gaps, and you won&#x27;t get what you want.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-49">
+      <header class="slide-head">
+        <span class="slide-num">Slide 49</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-49.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-49.jpg" alt="Slide 49">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>What actually improves results is giving the AI the full situation.The full thread, the relevant documents, and examples of what good looks like.<br>And it&#x27;s not just more context; it should be the right context.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-50">
+      <header class="slide-head">
+        <span class="slide-num">Slide 50</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-50.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-50.jpg" alt="Slide 50">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Being good at AI used to mean being good at copy-paste.You had to gather emails, docs, notes, and manually feed them into the model.That works, but it makes you the integration layer.#</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-51">
+      <header class="slide-head">
+        <span class="slide-num">Slide 51</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-51.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-51.jpg" alt="Slide 51">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>The shift now is connected AI.With permission, AI can access things like your email, your documents, Slack messges, and internal knowledge bases.<br>You don’t need to move the data anymore.The AI can go to where the data lives.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-52">
+      <header class="slide-head">
+        <span class="slide-num">Slide 52</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-52.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-52.jpg" alt="Slide 52">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And this isnt hard to do, just ask the models the best way to connect to your data and it will help you.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-53">
+      <header class="slide-head">
+        <span class="slide-num">Slide 53</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-53.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-53.jpg" alt="Slide 53">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>One way to improve results for complex projects is to use a second model to challenge the first. One model like ChatGPT generates the response, then a different model like Claude critiques it - and you loop until the output improves.<br>Different models have different strengths, and the disagreement is the point. That’s what exposes gaps and leads to better results.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-54">
+      <header class="slide-head">
+        <span class="slide-num">Slide 54</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-54.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-54.jpg" alt="Slide 54">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Here’s how to do that:<br>You ask the second model to critique it - look for what’s missing, what’s unclear, or what could be improved.<br>Then feed that critique back into the first model to have it revise the response.<br>You’re not just prompting anymore, you’re orchestrating a system.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-55">
+      <header class="slide-head">
+        <span class="slide-num">Slide 55</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-55.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-55.jpg" alt="Slide 55">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>And the last thing Ill touch on is that today, even with AI, you’re still doing the orchestration.You break the work into steps, prompt each one, and connect it all together.<br>Agents change that.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-56">
+      <header class="slide-head">
+        <span class="slide-num">Slide 56</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-56.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-56.jpg" alt="Slide 56">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>With an agent, you describe the outcome you want, and the AI can plan the steps, work across different tools, and take action within limits you set. You are still responsible for the judgment and approvals, but the AI starts moving from advisor to operator.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-57">
+      <header class="slide-head">
+        <span class="slide-num">Slide 57</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-57.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-57.jpg" alt="Slide 57">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>For an example, Let&#x27;s say you want to go on a vacation to Santa Barbara. We can just assign the outcome: plan and book a 3-day trip.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-58">
+      <header class="slide-head">
+        <span class="slide-num">Slide 58</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-58.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-58.jpg" alt="Slide 58">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>The agent figures out its own steps. It looks at flights, hotels, activities, checks availability, compares options, and builds a plan.<br>But it’s not just suggesting things, it’s actually doing them. Visiting sites, pulling real-time data, checking your calendar, making sure things fit. When it needs input, it asks. When it needs to spend money, it can pause for approval.But for low-risk actions, like making a dinner reservation, it can just go ahead and do it.</p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-59">
+      <header class="slide-head">
+        <span class="slide-num">Slide 59</span>
+        <h2 class="slide-title">Beyond Prompting</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-59.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-59.jpg" alt="Slide 59">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>The best way to think about it is: it’s like having a small team working on your behalf to get things done 24 hours a day.</p><p>But like I said, this is just the direction things are going, most people aren&#x27;t using teams of agents… at least there aren&#x27;t yet. </p>
+      </div>
+    </section>
+    
+
+    <section class="slide-card" id="slide-60">
+      <header class="slide-head">
+        <span class="slide-num">Slide 60</span>
+        <h2 class="slide-title">Justin Nikolaus</h2>
+      </header>
+      <div class="slide-img-wrap">
+        <a href="slides/slide-60.jpg" target="_blank" rel="noopener">
+          <img loading="lazy" src="slides/slide-60.jpg" alt="Slide 60">
+        </a>
+      </div>
+      <div class="slide-notes">
+        <h3>Speaker Notes</h3>
+        <p>Thank you everyone. Best practices are changing and new methods are evloving. Im giving you all access to my online toolkit at practicalAiToolkit.com. It has what I’ve covered today, plus much more. Things are moving fast in this industry and I will be updating it with new tools, tips, and tricks. <br>Thank you!</p>
+      </div>
+    </section>
+    
+  </main>
+</div>
+</body>
+</html>
