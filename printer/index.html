@@ -134,6 +134,94 @@
         </section>
       </main>
 
+      <section class="project-story" aria-labelledby="story-title">
+        <div class="story-intro">
+          <div>
+            <p class="story-eyebrow">The idea</p>
+            <h2 id="story-title">Turning an old printer into a fun weekend project</h2>
+          </div>
+          <p class="story-lede">
+            I found an old thermal printer that had an Ethernet port, so I wondered if I could hook
+            it up to the internet so friends could send me messages that print right on my desk.
+          </p>
+        </div>
+
+        <ol class="system-flow" aria-label="How a message reaches the printer">
+          <li>
+            <span class="flow-number">01</span>
+            <h3>The page checks in</h3>
+            <p>Before accepting a note, the site confirms that the printer is online and ready.</p>
+            <span class="flow-tech">Browser</span>
+          </li>
+          <li>
+            <span class="flow-number">02</span>
+            <h3>The cloud holds it</h3>
+            <p>A small database gives each note a place in line and guards against spam or duplicates.</p>
+            <span class="flow-tech">Supabase queue</span>
+          </li>
+          <li>
+            <span class="flow-number">03</span>
+            <h3>My server picks it up</h3>
+            <p>An always-on computer in my house securely asks the cloud for the next message.</p>
+            <span class="flow-tech">Node.js worker</span>
+          </li>
+          <li>
+            <span class="flow-number">04</span>
+            <h3>The printer makes it real</h3>
+            <p>The computer sends printer commands across my home network, then cuts the receipt.</p>
+            <span class="flow-tech">ESC/POS + Ethernet</span>
+          </li>
+        </ol>
+
+        <div class="build-story">
+          <div class="build-copy">
+            <p class="story-eyebrow">How it was made</p>
+            <p>
+              I started by connecting the Rongta RP820 thermal printer that I found to my network
+              and sending test commands directly from my Mac. Once I got printing to work, I built
+              a cloud-based holding area (a queue) where each incoming message waits safely until
+              the printer is ready for it. This keeps the public website separate from my home
+              network and helps prevent messages from being lost or printed twice. I then moved
+              the print worker, a small program that watches the queue and translates messages
+              into printer commands, to an always-on Windows server in my house. When a new
+              message arrives, the worker retrieves it, sends it to the printer over my local
+              network, and reports whether it printed successfully.
+            </p>
+            <p>
+              From there, I built the public page, live printer status, moderation, rate limits,
+              duplicate protection, and an emergency pause.
+            </p>
+          </div>
+
+          <aside class="technical-card" aria-labelledby="technical-title">
+            <p class="technical-label">For the curious</p>
+            <h3 id="technical-title">What is under the hood</h3>
+            <dl>
+              <div>
+                <dt>Website</dt>
+                <dd>Static HTML, CSS, and JavaScript</dd>
+              </div>
+              <div>
+                <dt>Cloud</dt>
+                <dd>Supabase Edge Functions and Postgres</dd>
+              </div>
+              <div>
+                <dt>Home worker</dt>
+                <dd>Node.js running as a Windows service</dd>
+              </div>
+              <div>
+                <dt>Printer link</dt>
+                <dd>Raw TCP over Ethernet using ESC/POS</dd>
+              </div>
+            </dl>
+            <p class="technical-note">
+              Each message is rate-limited, checked, queued once, and accepted only while the
+              printer is reporting that it is healthy.
+            </p>
+          </aside>
+        </div>
+      </section>
+
       <footer class="site-footer">
         <p>Built by Justin Nikolaus, with an unreasonable amount of infrastructure for a tiny printer.</p>
       </footer>
