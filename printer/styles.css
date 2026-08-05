@@ -442,7 +442,7 @@ button:disabled {
   margin: 0;
   font-size: clamp(2.8rem, 5.4vw, 5rem);
   font-weight: 760;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.035em;
   line-height: 0.94;
 }
 
