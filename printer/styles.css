@@ -100,6 +100,10 @@ h1 {
   line-height: 1.55;
 }
 
+.lede-direction-stacked {
+  display: none;
+}
+
 .printer-status {
   width: fit-content;
   max-width: 100%;
@@ -622,6 +626,14 @@ button:disabled {
 }
 
 @media (max-width: 860px) {
+  .lede-direction-wide {
+    display: none;
+  }
+
+  .lede-direction-stacked {
+    display: inline;
+  }
+
   .main-layout {
     grid-template-columns: 1fr;
     gap: 70px;
