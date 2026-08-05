@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Send a Message to Justin's Desk Printer</title>
+    <meta
+      name="description"
+      content="Send a short message to a real thermal receipt printer on Justin Nikolaus's desk in Seattle."
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="#17140f" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; connect-src https://vamppbjgfpwasjcvpaho.supabase.co; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'"
+    />
+    <link rel="canonical" href="https://www.justinnikolaus.com/printer/" />
+    <meta property="og:title" content="Send a Message to My Desk" />
+    <meta
+      property="og:description"
+      content="Type a short note and it will print on a real thermal printer in Seattle."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.justinnikolaus.com/printer/" />
+    <meta property="og:image" content="https://www.justinnikolaus.com/printer/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A thermal printer on a dark desk beside the words Send a Message to My Desk" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="site-mark" href="/" aria-label="Justin Nikolaus home">JN</a>
+        <p>Internet-connected desk printer</p>
+        <span>Seattle, WA</span>
+      </header>
+
+      <main class="main-layout">
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">A real printer. A real desk.</p>
+          <h1 id="page-title">Send a message to my desk.</h1>
+          <p class="lede">
+            Type a short note below and it will travel through the internet to a small thermal
+            printer sitting beside me in Seattle.
+          </p>
+
+          <div class="printer-status" id="printer-status" data-state="checking" role="status" aria-live="polite">
+            <span class="status-light" aria-hidden="true"></span>
+            <span>
+              <strong id="status-label">Checking the printer</strong>
+              <small id="status-message">Making sure it is ready.</small>
+            </span>
+          </div>
+
+          <ol class="journey" aria-label="How your message travels">
+            <li><span>01</span>You write a message</li>
+            <li><span>02</span>The internet delivers it</li>
+            <li><span>03</span>The receipt prints on my desk</li>
+          </ol>
+
+          <aside class="desk-note">
+            <span aria-hidden="true">↳</span>
+            <p>
+              This is not a simulation. Each accepted message uses a little strip of real paper,
+              so please send something human.
+            </p>
+          </aside>
+        </section>
+
+        <section class="receipt-wrap" aria-labelledby="form-title">
+          <div class="receipt">
+            <div class="receipt-meta" aria-hidden="true">
+              <span>RP820 / DESK 01</span>
+              <span>48 COL</span>
+            </div>
+
+            <div class="receipt-heading">
+              <p>MESSAGE</p>
+              <h2 id="form-title">From the internet</h2>
+            </div>
+
+            <form id="message-form" novalidate>
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="sender-name">Your name or nickname</label>
+                  <span>Optional</span>
+                </div>
+                <input
+                  id="sender-name"
+                  name="name"
+                  type="text"
+                  maxlength="30"
+                  autocomplete="nickname"
+                  placeholder="Anonymous"
+                  aria-describedby="name-help name-error"
+                />
+                <small id="name-help">Leave blank to send anonymously.</small>
+                <small class="field-error" id="name-error" aria-live="polite"></small>
+              </div>
+
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="message-text">Your message</label>
+                  <span id="character-count">0 / 300</span>
+                </div>
+                <textarea
+                  id="message-text"
+                  name="message"
+                  maxlength="300"
+                  rows="7"
+                  required
+                  placeholder="Hello from somewhere on the internet..."
+                  aria-describedby="message-help message-error"
+                ></textarea>
+                <small id="message-help">Plain text only. Up to 8 line breaks.</small>
+                <small class="field-error" id="message-error" aria-live="polite"></small>
+              </div>
+
+              <div class="trap-field" aria-hidden="true">
+                <label for="website">Website</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button id="submit-button" type="submit" disabled>
+                <span id="button-label">Print this message</span>
+                <span class="button-arrow" aria-hidden="true">→</span>
+              </button>
+
+              <div class="submission-feedback" id="submission-feedback" hidden role="status" aria-live="polite">
+                <span class="feedback-mark" id="feedback-mark" aria-hidden="true">···</span>
+                <div>
+                  <strong id="feedback-label">Sending your message</strong>
+                  <p id="feedback-message">Connecting to the printer.</p>
+                </div>
+              </div>
+            </form>
+
+            <div class="receipt-footer" aria-hidden="true">
+              <span>JUSTINNIKOLAUS.COM</span>
+              <span id="receipt-date"></span>
+            </div>
+          </div>
+
+          <p class="privacy-note">
+            Messages are not displayed publicly. They physically print near Justin and may be seen
+            by people nearby. Basic technical information is retained for abuse prevention. Do not
+            submit sensitive personal information.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Built by Justin Nikolaus, with an unreasonable amount of infrastructure for a tiny printer.</p>
+      </footer>
+    </div>
+  </body>
+</html>
