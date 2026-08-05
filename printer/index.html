@@ -32,19 +32,13 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header">
-        <a class="site-mark" href="/" aria-label="Justin Nikolaus home">JN</a>
-        <p>Internet-connected desk printer</p>
-        <span>Seattle, WA</span>
-      </header>
-
       <main class="main-layout">
         <section class="intro" aria-labelledby="page-title">
-          <p class="eyebrow">A real printer. A real desk.</p>
+          <p class="eyebrow">Your note to a real printer.</p>
           <h1 id="page-title">Send a message to my desk.</h1>
           <p class="lede">
             Type a short note below and it will travel through the internet to a small thermal
-            printer sitting beside me in Seattle.
+            printer sitting on my desk next to me.
           </p>
 
           <div class="printer-status" id="printer-status" data-state="checking" role="status" aria-live="polite">
@@ -55,19 +49,6 @@
             </span>
           </div>
 
-          <ol class="journey" aria-label="How your message travels">
-            <li><span>01</span>You write a message</li>
-            <li><span>02</span>The internet delivers it</li>
-            <li><span>03</span>The receipt prints on my desk</li>
-          </ol>
-
-          <aside class="desk-note">
-            <span aria-hidden="true">↳</span>
-            <p>
-              This is not a simulation. Each accepted message uses a little strip of real paper,
-              so please send something human.
-            </p>
-          </aside>
         </section>
 
         <section class="receipt-wrap" aria-labelledby="form-title">
@@ -85,7 +66,7 @@
             <form id="message-form" novalidate>
               <div class="field-group">
                 <div class="label-row">
-                  <label for="sender-name">Your name or nickname</label>
+                  <label for="sender-name">Your name</label>
                   <span>Optional</span>
                 </div>
                 <input
@@ -93,7 +74,7 @@
                   name="name"
                   type="text"
                   maxlength="30"
-                  autocomplete="nickname"
+                  autocomplete="name"
                   placeholder="Anonymous"
                   aria-describedby="name-help name-error"
                 />
@@ -144,11 +125,12 @@
             </div>
           </div>
 
-          <p class="privacy-note">
-            Messages are not displayed publicly. They physically print near Justin and may be seen
-            by people nearby. Basic technical information is retained for abuse prevention. Do not
-            submit sensitive personal information.
-          </p>
+          <aside class="desk-note">
+            <p>
+              This is not a simulation. Each message uses a little strip of real paper, so please
+              send something human.
+            </p>
+          </aside>
         </section>
       </main>
 

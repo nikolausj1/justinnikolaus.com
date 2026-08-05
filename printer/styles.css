@@ -53,40 +53,6 @@ textarea {
   margin: 0 auto;
 }
 
-.site-header {
-  min-height: 92px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 18px;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.site-header p,
-.site-header span {
-  margin: 0;
-}
-
-.site-mark {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(244, 240, 230, 0.45);
-  border-radius: 50%;
-  color: var(--paper);
-  font-family: var(--sans);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  text-decoration: none;
-}
-
-.site-mark:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
@@ -95,7 +61,7 @@ textarea:focus-visible {
 }
 
 .main-layout {
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 78px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
   gap: clamp(48px, 8vw, 120px);
@@ -189,40 +155,15 @@ h1 {
   box-shadow: 0 0 0 5px rgba(255, 138, 122, 0.12);
 }
 
-.journey {
-  display: grid;
-  gap: 0;
-  margin: 46px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--line);
-}
-
-.journey li {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--line);
-  color: #d4ccbe;
-  font-size: 0.9rem;
-}
-
-.journey span {
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-}
-
 .desk-note {
-  display: flex;
-  gap: 12px;
-  max-width: 500px;
-  margin-top: 28px;
+  max-width: 430px;
+  margin: 28px auto 0;
+  padding-top: 12px;
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.72rem;
   line-height: 1.55;
+  text-align: center;
 }
 
 .desk-note p {
@@ -473,15 +414,6 @@ button:disabled {
   border-top: 1px dashed #aaa398;
 }
 
-.privacy-note {
-  max-width: 430px;
-  margin: 28px auto 0;
-  color: var(--muted);
-  font-size: 0.72rem;
-  line-height: 1.55;
-  text-align: center;
-}
-
 .site-footer {
   min-height: 78px;
   display: flex;
@@ -497,14 +429,6 @@ button:disabled {
 }
 
 @media (max-width: 860px) {
-  .site-header {
-    grid-template-columns: auto 1fr;
-  }
-
-  .site-header > span {
-    display: none;
-  }
-
   .main-layout {
     grid-template-columns: 1fr;
     gap: 70px;
@@ -524,14 +448,6 @@ button:disabled {
 @media (max-width: 520px) {
   .page-shell {
     width: min(100% - 24px, 1180px);
-  }
-
-  .site-header {
-    min-height: 76px;
-  }
-
-  .site-header p {
-    font-size: 0.62rem;
   }
 
   .main-layout {
