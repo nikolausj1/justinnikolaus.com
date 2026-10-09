@@ -4,3 +4,4 @@ _notes/
 *.swp
 *.swo
 *~
+.vercel
