@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+*{
+  background:#fff;
+  -webkit-text-size-adjust:100%;
+  font-family: "Apercu Bold", Calibri, sans-serif;
+  font-size: 100%;
+  font-weight: bold;
+  font-style: normal;
+  -webkit-font-smoothing:antialiased;
+  -o-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.wrapper{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+
+p{
+  font-size:1.6em;
+  line-height:1.4em;
+  font-weight:bold;
+  color:#000;
+}
+
+a{
+  color:#000;
+  text-decoration:none;
+  margin-top: 2px;
+  border-bottom: 3px solid rgba(0,0,0,1);
+}
+
+a:hover{
+  border-bottom: 1px solid rgba(0,0,0,0);
+}
+
+/*This applies from 350px onwards*/
+@media (min-width: 350px) {
+  .wrapper{
+    width: 75%;
+    height: 70%;
+  }
+
+  p{
+    font-size:1.7em;
+    line-height:1.4em;
+  }
+}
+
+/*This applies from 400px onwards*/
+@media (min-width: 400px) {
+  p{
+    font-size:1.9em;
+  }
+}
+
+/*This applies from 700px onwards*/
+@media (min-width: 700px) {
+  p{
+    font-size:2.5em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+/*This applies from 850px onwards*/
+@media (min-width: 850px) {
+  p{
+    font-size:2.8em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+/*This applies from 1600px onwards*/
+@media (min-width: 1600px) {
+  p{
+    font-size:3.5em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+/*This applies from 2200px onwards*/
+@media (min-width: 2200px) {
+  .wrapper{
+    width: 65%;
+    height: 60%;
+  }
+
+  p{
+    font-size:4.5em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+/*This applies to iPads - Portrait*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+ p{
+    font-size:2.9em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+/*This applies to iPads - Landscape*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+ .wrapper{
+    width: 65%;
+    height: 75%;
+  }
+
+  p{
+    font-size:2.5em;
+    line-height:1.4em;
+  }
+  a{
+  border-bottom: 5px solid rgba(0,0,0,1);
+  }
+}
+
+
