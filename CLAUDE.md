@@ -13,7 +13,7 @@ Personal site for Justin Nikolaus, Product Designer. Static HTML, CSS, and vanil
 | `index.html`, `styles.css` | Root landing page. Deliberately does NOT link to the portfolio. |
 | `portfolio/` | 2026 portfolio: `index.html`, `about.html`, `contact.html`, 11 pages in `projects/`, CSS in `css/`, JS in `js/main.js` |
 | `deck/` | Slide deck |
-| `printer/` | Desk printer project page |
+| `printer/` | The original desk printer page. Retired 2026-10-28: `vercel.json` redirects `/printer` to papertelegram.com, which replaced it. The files stay for history. |
 | `mosaic/` | Landing, privacy, and support pages for the Mosaic iOS app |
 | `robots.txt` | Disallows crawling of `/portfolio/` |
 | `google*.html` | Google Search Console verification files. Keep them. |

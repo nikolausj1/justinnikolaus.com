@@ -2,6 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/printer/(.*)",
+      "destination": "https://papertelegram.com/",
+      "permanent": true
+    },
+    {
+      "source": "/printer",
+      "destination": "https://papertelegram.com/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
