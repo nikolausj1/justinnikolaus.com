@@ -12,6 +12,16 @@
       "permanent": true
     },
     {
+      "source": "/airhockey",
+      "destination": "https://nikolausj1.github.io/two-ipad-air-hockey/",
+      "permanent": true
+    },
+    {
+      "source": "/airhockey/(.*)",
+      "destination": "https://nikolausj1.github.io/two-ipad-air-hockey/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
