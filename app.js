@@ -75,19 +75,19 @@ if (rail) {
   updateControls(0);
 }
 
-// Gallery previews play once, then hold the result. The whole image is a link.
+// Gallery previews loop while at least half visible and pause offscreen.
 document.querySelectorAll('[data-project-preview]').forEach(video => {
   if (!('IntersectionObserver' in window)) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection;
   const media = video.closest('.project-preview');
   let visible = false;
-  let finished = false;
   let failed = false;
   video.muted = true;
+  video.loop = true;
 
   function shouldPlay() {
-    return visible && !document.hidden && !finished && !failed &&
+    return visible && !document.hidden && !failed &&
       !reducedMotion.matches && !connection?.saveData;
   }
   function syncPlayback() {
@@ -106,7 +106,6 @@ document.querySelectorAll('[data-project-preview]').forEach(video => {
     if (shouldPlay()) media.classList.add('preview-started');
     else video.pause();
   });
-  video.addEventListener('ended', () => { finished = true; });
   video.addEventListener('error', () => {
     failed = true;
     media.classList.remove('preview-started');
