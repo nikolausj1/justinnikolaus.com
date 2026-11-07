@@ -44,7 +44,13 @@ Verify a change before merging by opening the preview URL. For a quick local loo
 
 ## Homepage source
 
-The root homepage was designed with Codex as a static-site study in Dropbox at `_Projects/Justin/JustinNikolaus.com/homepage-layouts/` (its own git repo, `python3 build.py` builds `dist/`). The files at this repo's root are that build output with the study-only parts removed: the noindex tag, the "Working draft" banner, the concept selector, and the `gallery.html` links. Edit the root files here directly for live changes. If the study is rebuilt, re-apply those removals when porting. Project order, copy, and media sources are documented in the study's `content.json`, `project-asset-sources.json`, and `README.md`. Animated project images are planned to replace the stills; see the study README's handoff section.
+The root homepage was designed with Codex as a static-site study in Dropbox at `_Projects/Justin/JustinNikolaus.com/homepage-layouts/` (its own git repo, `python3 build.py` builds `dist/`). The files at this repo's root are that build output with the study-only parts removed: the noindex tag, the "Working draft" banner, the concept selector, and the `gallery.html` links. Edit the root files here directly for live changes. If the study is rebuilt, re-apply those removals when porting. Project order, copy, and media sources are documented in the study's `content.json`, `project-asset-sources.json`, and `README.md`. Animated project images replace the stills card by card; see the study README's handoff section for the brief.
+
+### Animated project cards
+
+A card animates by adding `project-preview` to its `.project-media` element and placing a poster `<img>` plus a muted `<video data-project-preview preload="none">` inside it. The handler in `app.js` plays the clip once when the card is half visible and holds the last frame; `prefers-reduced-motion` shows the poster only. Clip rules: 3:2 frame (1200x800, or 1080x720), H.264 high profile, yuv420p, 30 fps, no audio stream, no added text or controls, poster is the exact first frame, 4 to 10 seconds, under about 1.6 MB. Phone screens keep native proportions and would sit inside the existing CSS composition rather than a baked background. Cards with sample or fictional data carry a `sample-caption` span in the HTML, never text in the video.
+
+Animated so far: Chocolate Frog (cut from the demo video), Paper Telegram (phone footage), Lunch Box Drawings and Track & Field (Playwright recordings of the live sites). Kept as stills on purpose: BarTab (illustrative preview), SmartScreen (its demo fixtures contain real family names), Home 3D (the fixture model renders as a plain box in the real app). Mosaic and the other iOS apps wait on simulator access.
 
 ## Where everything else lives
 
