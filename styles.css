@@ -54,7 +54,7 @@
 .project-media.screen-single img{max-width:80%}
 .detail-hero .screen-pair img{aspect-ratio:auto}
 /* Actual screens and artifacts, fitted to equal gallery frames. */
-.drawings-grid-media img,.full-image img{display:block;width:100%;height:100%;object-fit:cover}
+.drawings-grid-media img,.drawings-grid-media video,.full-image img,.full-image video{display:block;width:100%;height:100%;object-fit:cover}
 .drawings-grid-media{background:#f8f6ef}
 .project-media.branded-pair{display:flex;align-items:center;justify-content:center;gap:4%;padding:5%;background:#dfeae8;aspect-ratio:3/2}
 .project-media.branded-pair img{position:static;display:block;width:auto;height:100%;max-width:29%;object-fit:contain;aspect-ratio:auto;border-radius:2cqw;box-shadow:0 5px 20px #123c4425}
