@@ -2,11 +2,11 @@
 workflow: general-video
 flow: automation
 storyboard: no
-message: "Drag a seam and the photos reflow"
+message: "Pick four photos, it finds the faces, and the layout builds itself"
 destination: website-card
 aspect: 1800x1200
 language: en
-length: 8s
+length: 11 to 13s
 angle: product-vignette
 ---
 
@@ -16,12 +16,13 @@ A prototype for the project vignettes on justinnikolaus.com. One project, Mosaic
 
 ## Assets
 
-- assets/mosaic-screen-1206.mp4: 1206x2622, 6.6 s, 30 fps. iPhone 17 simulator recording of the Mosaic editor: four photos, two seam drags that reflow the collage. The hero footage.
+- assets/mosaic-flow-1206.mp4: 1206x2622, 10.9 s, 30 fps. Cut from iPhone 17 simulator takes with `-magicSlow 2`: four photos picked in the grid (0 to 2.2 s), Next and the photos flying in (2.2 to 3.2), the face scan with its glowing face boxes at double speed (3.2 to 5.7), the layout assembling and settling (5.7 to 8.4), one seam drag (8.4 to 10.9). The hero footage.
 - assets/mosaic-icon.png: 1024 px app icon, near-black field with six blue rounded squares. The mark.
 - assets/mosaic-finished.jpg: a finished collage export from the app, for the closing beat.
 
 ## Customizations
 
+- Justin's direction 2026-11-08: the hero moment is the flow, pick photos, it finds the faces (the big one), it builds the layout; adjusting the layout comes last.
 - Four renders from two compositions: `device` (framed phone on a stage) and `bare` (UI only), each with the mark intro on and off.
 - No text of any kind in the video. Captions live in the site HTML.
 - Poster is the first frame. Loop seam must be clean: last frame returns to the first.

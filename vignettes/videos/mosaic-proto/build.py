@@ -16,15 +16,16 @@ for variant in ("device", "bare"):
             "name": f"{variant}-{'mark' if mark else 'nomark'}",
             "VARIANT": variant,
             "MARK": "true" if mark else "false",
-            "DUR": "8.2" if mark else "7.0",
-            "V0": "0.9" if mark else "0",
+            "DUR": "12.5" if mark else "10.9",
+            "VLEN": "10.47",
+            "V0": "1.3" if mark else "0",
         })
 
 out_dir = ROOT / "compositions"
 out_dir.mkdir(exist_ok=True)
 for v in VARIANTS:
     html = TEMPLATE
-    for key in ("VARIANT", "MARK", "DUR", "V0"):
+    for key in ("VARIANT", "MARK", "DUR", "V0", "VLEN"):
         html = html.replace(f"__{key}__", v[key])
     # Asset paths are relative to the project root in index.html; compositions/ sits one level down.
     (out_dir / f"{v['name']}.html").write_text(html.replace('src="assets/', 'src="../assets/'))

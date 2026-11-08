@@ -20,7 +20,7 @@ Fifteen short looping clips, one per project, that each show the one moment that
 
 | Project | The moment that proves it | Treatment | Needs |
 |---|---|---|---|
-| Mosaic | A seam drag reflows four photos | Push on the seam, pull back to the finished collage | Icon from Photo Collage `_review/phase7-icon-*.png` or the Xcode asset |
+| Mosaic | Pick four photos, the faces light up, the layout builds itself | The app's own Magic Layout sequence, slowed with `-magicSlow 2`: picks, Next, face scan, assemble, then one seam drag | Icon from the Xcode asset. Justin's call 2026-11-08: the flow is the hero, the seam drag comes last |
 | Pitch Minutes | Minutes ticking, then a two-player sub in one tap | Live field, the sub, counters rebalance | Logo in repo |
 | Lunch Box Drawings | 2,000 drawings | Fast grid scroll, hard cut to one drawing full frame | Web icon |
 | Paper Telegram | A message typed on the web arrives on paper | Typing in the form, cut to the printer | Reshoot of the print, tripod, 4K |
@@ -64,3 +64,4 @@ Fifteen short looping clips, one per project, that each show the one moment that
 - 2026-11-08: Mosaic prototype built four ways (device or bare, mark or no mark), 1800x1200, slow push into the seam, pure-function timeline. Renders encoded to 1200x800 for the review page at `review/mosaic-proto.html`.
 - 2026-11-08: fixture work landed uncommitted in the four app repos: SportsBox `-demoData`, SmartScreen `?record=1`, Home 3D `?house=demo`, Wine Cellar `-demoCamera`. Gallery PR merged. Repo restructured: site moved into `site/`, vignettes and this plan moved in from outside the repo and Dropbox.
 - 2026-11-08: Found justinnikolaus.com was still served by HostGator (the 2015 page). Root Directory set to `site`, restructure PR 2 merged, apex A and www CNAME pointed at Vercel in WHM, MX untouched. Zone snapshot in `docs/dns-zone-2026-11-08.md`. Phase 2 (DNS off HostGator, SPF, DKIM, DMARC, cancel) still open; the HostGator WHM also hosts DNS for 14 other family domains.
+- 2026-11-08: Justin redirected the Mosaic hero to the full flow (pick, faces found, layout built, adjust last). Recorded on the iPhone 17 simulator with `-magicSlow 2`; the simulator tool's swipe jumps instead of dragging, so seam drags use `touch_path` with 60 ms samples and no initial hold (a hold on a photo starts a photo swap). Master cut with ffmpeg from two takes, face scan at double speed.
