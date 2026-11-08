@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosaic vignette prototype</title>
+<style>
+  :root { --ink: #152b36; --muted: #5b6b73; --line: #e3e8ec; --card: #edf1f7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; color: var(--ink); background: #fff; padding: 48px 32px 96px; }
+  h1 { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  p.lede { color: var(--muted); max-width: 720px; margin: 0 0 40px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 600px); gap: 48px 40px; justify-content: start; }
+  .card { min-width: 0; }
+  .media { aspect-ratio: 3/2; border-radius: 4px; overflow: hidden; background: var(--card); position: relative; }
+  .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .label { display: flex; justify-content: space-between; align-items: baseline; margin-top: 12px; }
+  .label b { font-weight: 600; }
+  .label span { color: var(--muted); font-size: 14px; }
+  .controls { margin: 0 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  button { font: inherit; font-size: 14px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; cursor: pointer; }
+  button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .grid.full { grid-template-columns: 1fr; }
+  .grid.full .card { max-width: 1200px; }
+  .notes { max-width: 720px; color: var(--muted); font-size: 14px; margin-top: 56px; border-top: 1px solid var(--line); padding-top: 24px; }
+  @media (max-width: 1320px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) { body { padding: 24px 16px 64px; } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Mosaic vignette prototype</h1>
+<p class="lede">Four cuts of the same footage at the gallery's card size. Two questions: does the loop open on the mark, and is the phone a device or bare UI. All four loop, muted, slow and deliberate.</p>
+<div class="controls">
+  <button id="size" aria-pressed="false">Show at full size</button>
+  <button id="restart">Restart all</button>
+  <button id="pause" aria-pressed="false">Pause</button>
+</div>
+<div class="grid" id="grid">
+  <div class="card"><div class="media"><video src="clips/mosaic-device-mark.mp4" poster="clips/mosaic-device-mark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>A. Device, opens on the mark</b><span>8.2 s</span></div></div>
+  <div class="card"><div class="media"><video src="clips/mosaic-bare-mark.mp4" poster="clips/mosaic-bare-mark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>B. Bare UI, opens on the mark</b><span>8.2 s</span></div></div>
+  <div class="card"><div class="media"><video src="clips/mosaic-device-nomark.mp4" poster="clips/mosaic-device-nomark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>C. Device, no mark</b><span>7.0 s</span></div></div>
+  <div class="card"><div class="media"><video src="clips/mosaic-bare-nomark.mp4" poster="clips/mosaic-bare-nomark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>D. Bare UI, no mark</b><span>7.0 s</span></div></div>
+</div>
+<div class="notes">
+  <p>Prototype footage is the earlier Mosaic recording: the clock reads 2:49 and a Photos back link shows. The final capture will use the 9:41 status bar and a fresh launch. The stage, camera, and mark treatment are what is being judged here.</p>
+</div>
+<script>
+  const vids = [...document.querySelectorAll('video')];
+  const grid = document.getElementById('grid');
+  const size = document.getElementById('size');
+  size.addEventListener('click', () => { const on = size.getAttribute('aria-pressed') !== 'true'; size.setAttribute('aria-pressed', on); grid.classList.toggle('full', on); size.textContent = on ? 'Show at card size' : 'Show at full size'; });
+  document.getElementById('restart').addEventListener('click', () => vids.forEach(v => { v.currentTime = 0; v.play(); }));
+  const pause = document.getElementById('pause');
+  pause.addEventListener('click', () => { const on = pause.getAttribute('aria-pressed') !== 'true'; pause.setAttribute('aria-pressed', on); vids.forEach(v => on ? v.pause() : v.play()); pause.textContent = on ? 'Play' : 'Pause'; });
+</script>
+</body>
+</html>

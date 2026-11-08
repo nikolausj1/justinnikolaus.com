@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1800, height=1200" />
+    <title>Mosaic vignette, bare, mark true</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ground: #0c0f16;
+        --mark-ground: #0b0b0d;
+        --blue: #2f7bff;
+        --blue-soft: #6fb6ff;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1800px; height: 1200px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); }
+
+      /* Stage: everything behind the mark. */
+      .stage { position: absolute; inset: 0; overflow: hidden; }
+      .glow {
+        position: absolute; left: 50%; top: 46%; width: 1900px; height: 1900px;
+        margin-left: -950px; margin-top: -950px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(86, 150, 255, 0.42), rgba(47, 123, 255, 0.16) 42%, rgba(12, 15, 22, 0) 72%);
+        will-change: transform;
+      }
+      .floor {
+        position: absolute; left: 0; right: 0; bottom: 0; height: 420px;
+        background: linear-gradient(180deg, rgba(10, 12, 17, 0), rgba(4, 5, 8, 0.55));
+      }
+      .cam-outer { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform; }
+      .cam-inner { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 50%; will-change: transform; }
+
+      /* Device geometry. The screen is placed so the seam handle in the footage sits at canvas center. */
+      .device {
+        position: absolute;
+        left: var(--dev-left); top: var(--dev-top);
+        width: var(--dev-w); height: var(--dev-h);
+        transform-origin: 50% 50%;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .screen {
+        position: absolute; inset: var(--bezel);
+        overflow: hidden; border-radius: var(--screen-radius);
+        background: #000; isolation: isolate;
+      }
+      .screen img, .screen video {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+      }
+      .screen .first { opacity: 0; z-index: 3; }
+      .screen video { z-index: 2; }
+      .screen .last { z-index: 1; }
+
+      /* Framed phone. Geometry proportions follow the registry's device-frame-stage primitive. */
+      #root.device-variant .device {
+        --bezel: 11px;
+        --screen-radius: 50px;
+        border-radius: 61px;
+        background: linear-gradient(145deg, #343740, #1b1d22 42%, #111318);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:
+          0 90px 160px rgba(3, 5, 12, 0.7),
+          0 30px 60px rgba(3, 5, 12, 0.35),
+          0 4px 12px rgba(3, 5, 12, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.24),
+          inset 0 0 0 1px rgba(0, 0, 0, 0.48);
+      }
+      #root.device-variant .screen { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6); }
+      #root.device-variant .side-button {
+        position: absolute; width: 5px; border-radius: 3px; background: #2a2d35;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+      }
+      #root.device-variant .side-button.left-1 { left: -5px; top: 20%; height: 40px; }
+      #root.device-variant .side-button.left-2 { left: -5px; top: 26%; height: 72px; }
+      #root.device-variant .side-button.left-3 { left: -5px; top: 34%; height: 72px; }
+      #root.device-variant .side-button.right-1 { right: -5px; top: 28%; height: 112px; }
+
+      /* Bare UI: the screen alone, soft rounded corners, no hardware. */
+      #root.bare-variant .device { --bezel: 0px; --screen-radius: 64px; }
+      #root.bare-variant .screen {
+        box-shadow:
+          0 80px 150px rgba(3, 5, 12, 0.5),
+          0 20px 50px rgba(3, 5, 12, 0.3),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      }
+      #root.bare-variant .side-button { display: none; }
+
+      /* The mark. Opens and closes the loop when enabled. */
+      .mark {
+        position: absolute; inset: 0; background: var(--mark-ground);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .mark-glow {
+        position: absolute; left: 50%; top: 50%; width: 1100px; height: 1100px;
+        margin-left: -550px; margin-top: -550px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(47, 123, 255, 0.22), rgba(47, 123, 255, 0.05) 50%, rgba(11, 11, 13, 0) 72%);
+      }
+      .icon {
+        position: relative; width: 340px; height: 340px; display: block;
+        border-radius: 76px;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+        will-change: transform;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      class="bare-variant"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="8.2"
+      data-width="1800"
+      data-height="1200"
+    >
+      <div class="stage" id="stage">
+        <div class="glow" id="glow" data-layout-allow-overflow></div>
+        <div class="floor"></div>
+        <div class="cam-outer" id="cam-outer" data-layout-allow-overflow>
+          <div class="cam-inner" id="cam-inner">
+            <div class="device" id="device" data-layout-allow-overflow>
+              <div class="side-button left-1"></div>
+              <div class="side-button left-2"></div>
+              <div class="side-button left-3"></div>
+              <div class="side-button right-1"></div>
+              <div class="screen">
+                <img class="last" src="../assets/mosaic-screen-last.jpg" alt="" />
+                <video
+                  id="screen-video"
+                  class="clip"
+                  src="../assets/mosaic-screen-1206.mp4"
+                  muted
+                  playsinline
+                  data-start="0.9"
+                  data-duration="6.6"
+                  data-track-index="0"
+                ></video>
+                <img class="first" id="first-frame" src="../assets/mosaic-screen-first.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mark" id="mark">
+        <div class="mark-glow"></div>
+        <img class="icon" id="icon" src="../assets/mosaic-icon.png" alt="" />
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const MARK = true;
+        const VARIANT = "bare";
+        const D = 8.2;
+        const V0 = 0.9;
+
+        // Footage geometry (source pixels, 1206 x 2622).
+        const SRC_W = 1206, SRC_H = 2622;
+        const SEAM = { x: 502, y: 1137 }; // the seam handle between the two top photos
+        const CANVAS_W = 1800, CANVAS_H = 1200;
+
+        // The whole screen fits the frame at rest; the camera then dives into the seam.
+        const SCREEN_H = VARIANT === "device" ? 1096 : 1120;
+        const f = SCREEN_H / SRC_H;
+        const SCREEN_W = SRC_W * f;
+        const BEZEL = VARIANT === "device" ? 11 : 0;
+
+        const screenLeft = CANVAS_W / 2 - SCREEN_W / 2;
+        const screenTop = CANVAS_H / 2 - SCREEN_H / 2;
+        const seamOffX = (SEAM.x - SRC_W / 2) * f;
+        const seamOffY = (SEAM.y - SRC_H / 2) * f;
+        const device = document.getElementById("device");
+        device.style.setProperty("--dev-left", (screenLeft - BEZEL) + "px");
+        device.style.setProperty("--dev-top", (screenTop - BEZEL) + "px");
+        device.style.setProperty("--dev-w", (SCREEN_W + 2 * BEZEL) + "px");
+        device.style.setProperty("--dev-h", (SCREEN_H + 2 * BEZEL) + "px");
+
+        // Camera plan: rest, slow push into the seam during the drags, then hold (mark loop) or ease back (bare loop).
+        const PUSH = VARIANT === "device" ? 1.9 : 2.2;
+        const PUSH_AT = V0 + 0.6;
+        const PUSH_DUR = 3.4;
+        const BACK_AT = D - 2.3;
+        const BACK_DUR = 2.0;
+        const OUT_AT = 0.9, OUT_DUR = 0.5;
+        const IN_AT = D - 0.6, IN_DUR = 0.6;
+
+        const camOuter = document.getElementById("cam-outer");
+        const camInner = document.getElementById("cam-inner");
+        const glow = document.getElementById("glow");
+        const mark = document.getElementById("mark");
+        const icon = document.getElementById("icon");
+        const stage = document.getElementById("stage");
+        const firstFrame = document.getElementById("first-frame");
+        if (!MARK) mark.remove();
+
+        const inOut = gsap.parseEase("power2.inOut");
+        const pIn = gsap.parseEase("power2.in");
+        const pOut = gsap.parseEase("power2.out");
+        const sine = gsap.parseEase("sine.inOut");
+        const seg = (t, at, dur, ease) => ease(Math.min(1, Math.max(0, (t - at) / dur)));
+
+        // Every visual state is a pure function of timeline time, so any seek order renders the same frame.
+        function render(t) {
+          const push = seg(t, PUSH_AT, PUSH_DUR, inOut);
+          const back = MARK ? 0 : seg(t, BACK_AT, BACK_DUR, inOut);
+          const k = push * (1 - back);
+          const s = 1 + (PUSH - 1) * k;
+          const tx = -seamOffX * k, ty = -seamOffY * k;
+          const phase = (t / D) * Math.PI * 2;
+          const dx = Math.sin(phase) * 5;
+          const dy = Math.sin(phase * 1.3) * 3;
+          camOuter.style.transform = `scale(${s}) translate(${dx}px, ${dy}px)`;
+          camInner.style.transform = `translate(${tx}px, ${ty}px)`;
+          if (VARIANT === "device") {
+            device.style.transform = `rotateY(${-14 + 7 * k}deg) rotateX(${4 - 2 * k}deg)`;
+          } else {
+            device.style.transform = "none";
+          }
+          glow.style.transform = `scale(${1 + 0.06 * Math.sin((t / D) * Math.PI)})`;
+
+          if (MARK) {
+            const out = seg(t, OUT_AT, OUT_DUR, inOut);
+            const back2 = seg(t, IN_AT, IN_DUR, inOut);
+            mark.style.opacity = String(1 - out + back2);
+            stage.style.opacity = String(out - back2);
+            let iconScale;
+            if (t < OUT_AT) iconScale = 0.97 + 0.03 * sine(t / OUT_AT);
+            else if (t < IN_AT) iconScale = 1.0 + 0.12 * seg(t, OUT_AT, OUT_DUR, pIn);
+            else iconScale = 1.12 - 0.15 * seg(t, IN_AT, IN_DUR, pOut);
+            icon.style.transform = `scale(${iconScale})`;
+            firstFrame.style.opacity = "0";
+          } else {
+            stage.style.opacity = "1";
+            firstFrame.style.opacity = String(seg(t, D - 0.5, 0.5, sine));
+          }
+        }
+
+        const tl = gsap.timeline({ paused: true });
+        const driver = { t: 0 };
+        tl.to(driver, { t: D, duration: D, ease: "none", onUpdate: () => render(driver.t) }, 0);
+        render(0);
+
+        window.__timelines["main"] = tl;
+        tl.seek(0);
+      })();
+    </script>
+  </body>
+</html>
