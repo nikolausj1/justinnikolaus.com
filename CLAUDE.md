@@ -3,7 +3,7 @@
 Personal site for Justin Nikolaus, Product Designer, plus the production work behind it. The site is static HTML, CSS, and vanilla JavaScript. No frameworks, no build step.
 
 - **Live:** https://justinnikolaus.com
-- **Hosting:** Vercel, project `justinnikolaus-com`, auto-deployed from this GitHub repo with Root Directory set to `site`.
+- **Hosting:** Vercel, project `justinnikolaus-com`, auto-deployed from this GitHub repo with Root Directory set to `site`. The domain moved from HostGator to Vercel on 2026-11-08; DNS is still hosted on the HostGator reseller nameservers (`ns1/ns2.justinpaulhosting.com`) and email is Google Workspace. See `docs/dns-zone-2026-11-08.md` before touching DNS.
 - **`site/` = web root.** Every file under `site/` is served at the same path on the site. Nothing outside `site/` is deployed.
 
 ## Repo layout
@@ -14,6 +14,7 @@ Personal site for Justin Nikolaus, Product Designer, plus the production work be
 | `vignettes/` | Production for the homepage project clips: HyperFrames projects under `videos/<project>/`, review pages under `review/`. Finished clips are copied into `site/assets/`; renders, raw captures, and review clips are gitignored. |
 | `inbox/` | Drop folder for footage and files to pull into the project. Gitignored except its README. |
 | `PLAN.md` | The homepage vignette plan: decisions, draft hero moments, phases, open questions, log. Keep the log current. |
+| `docs/` | Infrastructure notes, such as the DNS zone snapshot taken before the move to Vercel. |
 | `CLAUDE.md` | This file. |
 
 Restructured 2026-11-08: the site used to live at the repo root. Before that, code moved out of Dropbox on 2026-10-09. The Dropbox folder `_Projects/Justin/JustinNikolaus.com/` keeps only non-code material: Photoshop sources, the 2015 and 2022 site archives, the Amazon internal portfolio versions, the portfolio redesign plan, and the Codex homepage study. Do not put new project files there.
