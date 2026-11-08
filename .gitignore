@@ -6,3 +6,14 @@ _notes/
 *~
 .vercel
 .claude/
+
+# Footage and renders stay out of the repo. Finished clips live in site/assets only.
+inbox/*
+!inbox/README.md
+*.mov
+vignettes/**/renders/
+vignettes/**/.hyperframes/
+vignettes/**/render.log
+vignettes/**/assets/*.mp4
+vignettes/review/clips/
+node_modules/
