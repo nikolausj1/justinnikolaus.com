@@ -9,6 +9,8 @@
   * { box-sizing: border-box; }
   body { margin: 0; font: 16px/1.5 -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; color: var(--ink); background: #fff; padding: 48px 32px 96px; }
   h1 { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 40px 0 16px; }
+  h2:first-of-type { margin-top: 0; }
   p.lede { color: var(--muted); max-width: 720px; margin: 0 0 40px; }
   .grid { display: grid; grid-template-columns: repeat(2, 600px); gap: 48px 40px; justify-content: start; }
   .card { min-width: 0; }
@@ -29,12 +31,17 @@
 </head>
 <body>
 <h1>Mosaic vignette prototype</h1>
-<p class="lede">Four cuts of the same flow at the gallery's card size: pick four photos, the faces light up, the layout builds itself, then one seam drag. Two questions: does the loop open on the mark, and is the phone a device or bare UI.</p>
+<p class="lede">Round 2 takes A's device frame and angle with B's tight push on the faces, holds that frame while the layout builds, and pulls out only on the seam drag. Round 1 stays below for comparison.</p>
 <div class="controls">
   <button id="size" aria-pressed="false">Show at full size</button>
   <button id="restart">Restart all</button>
   <button id="pause" aria-pressed="false">Pause</button>
 </div>
+<h2>Round 2</h2>
+<div class="grid" id="grid2">
+  <div class="card"><div class="media"><video src="clips/mosaic-device-mark-r2.mp4" poster="clips/mosaic-device-mark-r2-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>E. Device, mark, tight through the assemble</b><span>12.5 s</span></div></div>
+</div>
+<h2>Round 1</h2>
 <div class="grid" id="grid">
   <div class="card"><div class="media"><video src="clips/mosaic-device-mark.mp4" poster="clips/mosaic-device-mark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>A. Device, opens on the mark</b><span>12.5 s</span></div></div>
   <div class="card"><div class="media"><video src="clips/mosaic-bare-mark.mp4" poster="clips/mosaic-bare-mark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>B. Bare UI, opens on the mark</b><span>12.5 s</span></div></div>
@@ -42,13 +49,14 @@
   <div class="card"><div class="media"><video src="clips/mosaic-bare-nomark.mp4" poster="clips/mosaic-bare-nomark-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>D. Bare UI, no mark</b><span>11.3 s</span></div></div>
 </div>
 <div class="notes">
+  <p>Round 2 holds one scale from the face scan to the end of the assemble; only the center drifts down with the layout. The bracket corners sit at the frame edge by design, so the pull-out on the drag is the first time the phone reads again.</p>
   <p>Footage is a fresh simulator capture with the 9:41 status bar. The face scan runs at double speed; everything else is real time with the app's own Magic Layout sequence slowed two times.</p>
 </div>
 <script>
   const vids = [...document.querySelectorAll('video')];
-  const grid = document.getElementById('grid');
+  const grids = [...document.querySelectorAll('.grid')];
   const size = document.getElementById('size');
-  size.addEventListener('click', () => { const on = size.getAttribute('aria-pressed') !== 'true'; size.setAttribute('aria-pressed', on); grid.classList.toggle('full', on); size.textContent = on ? 'Show at card size' : 'Show at full size'; });
+  size.addEventListener('click', () => { const on = size.getAttribute('aria-pressed') !== 'true'; size.setAttribute('aria-pressed', on); grids.forEach(g => g.classList.toggle('full', on)); size.textContent = on ? 'Show at card size' : 'Show at full size'; });
   document.getElementById('restart').addEventListener('click', () => vids.forEach(v => { v.currentTime = 0; v.play(); }));
   const pause = document.getElementById('pause');
   pause.addEventListener('click', () => { const on = pause.getAttribute('aria-pressed') !== 'true'; pause.setAttribute('aria-pressed', on); vids.forEach(v => on ? v.pause() : v.play()); pause.textContent = on ? 'Play' : 'Pause'; });
