@@ -110,7 +110,7 @@
       class="bare-variant"
       data-composition-id="main"
       data-start="0"
-      data-duration="12.5"
+      data-duration="12.8"
       data-width="1800"
       data-height="1200"
     >
@@ -152,7 +152,7 @@
       (function () {
         const MARK = true;
         const VARIANT = "bare";
-        const D = 12.5;
+        const D = 12.8;
         const V0 = 1.3;
         const VLEN = 10.47;
 
@@ -178,6 +178,7 @@
         const CAM = "r1"; // r1: first-round camera. r2: hold tight through the assemble, pull out on the drag.
         const GRID = { x: 603, y: 1090 };    // center of the arrival grid where the faces light up (source rows 670 to 1470)
         const COLLAGE = { x: 603, y: 1237 }; // center of the assembled layout (source rows 720 to 1755)
+        const EDITOR = { x: 603, y: 1300 };  // the editor with its top bar and bottom tabs (source rows 105 to 2495 at scale 1.2)
         const GAIN = VARIANT === "device" ? 1 : 1.6; // r1 only: the bare screen can take a deeper push
         const Z = (s) => 1 + (s - 1) * GAIN;
         let KEYS, ZMAX;
@@ -191,8 +192,8 @@
             { t: 2.4, s: 1.0, p: CENTER },
             { t: 3.9, s: 2.44, p: GRID },
             { t: 8.0, s: 2.44, p: COLLAGE },
-            { t: 10.0, s: 1.5, p: COLLAGE },
-            { t: VLEN, s: 1.5, p: COLLAGE },
+            { t: 10.0, s: 1.2, p: EDITOR },
+            { t: VLEN, s: 1.2, p: EDITOR },
           ];
         } else {
           ZMAX = Z(1.9);
@@ -215,8 +216,8 @@
           KEYS[KEYS.length - 1] = { t: VLEN - 0.9, s: last.s, p: last.p };
           KEYS.push({ t: VLEN + 0.3, s: 1.0, p: CENTER });
         }
-        const OUT_AT = 0.9, OUT_DUR = 0.5; // the footage starts at V0 = 1.3 so the first tap lands after the handoff
-        const IN_AT = D - 0.6, IN_DUR = 0.6;
+        const OUT_AT = 0.9, OUT_DUR = 0.75; // the footage starts at V0 = 1.3; its first frame holds until then
+        const IN_AT = D - 0.9, IN_DUR = 0.9;
 
         const camOuter = document.getElementById("cam-outer");
         const camInner = document.getElementById("cam-inner");
@@ -270,7 +271,7 @@
             else if (t < IN_AT) iconScale = 1.0 + 0.16 * seg(t, OUT_AT, OUT_DUR, pIn);
             else iconScale = 1.16 - 0.19 * seg(t, IN_AT, IN_DUR, pOut);
             icon.style.transform = `scale(${iconScale})`;
-            firstFrame.style.opacity = "0";
+            firstFrame.style.opacity = t < V0 ? "1" : "0"; // the video is hidden before its start, so the first frame covers the handoff
           } else {
             stage.style.opacity = "1";
             firstFrame.style.opacity = String(seg(t, D - 0.5, 0.5, sine));

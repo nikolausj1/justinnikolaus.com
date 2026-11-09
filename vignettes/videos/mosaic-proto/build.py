@@ -15,7 +15,7 @@ def variant(kind, mark, cam="r1"):
         "VARIANT": kind,
         "MARK": "true" if mark else "false",
         "CAM": cam,
-        "DUR": "12.5" if mark else "10.9",
+        "DUR": "12.8" if mark else "10.9",
         "VLEN": "10.47",
         "V0": "1.3" if mark else "0",
     }
