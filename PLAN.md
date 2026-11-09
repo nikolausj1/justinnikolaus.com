@@ -10,9 +10,11 @@ Fifteen short looping clips, one per project, that each show the one moment that
 
 - Motion energy: slow and deliberate. Apple product page pace. One or two long camera pushes, at most one cut, a hold. 6 to 8 seconds, looping.
 - All fifteen get real footage. SportsBox, SmartScreen, Home 3D, and Wine Cellar's camera flow get fixture or demo-mode work in their own repos first.
-- Still open, to be decided by seeing a prototype of each:
-  - Common thread: open on the mark (icon or logo on brand color for about a second, then the moment, loop returns to the mark) versus mark in the HTML (icon beside the title, video is pure product).
-  - Framing: real device frames baked into the clip on a stage with slight 3D tilt (video fills the 3:2 card) versus no chrome, UI as rounded rectangles with camera pushes.
+- Locked 2026-11-08 from the Mosaic prototype (`vignettes/videos/mosaic-proto`, variant `device-mark-r2`). Every vignette follows this system:
+  - Common thread: the loop opens on the product mark (icon on near-black with a soft brand glow, about a second), hands off to the footage over 0.75 s, and fades back to the mark over 0.9 s at the end. The footage's first frame holds under the handoff.
+  - Framing: a real device frame on a dark stage with a slight 3D tilt (rotateY about 14 degrees, rotateX 4), which flattens to a few degrees whenever the camera is tight.
+  - Camera: one push into the hero moment, as deep as the footage allows (about 2.4x on a phone screen), held there through the payoff, then one pull-out to a frame that shows the app's chrome. Never zoom out to reveal a build; stay tight and let it happen in frame. Measure the footage before keying the camera.
+  - Length: 12 to 13 seconds for a four-beat flow is fine. Shorter flows should not be padded.
 - Production tool: HyperFrames HTML compositions rendered to mp4. Footage from simulators, Playwright, and reshoots feeds in as media. ffmpeg only for final encode conformance.
 - Rules carried over: no text in the video, no em dashes anywhere, posters are the first frame, sample or fictional data is captioned in the HTML, replaced clips get new filenames.
 
@@ -39,7 +41,7 @@ Fifteen short looping clips, one per project, that each show the one moment that
 ## Phases
 
 1. Direction. Reference board of ten product vignettes, one page of direction, approved by Justin.
-2. Prototype. One project (Mosaic) built four ways: mark in video or in HTML, device frame or bare UI. Compared side by side in the real card at localhost. Decides the two open questions.
+2. Prototype. Done. Mosaic built four ways, then two passes of round 2. Justin locked device plus mark in the video on 2026-11-08 (see Decisions). The round 2 clip is the Mosaic vignette unless a later batch changes the system.
 3. Shot lists. One table for all fifteen: hero moment, beats, footage, brand asset, fixture, privacy check. Approved line by line.
 4. Capture. Simulator and web recordings at higher fidelity. Physical reshoots by Justin from a shot sheet. Fixture sessions in the app repos.
 5. Compose and review in batches of three. Contact sheets and renders, notes, re-render.
@@ -68,3 +70,4 @@ Fifteen short looping clips, one per project, that each show the one moment that
 - 2026-11-08: Justin redirected the Mosaic hero to the full flow (pick, faces found, layout built, adjust last). Recorded on the iPhone 17 simulator with `-magicSlow 2`; the simulator tool's swipe jumps instead of dragging, so seam drags use `touch_path` with 60 ms samples and no initial hold (a hold on a photo starts a photo swap). Master cut with ffmpeg from two takes, face scan at double speed.
 - 2026-11-08: Mosaic round 1 review. Justin liked B's tight framing on the faces and A's device frame and 3D angle, and did not want the camera to pull out while the layout assembles. Round 2 built as one variant, `device-mark-r2`: A's frame, B's push, scale held from the face scan through the assemble with only the center drifting down to the layout, pull-out on the seam drag, device flattening to a few degrees while tight. On the review page under Round 2. A render died on a full disk; the DerivedData copies in the session scratchpad were removed to free space, and the Mac is still near full.
 - 2026-11-08: Round 2 second pass from Justin's review (round 2 looks good): the last beat opens to scale 1.2 so the editor's top bar and bottom tabs are in frame, the fade into the mark runs 0.9 s (clip now 12.8 s) and the handoff out of it 0.75 s. Found and fixed a flash of the finished collage during the handoff: the video is hidden before its start, so the footage's first frame now holds until the video begins.
+- 2026-11-08: Justin locked the system on round 2 second pass: device frame, mark in the video, tight push held through the payoff, pull-out to the chrome. Recorded under Decisions. Next: direction page and shot lists for the other fourteen, then capture in batches.
