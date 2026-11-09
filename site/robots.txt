@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /portfolio/
 Disallow: /misc/
 Disallow: /google/
+Disallow: /new/
 
 Sitemap: https://justinnikolaus.com/sitemap.xml
