@@ -23,7 +23,7 @@ Restructured 2026-11-08: the site used to live at the repo root. Before that, co
 
 | Path | What it is |
 |------|------------|
-| `index.html`, `styles.css` | Root homepage: the one-line page restored 2026-11-08 (from commit 37d5b9d, copy changed to product designer, GA4 and favicon added, dead Fontdeck and Universal Analytics tags dropped). Deliberately does NOT link to the portfolio. |
+| `index.html`, `home.css` | Root homepage: the one-line page restored 2026-11-08 (from commit 37d5b9d, copy changed to product designer, GA4 and favicon added, dead Fontdeck and Universal Analytics tags dropped). Deliberately does NOT link to the portfolio. |
 | `new/` | The 2026 Gallery, staged. `index.html`, `styles.css`, `app.js`: intro, 15 equally weighted projects, AI coding activity calendar, Experience, Books, Contact. `pitch-minutes.html` is the Pitch Minutes detail page. `token-activity.html` is the self-contained AI usage explorer (inlined snapshot data, a CSP that blocks network requests). `assets/` holds its images and clips. All three pages carry `noindex`; `robots.txt` disallows `/new/`. Promoting it: move the folder's contents to `site/`, point the canonical and `og:url` tags back at the root, make the detail pages' `./` links `/` again, drop the `noindex` tags and the robots line, and add the two pages back to `sitemap.xml`. |
 | `sitemap.xml`, `favicon-*.png` | Root sitemap (root and Mosaic pages only while the gallery is staged) and favicon (same JN mark as the portfolio). |
 | `portfolio/` | 2026 portfolio: `index.html`, `about.html`, `contact.html`, 11 pages in `projects/`, CSS in `css/`, JS in `js/main.js` |
