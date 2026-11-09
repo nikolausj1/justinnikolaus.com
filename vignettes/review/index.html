@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vignette review</title>
+<style>
+  :root { --ink: #152b36; --muted: #5b6b73; --line: #e3e8ec; --card: #edf1f7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; color: var(--ink); background: #fff; padding: 48px 32px 96px; }
+  h1 { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 40px 0 16px; }
+  h2:first-of-type { margin-top: 0; }
+  p.lede { color: var(--muted); max-width: 720px; margin: 0 0 32px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 600px); gap: 48px 40px; justify-content: start; }
+  .card { min-width: 0; }
+  .media { aspect-ratio: 3/2; border-radius: 4px; overflow: hidden; background: var(--card); position: relative; }
+  .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .label { display: flex; justify-content: space-between; align-items: baseline; margin-top: 12px; }
+  .label b { font-weight: 600; }
+  .label span { color: var(--muted); font-size: 14px; }
+  .note { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+  .controls { margin: 0 0 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  button { font: inherit; font-size: 14px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: #fff; cursor: pointer; }
+  button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .grid.full { grid-template-columns: 1fr; }
+  .grid.full .card { max-width: 1200px; }
+  .notes { max-width: 720px; color: var(--muted); font-size: 14px; margin-top: 56px; border-top: 1px solid var(--line); padding-top: 24px; }
+  a { color: inherit; }
+  @media (max-width: 1320px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) { body { padding: 24px 16px 64px; } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Vignette review</h1>
+<p class="lede">Every vignette at the gallery's card size, newest batch first. All follow the system locked on Mosaic: open on the mark, a framed device on the stage, one push held through the payoff, one pull-out, back to the mark. The Mosaic prototype rounds are on <a href="mosaic-proto.html">their own page</a>.</p>
+<div class="controls">
+  <button id="size" aria-pressed="false">Show at full size</button>
+  <button id="restart">Restart all</button>
+  <button id="pause" aria-pressed="false">Pause</button>
+</div>
+<h2>Batch one</h2>
+<div class="grid">
+  <div class="card"><div class="media"><video src="clips/pitch-minutes.mp4" poster="clips/pitch-minutes-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>Pitch Minutes</b><span>12.6 s</span></div><p class="note">Splash, the live clock, Gray on for Blake, Harper on for Ash.</p></div>
+  <div class="card"><div class="media"><video src="clips/patio-finder.mp4" poster="clips/patio-finder-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>Patio Finder</b><span>11.2 s</span></div><p class="note">The compass on Ocho, a swipe to Hazlewood, then the map. Real Ballard patios.</p></div>
+  <div class="card"><div class="media"><video src="clips/paper-telegram.mp4" poster="clips/paper-telegram-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>Paper Telegram</b><span>12.85 s</span></div><p class="note">The note typed on the site, a hard cut to the same note rising from the printer.</p></div>
+  <div class="card"><div class="media"><video src="clips/lunch-box.mp4" poster="clips/lunch-box-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>Lunch Box Drawings</b><span>13.6 s</span></div><p class="note">The drawings fly in, the grid, the Wall, the jump to 2022, the astronaut note.</p></div>
+</div>
+<h2>Locked</h2>
+<div class="grid">
+  <div class="card"><div class="media"><video src="clips/mosaic-device-mark-r2.mp4" poster="clips/mosaic-device-mark-r2-poster.jpg" muted loop playsinline autoplay></video></div><div class="label"><b>Mosaic</b><span>12.8 s</span></div><p class="note">Round 2, second pass. Sets the system.</p></div>
+</div>
+<div class="notes">
+  <p>Chocolate Frog is on hold for Justin's review. Lines 7 to 15 of the shot list wait until this batch is approved.</p>
+</div>
+<script>
+  const vids = [...document.querySelectorAll('video')];
+  const grids = [...document.querySelectorAll('.grid')];
+  const size = document.getElementById('size');
+  size.addEventListener('click', () => { const on = size.getAttribute('aria-pressed') !== 'true'; size.setAttribute('aria-pressed', on); grids.forEach(g => g.classList.toggle('full', on)); size.textContent = on ? 'Show at card size' : 'Show at full size'; });
+  document.getElementById('restart').addEventListener('click', () => vids.forEach(v => { v.currentTime = 0; v.play(); }));
+  const pause = document.getElementById('pause');
+  pause.addEventListener('click', () => { const on = pause.getAttribute('aria-pressed') !== 'true'; pause.setAttribute('aria-pressed', on); vids.forEach(v => on ? v.pause() : v.play()); pause.textContent = on ? 'Play' : 'Pause'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+/* Shared stage for the homepage vignettes. The system locked on the Mosaic prototype (2026-11-08):
+   a dark stage with a brand glow, a framed device with a slight 3D tilt, one camera, and the product
+   mark that opens and closes the loop. Projects set the brand variables on :root and build their
+   shots from the pieces below. Camera and timing live in vignette.js. */
+
+:root {
+  --ground: #0c0f16;
+  --mark-ground: #0b0b0d;
+  --glow-a: rgba(86, 150, 255, 0.42);
+  --glow-b: rgba(47, 123, 255, 0.16);
+  --mark-glow: rgba(47, 123, 255, 0.22);
+  --mark-glow-soft: rgba(47, 123, 255, 0.05);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1800px; height: 1200px; overflow: hidden; background: var(--ground); }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); }
+
+/* Stage: everything behind the mark. */
+.stage { position: absolute; inset: 0; overflow: hidden; }
+.glow {
+  position: absolute; left: 50%; top: 46%; width: 1900px; height: 1900px;
+  margin-left: -950px; margin-top: -950px; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--glow-a), var(--glow-b) 42%, rgba(12, 15, 22, 0) 72%);
+  will-change: transform;
+}
+.floor {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 420px;
+  background: linear-gradient(180deg, rgba(10, 12, 17, 0), rgba(4, 5, 8, 0.55));
+}
+
+/* One shot: a camera around one framed piece of footage. Shots stack; vignette.js shows one at a time. */
+.shot { position: absolute; inset: 0; }
+.cam-outer { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform; }
+.cam-inner { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 50%; will-change: transform; }
+
+/* The framed piece. vignette.js sets --dev-left, --dev-top, --dev-w, --dev-h from the footage size. */
+.device {
+  position: absolute;
+  left: var(--dev-left); top: var(--dev-top);
+  width: var(--dev-w); height: var(--dev-h);
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.screen {
+  position: absolute; left: var(--bezel); right: var(--bezel); bottom: var(--bezel); top: var(--bezel-top, var(--bezel));
+  overflow: hidden; border-radius: var(--screen-radius);
+  background: #000; isolation: isolate;
+}
+.screen img, .screen video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.screen .first { opacity: 0; z-index: 3; }
+.screen video { z-index: 2; }
+.screen .last { z-index: 1; }
+
+/* iPhone. Geometry proportions follow the registry's device-frame-stage primitive. */
+.frame-iphone .device {
+  --bezel: 11px;
+  --screen-radius: 50px;
+  border-radius: 61px;
+  background: linear-gradient(145deg, #343740, #1b1d22 42%, #111318);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 90px 160px rgba(3, 5, 12, 0.7),
+    0 30px 60px rgba(3, 5, 12, 0.35),
+    0 4px 12px rgba(3, 5, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.48);
+}
+.frame-iphone .screen { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6); }
+.frame-iphone .side-button {
+  position: absolute; width: 5px; border-radius: 3px; background: #2a2d35;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.frame-iphone .side-button.left-1 { left: -5px; top: 20%; height: 40px; }
+.frame-iphone .side-button.left-2 { left: -5px; top: 26%; height: 72px; }
+.frame-iphone .side-button.left-3 { left: -5px; top: 34%; height: 72px; }
+.frame-iphone .side-button.right-1 { right: -5px; top: 28%; height: 112px; }
+
+/* Browser window: rounded, a thin dark title bar with three neutral dots, no address text. */
+.frame-browser .device {
+  --bezel: 1px;
+  --bezel-top: 44px;
+  --screen-radius: 0 0 21px 21px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #2a2d35, #1b1d22 44px, #141619 44px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 90px 160px rgba(3, 5, 12, 0.7),
+    0 30px 60px rgba(3, 5, 12, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.frame-browser .screen { border-top: 1px solid rgba(0, 0, 0, 0.6); }
+.frame-browser .dots { position: absolute; left: 18px; top: 15px; display: flex; gap: 8px; }
+.frame-browser .dots i { width: 13px; height: 13px; border-radius: 50%; background: #4a4e58; display: block; }
+.frame-browser .side-button { display: none; }
+
+/* Full bleed: the footage is the stage. No frame, no glow. */
+.frame-none .device { --bezel: 0px; --screen-radius: 0; }
+.frame-none .side-button, .frame-none .dots { display: none; }
+
+/* The mark. Opens and closes the loop. */
+.mark {
+  position: absolute; inset: 0; background: var(--mark-ground);
+  display: flex; align-items: center; justify-content: center;
+}
+.mark-glow {
+  position: absolute; left: 50%; top: 50%; width: 1100px; height: 1100px;
+  margin-left: -550px; margin-top: -550px; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--mark-glow), var(--mark-glow-soft) 50%, rgba(11, 11, 13, 0) 72%);
+}
+.icon {
+  position: relative; width: 340px; height: 340px; display: block;
+  border-radius: 76px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  will-change: transform;
+}

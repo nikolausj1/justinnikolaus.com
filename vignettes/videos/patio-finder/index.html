@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1800, height=1200" />
+    <title>Patio Finder vignette</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="lib/vignette.css" />
+    <style>
+      :root { --glow-a: rgba(235, 125, 70, 0.36); --glow-b: rgba(190, 85, 45, 0.14); --mark-glow: rgba(235, 125, 70, 0.2); --mark-glow-soft: rgba(235, 125, 70, 0.05); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="11.2" data-width="1800" data-height="1200">
+      <div class="stage" id="stage">
+        <div class="glow" id="glow" data-layout-allow-overflow></div>
+        <div class="floor"></div>
+      <div class="shot" id="shot-app" data-layout-allow-overflow>
+        <div class="cam-outer" data-layout-allow-overflow>
+          <div class="cam-inner">
+            <div class="device" data-layout-allow-overflow data-layout-allow-occlusion>
+              <div class="side-button left-1"></div><div class="side-button left-2"></div><div class="side-button left-3"></div><div class="side-button right-1"></div>
+              <div class="screen">
+                <img class="last" src="assets/patio-flow-1206-last.jpg" alt="" />
+                <video id="v-app" class="clip" src="assets/patio-flow-1206.mp4" muted playsinline data-start="1.3" data-duration="7.77" data-track-index="0"></video>
+                <img class="first" src="assets/patio-flow-1206-first.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="mark" id="mark">
+        <div class="mark-glow"></div>
+        <img class="icon" id="icon" src="assets/patio-icon.png" alt="" />
+      </div>
+    </div>
+    <script src="lib/vignette.js"></script>
+    <script>
+      // Footage beats (seconds into assets/patio-flow-1206.mp4): Ocho 0 to 1.7, the swipe and the swing 1.7 to 2.9,
+      // Hazlewood to 4.3, cut to the map at 4.3 (tiles in by 5.3), hold to 7.77. The last frame holds 1.2 s more.
+      const C = { x: 603, y: 1311 };
+      const NEEDLE = { x: 603, y: 1218 };
+      Vignette.init({
+        D: 11.2,
+        shots: [{
+          id: "shot-app", frame: "iphone", src: { w: 1206, h: 2622 }, fit: { h: 1096 },
+          start: 1.3, len: 7.77,
+          keys: [
+            { t: 0.0, s: 1.0, p: C },
+            { t: 1.0, s: 1.0, p: C },
+            { t: 1.9, s: 1.8, p: NEEDLE },
+            { t: 4.0, s: 1.8, p: NEEDLE },
+            { t: 5.2, s: 1.0, p: C },
+            { t: 7.77, s: 1.0, p: C },
+          ],
+        }],
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1800, height=1200" />
+    <title>Pitch Minutes vignette</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="lib/vignette.css" />
+    <style>
+      :root { --glow-a: rgba(26, 110, 120, 0.42); --glow-b: rgba(14, 74, 84, 0.16); --mark-glow: rgba(26, 110, 120, 0.22); --mark-glow-soft: rgba(26, 110, 120, 0.05); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12.6" data-width="1800" data-height="1200">
+      <div class="stage" id="stage">
+        <div class="glow" id="glow" data-layout-allow-overflow></div>
+        <div class="floor"></div>
+      <div class="shot" id="shot-app" data-layout-allow-overflow>
+        <div class="cam-outer" data-layout-allow-overflow>
+          <div class="cam-inner">
+            <div class="device" data-layout-allow-overflow data-layout-allow-occlusion>
+              <div class="side-button left-1"></div><div class="side-button left-2"></div><div class="side-button left-3"></div><div class="side-button right-1"></div>
+              <div class="screen">
+                <img class="last" src="assets/pitch-flow-1206-last.jpg" alt="" />
+                <video id="v-app" class="clip" src="assets/pitch-flow-1206.mp4" muted playsinline data-start="1.9" data-duration="10.1" data-track-index="0"></video>
+                <img class="first" src="assets/pitch-flow-1206-first.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="mark" id="mark">
+        <div class="mark-glow"></div>
+        <img class="icon" id="icon" src="assets/pitch-icon.png" alt="" />
+      </div>
+    </div>
+    <script src="lib/vignette.js"></script>
+    <script>
+      // Footage beats (seconds into assets/pitch-flow-1206.mp4): splash 0 to 0.7, live field from 1.0, Gray tapped 3.0,
+      // Gray on for Blake 4.1, Harper tapped 6.35, Harper on for Ash 7.8, hold to 10.1. Source 1206 x 2622.
+      const C = { x: 603, y: 1311 };
+      const SUB1 = { x: 640, y: 1380 }; // between Blake on the field and Gray on the bench
+      const SUB2 = { x: 560, y: 1400 }; // between Ash and Harper
+      Vignette.init({
+        D: 12.6,
+        shots: [{
+          id: "shot-app", frame: "iphone", src: { w: 1206, h: 2622 }, fit: { h: 1096 },
+          start: 1.9, len: 10.1,
+          keys: [
+            { t: 0.0, s: 1.0, p: C },
+            { t: 2.6, s: 1.0, p: C },
+            { t: 3.4, s: 1.6, p: SUB1 },
+            { t: 6.0, s: 1.6, p: SUB1 },
+            { t: 7.0, s: 1.62, p: SUB2 },
+            { t: 8.5, s: 1.62, p: SUB2 },
+            { t: 10.0, s: 1.2, p: C },
+            { t: 10.1, s: 1.2, p: C },
+          ],
+        }],
+      });
+    </script>
+  </body>
+</html>
