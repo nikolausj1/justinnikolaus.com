@@ -11,7 +11,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="13.6" data-width="1800" data-height="1200">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13.5" data-width="1800" data-height="1200">
       <div class="stage" id="stage">
         <div class="glow" id="glow" data-layout-allow-overflow></div>
         <div class="floor"></div>
@@ -22,7 +22,7 @@
               <div class="dots"><i></i><i></i><i></i></div>
               <div class="screen">
                 <img class="last" src="assets/lunchbox-flow-2400-last.jpg" alt="" />
-                <video id="v-web" class="clip" src="assets/lunchbox-flow-2400.mp4" muted playsinline data-start="1.3" data-duration="10.4" data-track-index="0"></video>
+                <video id="v-web" class="clip" src="assets/lunchbox-flow-2400.mp4" muted playsinline data-start="1.3" data-duration="11.3" data-track-index="0"></video>
                 <img class="first" src="assets/lunchbox-flow-2400-first.jpg" alt="" />
               </div>
             </div>
@@ -37,15 +37,15 @@
     </div>
     <script src="lib/vignette.js"></script>
     <script>
-      // Footage beats (seconds into assets/lunchbox-flow-2400.mp4, 2400 x 1600): welcome dismissed 0.35, drawings in place 0.8,
-      // grid scroll 2.7 to 5.2, Wall clicked 5.6 and settled 7.1, the jump to 2022 7.4 to 8.3, the astronaut note opens 9.0, hold to 10.4.
+      // Footage beats (seconds into assets/lunchbox-flow-2400.mp4, 2400 x 1600): welcome dismissed 0.6, drawings in place 1.0,
+      // grid scroll 2.7 to 5.2, Wall clicked 5.5 and settled 7.0, the jump to 2022 7.4 to 8.3, the astronaut note opens 9.7, hold to 11.3.
       const PAGE = { x: 1200, y: 800 };
       const GRID = { x: 1200, y: 820 };
       Vignette.init({
-        D: 13.6,
+        D: 13.5,
         shots: [{
           id: "shot-web", frame: "browser", src: { w: 2400, h: 1600 }, fit: { w: 1560 },
-          start: 1.3, len: 10.4,
+          start: 1.3, len: 11.3,
           keys: [
             { t: 0.0, s: 1.0, p: PAGE },
             { t: 2.5, s: 1.0, p: PAGE },
@@ -53,9 +53,9 @@
             { t: 5.2, s: 1.15, p: GRID },
             { t: 6.3, s: 1.3, p: PAGE },
             { t: 8.6, s: 1.3, p: PAGE },
-            { t: 9.6, s: 1.7, p: PAGE },
-            { t: 10.4, s: 1.7, p: PAGE },
-            { t: 11.4, s: 1.0, p: PAGE },
+            { t: 9.9, s: 1.7, p: PAGE },
+            { t: 10.5, s: 1.7, p: PAGE },
+            { t: 11.3, s: 1.0, p: PAGE },
           ],
         }],
       });
