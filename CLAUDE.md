@@ -2,7 +2,7 @@
 
 Personal site for Justin Nikolaus, Product Designer, plus the production work behind it. The site is static HTML, CSS, and vanilla JavaScript. No frameworks, no build step.
 
-- **Live:** https://justinnikolaus.com
+- **Live:** https://justinnikolaus.com serves the one-line homepage ("Hi, I'm Justin Nikolaus. I'm a product designer in Seattle."). The 2026 Gallery is staged at https://justinnikolaus.com/new/ until Justin promotes it; it is noindex and disallowed in robots.txt.
 - **Hosting:** Vercel, project `justinnikolaus-com`, auto-deployed from this GitHub repo with Root Directory set to `site`. The domain moved from HostGator to Vercel on 2026-11-08; DNS is still hosted on the HostGator reseller nameservers (`ns1/ns2.justinpaulhosting.com`) and email is Google Workspace. See `docs/dns-zone-2026-11-08.md` before touching DNS.
 - **`site/` = web root.** Every file under `site/` is served at the same path on the site. Nothing outside `site/` is deployed.
 
@@ -23,11 +23,9 @@ Restructured 2026-11-08: the site used to live at the repo root. Before that, co
 
 | Path | What it is |
 |------|------------|
-| `index.html`, `styles.css`, `app.js` | Root homepage: the 2026 Gallery. Intro, 15 equally weighted projects, AI coding activity calendar, Experience, Books, Contact. Deliberately does NOT link to the portfolio. |
-| `pitch-minutes.html` | Pitch Minutes project detail page, linked from the gallery. |
-| `token-activity.html` | Self-contained AI usage explorer linked from the activity section. Snapshot data is inlined; it has a CSP that blocks network requests. |
-| `assets/` | Images and clips for the root homepage and its detail pages. |
-| `sitemap.xml`, `favicon-*.png` | Root sitemap and favicon (same JN mark as the portfolio). |
+| `index.html`, `styles.css` | Root homepage: the one-line page restored 2026-11-08 (from commit 37d5b9d, copy changed to product designer, GA4 and favicon added, dead Fontdeck and Universal Analytics tags dropped). Deliberately does NOT link to the portfolio. |
+| `new/` | The 2026 Gallery, staged. `index.html`, `styles.css`, `app.js`: intro, 15 equally weighted projects, AI coding activity calendar, Experience, Books, Contact. `pitch-minutes.html` is the Pitch Minutes detail page. `token-activity.html` is the self-contained AI usage explorer (inlined snapshot data, a CSP that blocks network requests). `assets/` holds its images and clips. All three pages carry `noindex`; `robots.txt` disallows `/new/`. Promoting it: move the folder's contents to `site/`, point the canonical and `og:url` tags back at the root, make the detail pages' `./` links `/` again, drop the `noindex` tags and the robots line, and add the two pages back to `sitemap.xml`. |
+| `sitemap.xml`, `favicon-*.png` | Root sitemap (root and Mosaic pages only while the gallery is staged) and favicon (same JN mark as the portfolio). |
 | `portfolio/` | 2026 portfolio: `index.html`, `about.html`, `contact.html`, 11 pages in `projects/`, CSS in `css/`, JS in `js/main.js` |
 | `deck/` | Slide deck |
 | `printer/` | The original desk printer page. Retired 2026-10-28: `vercel.json` redirects `/printer` to papertelegram.com, which replaced it. The files stay for history. |
@@ -57,7 +55,7 @@ Verify a change before merging by opening the preview URL. For a quick local loo
 
 ## Homepage source
 
-The root homepage was designed with Codex as a static-site study in Dropbox at `_Projects/Justin/JustinNikolaus.com/homepage-layouts/` (its own git repo, `python3 build.py` builds `dist/`). The files in `site/` are that build output with the study-only parts removed: the noindex tag, the "Working draft" banner, the concept selector, and the `gallery.html` links. Edit the files in `site/` directly for live changes. If the study is rebuilt, re-apply those removals when porting. Project order, copy, and media sources are documented in the study's `content.json`, `project-asset-sources.json`, and `README.md`.
+The 2026 Gallery (staged in `site/new/`) was designed with Codex as a static-site study in Dropbox at `_Projects/Justin/JustinNikolaus.com/homepage-layouts/` (its own git repo, `python3 build.py` builds `dist/`). The files in `site/new/` are that build output with the study-only parts removed: the noindex tag, the "Working draft" banner, the concept selector, and the `gallery.html` links. Edit the files in `site/new/` directly for live changes. If the study is rebuilt, re-apply those removals when porting. Project order, copy, and media sources are documented in the study's `content.json`, `project-asset-sources.json`, and `README.md`.
 
 ### Animated project cards
 
@@ -71,9 +69,9 @@ HyperFrames renders the vignettes from HTML compositions. The system (locked 202
 
 ## Tracking
 
-- Google Analytics 4 `G-HLSGHY8FP3` on all portfolio pages and on the root homepage and Pitch Minutes page. The old Universal Analytics tag is gone. The activity explorer carries no analytics because of its CSP.
+- Google Analytics 4 `G-HLSGHY8FP3` on all portfolio pages, the root homepage, and the staged gallery and Pitch Minutes pages. The old Universal Analytics tag is gone. The activity explorer carries no analytics because of its CSP.
 - Open Graph tags on all portfolio pages, preview image at `portfolio/images/og-preview.png` (1200x630).
-- Open Graph tags on the root homepage without an image. The portfolio preview image shows the `/portfolio/` URL, so it is not reused there. A root-page preview image is still needed.
+- Open Graph tags on the staged gallery page without an image. The portfolio preview image shows the `/portfolio/` URL, so it is not reused there. A root-page preview image is still needed.
 
 ## Known gaps
 
