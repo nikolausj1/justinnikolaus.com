@@ -178,15 +178,97 @@ h2 {
   font-weight: 600;
 }
 
+.recipe-story {
+  max-width: 44rem;
+  margin-bottom: clamp(1.75rem, 5vw, 3rem);
+}
+
+.story-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem 1.25rem;
+  margin-bottom: .75rem;
+}
+
+.story-heading h2,
+.recipe-story p {
+  margin: 0;
+}
+
+.recipe-story p + p {
+  margin-top: .625rem;
+}
+
 .cooking-plan {
   display: grid;
   gap: 2rem;
 }
 
-.timeline {
+.dinner-planner {
+  margin: 1rem 0;
+  border: 1px solid var(--rule);
+  padding: .875rem 1rem;
+}
+
+.dinner-planner label {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 650;
+}
+
+.planner-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .625rem;
+}
+
+.planner-fields input,
+.planner-fields button {
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  border: 1px solid var(--rule);
+  border-radius: .25rem;
+  padding: .5rem .75rem;
+  font: inherit;
+}
+
+.planner-fields input {
+  background: white;
+  color: var(--ink);
+}
+
+.planner-fields button {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.planner-fields button:hover {
+  text-decoration: underline;
+}
+
+.dinner-planner .recipe-note {
   margin: 0;
+}
+
+.dinner-planner .recipe-note:not(:empty) {
+  margin-top: .5rem;
+}
+
+.timeline {
+  margin: 1rem 0 0;
   padding: 0;
   list-style: none;
+}
+
+.timeline strong {
+  display: block;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .timeline li + li {
@@ -336,6 +418,8 @@ h2 {
   .breadcrumb,
   .recipe-photo,
   .recipe-jumps,
+  .story-heading a,
+  .dinner-planner,
   .sauce-menu {
     display: none;
   }

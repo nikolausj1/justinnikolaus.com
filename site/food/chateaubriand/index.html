@@ -7,7 +7,8 @@
   <meta name="description" content="Slow-roasted beef tenderloin with three sauce options, a dinner timeline, and shopping and equipment notes.">
   <link rel="canonical" href="https://justinnikolaus.com/food/chateaubriand/">
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-  <link rel="stylesheet" href="/food/styles.css?v=2">
+  <link rel="stylesheet" href="/food/styles.css?v=3">
+  <script src="/food/chateaubriand/dinner-planner.js" defer></script>
 </head>
 <body>
   <main class="shell recipe">
@@ -36,6 +37,7 @@
       </header>
 
       <nav class="recipe-jumps" aria-label="On this page">
+        <a href="#about">About the roast</a>
         <a href="#timeline">Dinner timeline</a>
         <a href="#shopping">Shopping and equipment</a>
         <a href="#ingredients">Roast ingredients</a>
@@ -43,19 +45,42 @@
         <a href="#sauces">Choose a sauce</a>
       </nav>
 
+      <section class="recipe-story" aria-labelledby="about">
+        <div class="story-heading">
+          <h2 id="about">About the roast</h2>
+          <a href="#timeline">Skip to dinner timeline</a>
+        </div>
+        <p>Chateaubriand uses the thick, even center of the beef tenderloin. In Stacey Ballis’s version, it goes straight into a low oven. The outside takes on a light golden color while the meat stays tender from edge to center.</p>
+        <p>Restaurants often serve Chateaubriand for two, but the same approach works for a dinner with friends. A glossy shallot and red wine sauce makes it feel like a special-occasion roast. A pat of compound butter melts over the warm slices, and tomatillo salsa adds some brightness.</p>
+      </section>
+
       <div class="cooking-plan">
         <section aria-labelledby="timeline">
-          <h2 id="timeline">Dinner timeline</h2>
+          <h2 id="timeline" tabindex="-1">Dinner timeline</h2>
+          <p class="recipe-note" id="timeline-guidance">Use these times to plan dinner. Start the rest once the thermometer reaches your target temperature, and allow more time if the beef needs it.</p>
+          <form id="dinner-planner" class="dinner-planner" hidden>
+            <label for="dinner-time">What time do you want to eat?</label>
+            <div class="planner-fields">
+              <input type="time" id="dinner-time" required aria-describedby="timeline-guidance">
+              <button type="submit">Show start times</button>
+            </div>
+            <p id="dinner-status" class="recipe-note" role="status"></p>
+          </form>
           <ol class="timeline" role="list">
-            <li><strong>About 4 hours ahead.</strong> Salt the beef and refrigerate it for 1–2 hours. Make the compound butter early so it can firm up, or roast the salsa vegetables while the beef chills. Let the oven come down from 450°F to 250°F before the beef goes in.</li>
-            <li><strong>About 2 hours ahead.</strong> Put the beef in the preheated oven. Begin checking the center after 45 minutes. Allow extra time if the roast needs it.</li>
-            <li><strong>While the beef roasts.</strong> Make the shallot and red wine reduction, if using. Keep the cubed butter cold until you finish the sauce.</li>
-            <li><strong>Before serving.</strong> Rest the beef for 20–30 minutes. While it rests, finish the warm sauce or get the compound butter or salsa ready. Slice the beef just before serving.</li>
+            <li><strong data-minutes-before="240">4 hours before dinner</strong> Salt the beef and set it on a wire rack in the refrigerator.</li>
+            <li><strong data-minutes-before="210">3 hours 30 minutes before</strong> If using <a href="#compound-butter">compound butter</a> or <a href="#salsa-verde">salsa verde</a>, make it now. Chill the butter until firm. If you roast the salsa vegetables at 450°F, give the oven time to cool back to 250°F.</li>
+            <li><strong data-minutes-before="135">2 hours 15 minutes before</strong> Set the oven to 250°F for the beef.</li>
+            <li><strong data-minutes-before="120">2 hours before</strong> Butter the beef and put it in the preheated oven.</li>
+            <li><strong data-minutes-before="90">1 hour 30 minutes before</strong> If using the <a href="#shallot-sauce">shallot and red wine sauce</a>, start the reduction. Keep the cubed butter cold.</li>
+            <li><strong data-minutes-before="75">1 hour 15 minutes before</strong> Take the first temperature reading 45 minutes after the roast goes in.</li>
+            <li><strong data-minutes-before="30">30 minutes before</strong> Aim to have the beef out of the oven and resting for 20–30 minutes. Finish the warm sauce or get the compound butter or salsa ready.</li>
+            <li><strong data-minutes-before="0">At dinner</strong> Remove the twine, slice the beef and serve with your chosen sauce.</li>
           </ol>
         </section>
 
         <section class="shopping" aria-labelledby="shopping">
           <h2 id="shopping">Shopping and equipment</h2>
+          <p>For Thanksgiving 2026, we got the beef from Met Market.</p>
           <p><strong>For four main-course servings,</strong> plan on about 1½ lb of trimmed beef. <strong>For eight,</strong> buy two roasts of about 1½ lb each and double the salt and butter for the beef. Check the temperature of each roast separately.</p>
           <p>Ask the butcher for trimmed, center-cut beef tenderloin tied at 2-inch intervals. Check the ingredient list for your chosen sauce before shopping.</p>
           <p><strong>For the roast,</strong> set out a rimmed sheet pan, wire rack, instant-read thermometer, foil, cutting board and sharp knife.</p>
