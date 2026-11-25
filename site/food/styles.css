@@ -148,6 +148,28 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
+.recipe-note {
+  margin: .75rem 0 0;
+  color: var(--muted);
+  font-size: .9375rem;
+}
+
+.recipe-photo {
+  margin: 1.5rem 0 0;
+}
+
+.recipe-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.recipe-photo figcaption {
+  margin-top: .375rem;
+  color: var(--muted);
+  font-size: .875rem;
+}
+
 .recipe-body {
   display: grid;
   gap: 2rem;
@@ -195,6 +217,21 @@ h3 {
 }
 
 @media (min-width: 52rem) {
+  .recipe-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .recipe-header h1 {
+    font-size: clamp(3rem, 5vw, 4.375rem);
+  }
+
+  .recipe-photo {
+    margin: 0;
+  }
+
   .recipe-body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.85fr);
     gap: clamp(2.5rem, 6vw, 5.5rem);
@@ -213,16 +250,19 @@ h3 {
     color: black;
   }
 
-  .breadcrumb {
+  .breadcrumb,
+  .recipe-photo {
     display: none;
   }
 
   .page-header {
+    display: block;
     padding-bottom: .75rem;
     margin-bottom: .75rem;
   }
 
-  h1 {
+  h1,
+  .recipe-header h1 {
     font-size: 31pt;
   }
 
