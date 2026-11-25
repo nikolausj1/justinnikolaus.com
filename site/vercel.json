@@ -27,6 +27,11 @@
       "statusCode": 301
     },
     {
+      "source": "/misc",
+      "destination": "/misc/",
+      "statusCode": 301
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
@@ -39,6 +44,24 @@
     }
   ],
   "headers": [
+    {
+      "source": "/misc/:file(knob-jolly|knob-suck|work-baseball-card)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/misc/:file(movie-poster-40-year-old|movie-poster-nacho-libre|movie-poster-stepbrothers|movie-poster-wolverine)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
+    },
     {
       "source": "/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico|mp4|webm|woff|woff2|pdf)",
       "headers": [
