@@ -192,11 +192,18 @@ h2 {
 }
 
 .story-heading h2,
-.recipe-story p {
+.story-excerpt,
+.story-excerpt blockquote,
+.story-excerpt p {
   margin: 0;
 }
 
-.recipe-story p + p {
+.story-excerpt blockquote {
+  border-inline-start: 2px solid var(--rule);
+  padding-inline-start: 1rem;
+}
+
+.story-excerpt p + p {
   margin-top: .625rem;
 }
 
