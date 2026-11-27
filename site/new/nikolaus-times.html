@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Nikolaus Times | Justin Nikolaus</title>
+  <meta name="description" content="A weekly four-page newspaper for my two boys, drafted by AI agents and edited by me. A project by Justin Nikolaus.">
+  <link rel="canonical" href="https://justinnikolaus.com/new/nikolaus-times.html">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLSGHY8FP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HLSGHY8FP3');
+  </script>
+</head>
+<body class="project-detail">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header container">
+    <a class="wordmark" href="./">Justin Nikolaus<span>.</span></a>
+    <a class="detail-back" href="./#project-times">Back to the homepage</a>
+  </header>
+  <main id="main" class="container detail-main">
+    <section class="detail-intro" aria-labelledby="project-title">
+      <p class="eyebrow">Family newspaper</p>
+      <h1 id="project-title">The Nikolaus Times</h1>
+      <p class="detail-lede">A four-page newspaper for each of my boys, on the kitchen table every Saturday morning. AI agents draft it from our family calendar. I choose the stories and approve every page.</p>
+    </section>
+
+    <!-- TODO: replace with Justin's photo of the printed, folded paper on the table (3:2). -->
+    <figure class="detail-hero">
+      <img src="assets/nikolaus-times-pages.jpg" alt="Pages 1 and 2 of issue 2: a road trip to Roslyn on the front, the family's week and a pie story inside" width="1800" height="1200">
+      <figcaption>Issue 2, the older reader's edition. His brother gets the same news at an easier reading level.</figcaption>
+    </figure>
+
+    <section class="detail-feature" aria-labelledby="newsroom-title">
+      <div>
+        <h2 id="newsroom-title">Run like a real newsroom</h2>
+        <p>Each week follows the cycle a city paper does. I pick the stories. AI agents write them at two reading levels and check every fact against a source. Code lays the pages out from a library of 59 components, and I edit the proof before anything prints.</p>
+        <p>Every job has one owner, so I always know where to look when something is wrong.</p>
+      </div>
+      <figure>
+        <img src="assets/nikolaus-times-newsroom.svg" alt="Four steps: I pick the stories, AI agents write and check, code lays out four pages, I edit and approve. My notes loop back as rules." width="600" height="960" loading="lazy">
+        <figcaption>One week at the paper.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-feature" aria-labelledby="budget-title">
+      <div>
+        <h2 id="budget-title">I choose the news first</h2>
+        <p>Before a word is written, the AI pitches stories for each boy from the week's calendar, school notes and weather. I mark each one Run, Hold or Spike from my phone, answer a question or two, and ask for more pitches when nothing fits.</p>
+        <p>The agents write only what I picked.</p>
+      </div>
+      <figure>
+        <img src="assets/nikolaus-times-budget.jpg" alt="The news budget for issue 3: the front page lead marked Run and another story marked Spike" width="660" height="1128" loading="lazy">
+        <figcaption>The news budget for issue 3.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-feature detail-wide" aria-labelledby="pen-title">
+      <div>
+        <h2 id="pen-title">My red pen becomes next week's rules</h2>
+        <p>The first pass arrives on Friday morning. In issue 2 the writer saw "Make pumpkin pies" on the calendar and wrote that the pies were baked. They are not: the family pie is layered and chilled. The story was thirteen words long and the drawing guessed wrong too.</p>
+        <p>I marked it up, and the note became a house rule the same day: a calendar entry says what and when, never how. The writer and an AI reviewer read every rule before the next draft.</p>
+      </div>
+      <figure>
+        <img src="assets/nikolaus-times-before-after.jpg" alt="Page 2 of issue 2 side by side: the first pass marked up in red pen, and the page that printed with the new headline, story and drawing" width="1800" height="1200" loading="lazy">
+        <figcaption>The first pass with my marks, and the page that printed.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-feature" aria-labelledby="library-title">
+      <div>
+        <h2 id="library-title">59 components, measured to the page</h2>
+        <p>Every box on the page is a component that knows its size on paper, how many words it holds and which reader it is written for. On a quiet week a box shrinks instead of leaving a hole, and text never gets smaller than a comfortable reading size just to fit.</p>
+        <p>The puzzles are drawn by code from the week's own words, and every sudoku is checked so it can be solved without guessing.</p>
+      </div>
+      <figure>
+        <img src="assets/nikolaus-times-puzzles.jpg" alt="Page 4 of issue 2: a Thanksgiving crossword, a road trip word search, a joke, a sudoku and a riddle" width="660" height="801" loading="lazy">
+        <figcaption>The puzzle page from issue 2.</figcaption>
+      </figure>
+    </section>
+
+    <p class="detail-return"><a href="./#project-times">Explore the other projects</a></p>
+  </main>
+  <style>
+    /* The before-and-after needs the full width: copy above, figure below. */
+    .detail-feature.detail-wide { grid-template-columns: 1fr; gap: 32px; }
+    .detail-feature.detail-wide > div { grid-column: auto; grid-row: auto; max-width: 760px; }
+    .detail-feature.detail-wide > figure { grid-column: auto; grid-row: auto; max-width: none; }
+    .detail-feature.detail-wide img { border-radius: 4px; }
+  </style>
+</body>
+</html>
