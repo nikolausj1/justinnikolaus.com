@@ -27,8 +27,10 @@ function refresh(){
 // Exact balances stay authoritative; the capped pile is a visual companion.
 function renderTokenPile(count){
  const offsets=[[-8,13,-18],[19,20,15],[4,-1,-7],[34,0,25],[-17,-8,-24],[20,-17,12],[44,17,30],[0,28,-12]];
- $('tokenPile').replaceChildren(...offsets.slice(0,Math.min(count,offsets.length)).map(([x,y,r])=>{const image=document.createElement('img');image.src='assets/arcade-token-n.svg';image.alt='';image.className='pile-coin';image.style.cssText=`--coin-x:${x}px;--coin-y:${y}px;--coin-rotate:${r}deg`;return image}));
- $('machineTokenCount').textContent=String(count);$('machineTokens').setAttribute('aria-label',`${count} ${count===1?'token':'tokens'} available`);
+ const coins=offsets.slice(0,Math.min(count,offsets.length)),xs=coins.map(p=>p[0]);
+ const centerOffset=coins.length?45-(Math.min(...xs)+Math.max(...xs)+51)/2:0;
+ $('tokenPile').replaceChildren(...coins.map(([x,y,r])=>{const image=document.createElement('img');image.src='assets/arcade-token-n.svg';image.alt='';image.className='pile-coin';image.style.cssText=`--coin-x:${x+centerOffset}px;--coin-y:${y}px;--coin-rotate:${r}deg`;return image}));
+ $('machineTokenCount').textContent=`${count} ${count===1?'token':'tokens'}`;$('machineTokens').setAttribute('aria-label',`${count} ${count===1?'token':'tokens'} available`);
 }
 let tokenFlight=null;
 function animateTokenSpend(source){
