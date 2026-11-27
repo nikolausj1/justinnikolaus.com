@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+<title id="title">Nikolaus Arcade gold N token</title>
+<defs>
+ <linearGradient id="edge" x2=".8" y2="1"><stop stop-color="#fff7be"/><stop offset=".25" stop-color="#f6cd62"/><stop offset=".5" stop-color="#ba821e"/><stop offset=".75" stop-color="#ffe59a"/><stop offset="1" stop-color="#b67c1b"/></linearGradient>
+ <radialGradient id="gold" cx=".32" cy=".25" r=".85"><stop stop-color="#fff0a5"/><stop offset=".5" stop-color="#f3c64d"/><stop offset="1" stop-color="#cb921f"/></radialGradient>
+ <linearGradient id="letter" x2=".35" y2="1"><stop stop-color="#fff3b6"/><stop offset=".45" stop-color="#ffdc71"/><stop offset="1" stop-color="#e5a92b"/></linearGradient>
+ <path id="upper" d="M30 103a70 70 0 0 1 140 0"/>
+ <path id="lower" d="M36 113a67 67 0 0 0 128 0"/>
+ <path id="n" d="M67 135V65h19l30 44V65h18v70h-19L85 91v44Z"/>
+</defs>
+<circle cx="100" cy="104" r="94" fill="#865813"/>
+<circle cx="100" cy="99" r="94" fill="url(#edge)" stroke="#ffeaa1" stroke-width="2"/>
+<circle cx="100" cy="99" r="87" fill="none" stroke="#a66d16" stroke-width="4" stroke-dasharray="1.8 3.9"/>
+<circle cx="100" cy="99" r="81" fill="url(#gold)" stroke="#fff0aa" stroke-width="1.5"/>
+<circle cx="100" cy="99" r="56" fill="none" stroke="#b98422" stroke-width="1.4"/>
+<circle cx="100" cy="98" r="54" fill="none" stroke="#ffeaa3" stroke-width="1"/>
+<g fill="#895c18" font-family="Arial,sans-serif" font-weight="900" text-anchor="middle" letter-spacing="3">
+ <text font-size="19"><textPath href="#upper" startOffset="50%">NIKOLAUS</textPath></text>
+ <text font-size="20"><textPath href="#lower" startOffset="50%">ARCADE</textPath></text>
+</g>
+<use href="#n" transform="translate(0 3)" fill="#9a6417" stroke="#9a6417" stroke-width="4" stroke-linejoin="round"/>
+<use href="#n" transform="translate(-1 -1)" fill="#fff6bd" stroke="#fff6bd" stroke-width="2"/>
+<use href="#n" fill="url(#letter)" stroke="#bb8224" stroke-width="1"/>
+<g fill="#9e701d"><path d="m33 94 2 4 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1Z"/><path d="m167 94 2 4 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1Z"/></g>
+</svg>

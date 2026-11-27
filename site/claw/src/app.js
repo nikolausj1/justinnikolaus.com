@@ -21,8 +21,37 @@ function refresh(){
  if(!store)return;
  const volume=store.snapshot().deviceSettings.vol;$('muteMusic').textContent=volume.music===0?'Unmute music':'Mute music';$('muteEffects').textContent=volume.sfx===0?'Unmute effects':'Mute effects';
  const p=store.profile(),name=names[p.id];$('playerName').textContent=`${name}’s Arcade`;$('avatar').textContent=name[0];const balance=`${p.money} ${p.money===1?'Token':'Tokens'}`;$('wallet').textContent=balance;$('atmBalance').textContent=balance;
- const back=$('backToClaw');back.disabled=p.money===0;back.classList.toggle('token-ready',p.money>=3);$('tokenHint').textContent=p.money===0?'Answer a question to earn your first token.':p.money>=3?'You’re ready for a few rounds!':`${3-p.money} more ${3-p.money===1?'token':'tokens'} to light up your next visit.`;$('collectionCount').textContent=p.collection.length;
+ const back=$('backToClaw');back.disabled=p.money===0;back.classList.toggle('token-ready',p.money>=3);$('tokenHint').textContent=p.money===0?'Answer a question to earn your first token.':p.money>=3?'You’re ready for a few rounds!':`${3-p.money} more ${3-p.money===1?'token':'tokens'} to light up your next visit.`;$('collectionCount').textContent=p.collection.length;renderTokenPile(p.money);
  if(screen==='room')renderRoom();machine?.refreshHUD?.();updateRetrieval();
+}
+// Exact balances stay authoritative; the capped pile is a visual companion.
+function renderTokenPile(count){
+ const offsets=[[-8,13,-18],[19,20,15],[4,-1,-7],[34,0,25],[-17,-8,-24],[20,-17,12],[44,17,30],[0,28,-12]];
+ $('tokenPile').replaceChildren(...offsets.slice(0,Math.min(count,offsets.length)).map(([x,y,r])=>{const image=document.createElement('img');image.src='assets/arcade-token-n.svg';image.alt='';image.className='pile-coin';image.style.cssText=`--coin-x:${x}px;--coin-y:${y}px;--coin-rotate:${r}deg`;return image}));
+ $('machineTokenCount').textContent=String(count);$('machineTokens').setAttribute('aria-label',`${count} ${count===1?'token':'tokens'} available`);
+}
+let tokenFlight=null;
+function animateTokenSpend(source){
+ let coin;
+ // Decoration must never interrupt a successfully saved play transaction.
+ try{
+  if(!source?.width||!document.body?.append)return;
+  const target=machine?.tokenInsertPoint?.();if(!target)return;
+  tokenFlight?.cancel();
+  coin=document.createElement('img');coin.src='assets/arcade-token-n.svg';coin.alt='';coin.className='flying-token';coin.setAttribute('aria-hidden','true');
+  coin.style.left=`${source.left+source.width/2-27}px`;coin.style.top=`${source.top+source.height/2-27}px`;document.body.append(coin);
+  const dx=target.x-(source.left+source.width/2),dy=target.y-(source.top+source.height/2);
+  const reduced=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const frames=reduced?[{opacity:1},{opacity:0}]:[
+   {transform:'translate(0,0) rotate(-18deg) scale(1)',opacity:1},
+   {transform:`translate(${dx*.48}px,${dy*.48-100}px) rotate(160deg) scale(1.2)`,opacity:1,offset:.48},
+   {transform:`translate(${dx}px,${dy}px) rotate(340deg) scale(.16,.65)`,opacity:1,offset:.92},
+   {transform:`translate(${dx}px,${dy}px) rotate(360deg) scale(.02,.3)`,opacity:0}
+  ];
+  if(!coin.animate){coin.remove();return}
+  const animation=coin.animate(frames,{duration:reduced?120:750,easing:'cubic-bezier(.3,.05,.55,1)',fill:'forwards'});tokenFlight=animation;
+  animation.finished.catch(()=>{}).finally(()=>{coin.remove();if(tokenFlight===animation)tokenFlight=null});
+ }catch{coin?.remove(); /* A visual failure cannot charge twice or block the machine. */ }
 }
 function updateRetrieval(){
  const count=machine?.returned?.().length||0,b=$('retrievePrize');b.hidden=!count||turnState!=='idle';
@@ -30,7 +59,7 @@ function updateRetrieval(){
 }
 window.ClawBridge={
  profile:()=>store.profile(),settings:()=>store.snapshot().deviceSettings,
- beginTurn(){turnId=store.beginTurn();refresh();return turnId},
+ beginTurn(){const source=$('tokenPile').lastElementChild?.getBoundingClientRect?.();turnId=store.beginTurn();refresh();animateTokenSpend(source);return turnId},
  awardPrize(id,thumb,eventId){return store.awardPrize(turnId,id,thumb,eventId)},
  finishTurn(){const result=store.finishTurn(turnId);turnId=null;return result},
  saveSettings(patch){transact(()=>store.setSettings(patch))},navigateATM:()=>navigate('atm'),reportError,
@@ -47,7 +76,7 @@ async function choose(id){
 }
 async function navigate(next){
  if(machine?.isBusy()){notice(turnState==='ready'?'Use DROP to finish this turn before leaving.':'Your claw is coming home. Try again in a moment.');return}
- screen=next;for(const id of ['machine','atm','room'])$(id).hidden=id!==next;
+ if(next!=='machine')tokenFlight?.cancel();screen=next;for(const id of ['machine','atm','room'])$(id).hidden=id!==next;
  document.querySelectorAll('[data-screen]').forEach(b=>{if(b.dataset.screen===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  machine?.setVisible(next==='machine');if(next==='machine')await loadMachine();
  if(next==='atm'){if(!question||question.resolved)nextMath();else renderMath()}if(next==='room')renderRoom();refresh();
@@ -61,7 +90,7 @@ function renderMath(){
 function digit(d){if(!question||question.resolved||input.length>=3)return;input=input==='0'?d:input+d;renderMath()}
 function submit(){
  if(!input||question.resolved)return;const result=transact(()=>store.answer(question,Number(input)));if(!result)return;renderMath();
- if(result.correct){$('mathFeedback').textContent='Nice work! +1 token saved for your next play.';$('mathFeedback').className='correct';$('cashNote').innerHTML='<span class="dispensed-token"><img class="token-art" src="assets/arcade-token.svg" alt="Gold Nikolaus Arcade token"></span><span>+1 TOKEN</span>';$('cashNote').className='cash-award';machine?.sound('coin');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
+ if(result.correct){$('mathFeedback').textContent='Nice work! +1 token saved for your next play.';$('mathFeedback').className='correct';$('cashNote').innerHTML='<span class="dispensed-token"><img class="token-art" src="assets/arcade-token-n.svg" alt="Gold Nikolaus Arcade token"></span><span>+1 TOKEN</span>';$('cashNote').className='cash-award';machine?.sound('coin');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
  else{$('mathFeedback').textContent=`The answer is ${question.a} ${question.operation} ${question.b} = ${question.correctAnswer}. Let’s try another!`;$('mathFeedback').className='answer-help'}
 }
 function imageFor(item){const image=document.createElement('img');image.src=machine?.thumbnail(item.prizeId)||item.thumbnail||'';image.alt=catalog[item.prizeId].name;return image}

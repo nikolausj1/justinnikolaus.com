@@ -143,6 +143,9 @@ const signX=new THREE.Mesh(new THREE.PlaneGeometry(2.6,.81),sB);signX.position.s
 const signZ2=signZ.clone();signZ2.position.set(0,-1.05,-2.252);signZ2.rotation.y=Math.PI;scene.add(signZ2);
 const signX2=signX.clone();signX2.position.set(-2.252,-1.05,0);signX2.rotation.y=-Math.PI/2;scene.add(signX2);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{const[a,b]=makeSigns();signZ.material=a;signZ2.material=a;signX.material=b;signX2.material=b});
+// A physical coin slot receives the play-token animation.
+box(.36,.21,.025,M.chrome,.65,-.58,2.275,false);
+box(.25,.038,.03,M.dark,.65,-.58,2.295,false);
 // prize door (front, under chute)
 // Open hatch, continuous dark shaft and a lit tray. No opaque door or cap.
 box(1.04,.07,.1,M.chrome,-1.5,-.55,2.28,false);
@@ -943,6 +946,7 @@ const api={
  setVisible(on){visible=on;view=on?'claw':'other';last=performance.now();acc=0;clearKeys();if(AC)motorGain.gain.setTargetAtTime(0,AC.currentTime,.02);if(on)resize()},
  refreshHUD(){hudCache='';hud()},pauseForError(){failed=true;clearKeys()},isBusy:()=>C.state!=='idle',drop,thumbnail:thumbFor,sound(kind){initAudio();(sfx[kind]||sfx.cash)()},resize,
  collectReturned,returned:()=>returnedPrizes.map(p=>p.item),
+ tokenInsertPoint(){const v=new THREE.Vector3(.65,-.58,2.31).project(cinemaMix>.001?camP:cam),r=canvas.getBoundingClientRect();return{x:r.left+(v.x*.5+.5)*r.width,y:r.top+(-v.y*.5+.5)*r.height}},
  createPrizeModel(kind){return makePlush(kind).group},
  retry(){failed=false;last=performance.now()}
 };
