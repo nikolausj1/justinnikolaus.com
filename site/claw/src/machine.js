@@ -1,4 +1,5 @@
 import {PRIZES, buildPrize} from './catalog.js';
+import {bindMovementControls} from './movement-controls.js';
 // Adapted from Clawtastrophe, Trevor Riggle. Private family prototype.
 // Retains original pendulum, kinematic head, hinged prongs, torque servos,
 // compound-body narrowphase optimization, mesh merge and camera behavior.
@@ -517,12 +518,14 @@ const headG=new THREE.Group();
  const led3=led.clone();led3.position.set(.16,.02,0);headG.add(led3);const led4=led.clone();led4.position.set(-.16,.02,0);headG.add(led4);}
 scene.add(headG);
 
-const C={tx:HOME.x,tz:HOME.z,vx:0,vz:0,L:L0,Lv:0,ax:0,az:0,wx:0,wz:0,state:'idle',st:0,torque:0,Vp:0,Vc:0,strong:false,prongTouchT:0,lastPos:new CANNON.Vec3(HOME.x,GY-L0,HOME.z),lastQ:new CANNON.Quaternion(),timer:25,lastTick:99,held:0,wins:0,liftFrom:0};
+const C={tx:HOME.x,tz:HOME.z,vx:0,vz:0,L:L0,Lv:0,ax:0,az:0,wx:0,wz:0,state:'idle',st:0,torque:0,Vp:0,Vc:0,strong:false,prongTouchT:0,lastPos:new CANNON.Vec3(HOME.x,GY-L0,HOME.z),lastQ:new CANNON.Quaternion(),timer:30,lastTick:99,held:0,wins:0,liftFrom:0};
 const TMAX=7.5;
 const keys={up:false,down:false,left:false,right:false};
+const touchMove={x:0,y:0};
+let movementControls;
 const v1=new CANNON.Vec3(),v2=new CANNON.Vec3(),qc=new CANNON.Quaternion(),aw=new CANNON.Vec3(),DOWN=new CANNON.Vec3(0,-1,0),qT=new CANNON.Quaternion(),dirV=new CANNON.Vec3();
 
-function setState(s){C.state=s;C.st=0;B.onTurnState(s);if(s==='lift'){liftReveal=true;emptyReveal=false}else if(s==='ready'){liftReveal=false;emptyReveal=false}}
+function setState(s){if(s!=='ready')clearKeys();C.state=s;C.st=0;B.onTurnState(s);if(s==='lift'){liftReveal=true;emptyReveal=false}else if(s==='ready'){liftReveal=false;emptyReveal=false}}
 const CHUTE_Y=1.72;
 function heldCount(){return plushes.filter(p=>p.body.position.y>head.position.y-1.1&&p.body.position.y<head.position.y+.2&&Math.hypot(p.body.position.x-head.position.x,p.body.position.z-head.position.z)<.7).length}
 // Stick frame. Screen mode: up = into the screen at the current orbit angle.
@@ -539,11 +542,11 @@ function clawStep(dt){
   C.st+=dt;
   const cd=dt;
   // stick -> world, relative to camera
-  let jx=(keys.right?1:0)-(keys.left?1:0),jy=(keys.up?1:0)-(keys.down?1:0);
+  let jx=(keys.right?1:0)-(keys.left?1:0)+touchMove.x,jy=(keys.up?1:0)-(keys.down?1:0)-touchMove.y;
   if(jx||jy){if(!stick.latched){stick.latched=true;stick.az=liveStickAz()}}else stick.latched=false;
   const saz=stickAz(),rx=Math.cos(saz),rz=-Math.sin(saz),fx=-Math.sin(saz),fz=-Math.cos(saz);
   let tvx=0,tvz=0;
-  if(C.state==='ready'){const n=Math.hypot(jx,jy)||1;tvx=(rx*jx+fx*jy)/n*1.7;tvz=(rz*jx+fz*jy)/n*1.7}
+  if(C.state==='ready'){const n=Math.max(1,Math.hypot(jx,jy));tvx=(rx*jx+fx*jy)/n*1.7;tvz=(rz*jx+fz*jy)/n*1.7}
   if(C.state==='carry'&&C.st>.25){const dx=HOME.x-C.tx,dz=HOME.z-C.tz,d=Math.hypot(dx,dz);const sp=Math.min(1.4,d*2.2);if(d>1e-4){tvx=dx/d*sp;tvz=dz/d*sp}}
   const pvx=C.vx,pvz=C.vz,A=(C.state==='carry'?3:5)*cd;
   C.vx+=clamp(tvx-C.vx,-A,A);C.vz+=clamp(tvz-C.vz,-A,A);
@@ -621,7 +624,7 @@ function play(){
  if(returnedPrizes.length){B.requestRetrieval?.();return}
  if(B.profile().money<1){B.navigateATM();return}
  try{turnId=B.beginTurn();wonObjects.clear()}catch(e){B.reportError(e);return}
- C.strong=true;C.Vp=48;C.Vc=46;C.timer=20;C.lastTick=99;C.wins=0;C.held=0;
+ C.strong=true;C.Vp=48;C.Vc=46;C.timer=30;C.lastTick=99;C.wins=0;C.held=0;
  sfx.coin();setState('ready');say('Your turn! Line up, then DROP.');
 }
 function drop(){if(C.state!=='ready')return;
@@ -793,10 +796,7 @@ function frame(now){
 say('Stocking the machine...');
 
 requestAnimationFrame(frame);
-document.querySelectorAll('.dpad button').forEach(b=>{
-  const k=b.dataset.k,on=e=>{e.preventDefault();initAudio();keys[k]=true;b.classList.add('on');b.setPointerCapture?.(e.pointerId)},off=()=>{keys[k]=false;b.classList.remove('on')};
-  b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('lostpointercapture',off);
-});
+movementControls=bindMovementControls({joystick:$('joystick'),buttons:document.querySelectorAll('.dpad button'),onChange(x,y){touchMove.x=x;touchMove.y=y},onInteract(){initAudio();poke()}});
 $('big').addEventListener('click',()=>{if(C.state==='idle')play();else drop()});
 
 const KM={arrowup:'up',w:'up',arrowdown:'down',s:'down',arrowleft:'left',a:'left',arrowright:'right',d:'right'};
@@ -817,9 +817,9 @@ function grabFocus(){try{window.focus()}catch(_){}}
 function focusHint(){$('focusHint').hidden=!(EMBED&&!document.hasFocus())}
 document.addEventListener('pointerdown',grabFocus,true);
 addEventListener('focus',focusHint);
-addEventListener('blur',()=>{for(const k in keys)keys[k]=false;document.querySelectorAll('.dpad .on').forEach(b=>b.classList.remove('on'));focusHint()});
+addEventListener('blur',()=>{clearKeys();focusHint()});
 grabFocus();setTimeout(focusHint,300);
-addEventListener('blur',()=>{for(const k in keys)keys[k]=false;document.querySelectorAll('.dpad .on').forEach(b=>b.classList.remove('on'))});
+
 
 const FOCI={claw:{t:BASE_T.clone(),az:Math.PI/4,el:.6,zoom:1}};
 let liftReveal=false,emptyReveal=false,cinemaMix=0;
@@ -937,7 +937,7 @@ function drawMini(){
 
 
 document.addEventListener('visibilitychange',()=>{last=performance.now();acc=0;clearKeys();if(document.hidden&&AC)AC.suspend();else if(visible&&AC)AC.resume()});
-function clearKeys(){for(const k in keys)keys[k]=false;document.querySelectorAll('.dpad .on').forEach(b=>b.classList.remove('on'))}
+function clearKeys(){movementControls?.reset();touchMove.x=touchMove.y=0;for(const k in keys)keys[k]=false;document.querySelectorAll('.dpad .on').forEach(b=>b.classList.remove('on'))}
 const api={
  setProfile(){S.money=B.profile().money*100;hudCache='';failed=false;resize()},
  setVisible(on){visible=on;view=on?'claw':'other';last=performance.now();acc=0;clearKeys();if(AC)motorGain.gain.setTargetAtTime(0,AC.currentTime,.02);if(on)resize()},
