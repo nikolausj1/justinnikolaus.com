@@ -35,10 +35,9 @@
       <p class="detail-lede">A four-page newspaper for each of my boys, on the kitchen table every Saturday morning. AI agents draft it from our family calendar. I choose the stories and approve every page.</p>
     </section>
 
-    <!-- TODO: replace with Justin's photo of the printed, folded paper on the table (3:2). -->
     <figure class="detail-hero">
-      <img src="assets/nikolaus-times-pages.jpg" alt="Pages 1 and 2 of issue 2: a road trip to Roslyn on the front, the family's week and a pie story inside" width="1800" height="1200">
-      <figcaption>Issue 2, the older reader's edition. His brother gets the same news at an easier reading level.</figcaption>
+      <img class="nt-photo" src="assets/nikolaus-times-printed.jpg" alt="The two editions of issue 1 printed and lying on a wooden table: a baseball clinic leads one, the last soccer game of the fall leads the other" width="2400" height="1350">
+      <figcaption>Issue 1, both editions, the night before it reached the table. Same weather and countdown, a different lead story for each boy.</figcaption>
     </figure>
 
     <section class="detail-feature detail-wide" aria-labelledby="system-title">
@@ -70,6 +69,10 @@
         <p>The first pass arrives on Friday morning. In issue 2 the writer saw "Make pumpkin pies" on the calendar and wrote that the pies were baked. They are not: the family pie is layered and chilled. The story was thirteen words long and the drawing guessed wrong too.</p>
         <p>I marked it up, and the note became a house rule the same day: a calendar entry says what and when, never how. The writer and an AI reviewer read every rule before the next draft.</p>
       </div>
+      <figure>
+        <img class="nt-photo" src="assets/nikolaus-times-markup.jpg" alt="A printed proof of issue 2, the puzzle page and front page, marked up in pen: the edition label to move, the price line and motto struck out, the joke circled" width="2400" height="1350" loading="lazy">
+        <figcaption>A Friday proof of issue 2, marked up in pen.</figcaption>
+      </figure>
       <figure>
         <img src="assets/nikolaus-times-before-after.jpg" alt="Page 2 of issue 2 side by side: the first pass marked up in red pen, and the page that printed with the new headline, story and drawing" width="1800" height="1200" loading="lazy">
         <figcaption>The first pass with my marks, and the page that printed.</figcaption>
@@ -116,6 +119,11 @@
       </figure>
     </section>
 
+    <figure class="detail-hero nt-closer">
+      <img class="nt-photo nt-family" src="assets/nikolaus-times-saturday.jpg" alt="Saturday morning: the boys reading their own editions of issue 1" width="2400" height="1350" loading="lazy">
+      <figcaption>Saturday, 8:34 a.m. Issue 1 reaches its readers.</figcaption>
+    </figure>
+
     <p class="detail-return"><a href="./#project-times">Explore the other projects</a></p>
   </main>
   <style>
@@ -124,6 +132,10 @@
     .detail-feature.detail-wide > div { grid-column: auto; grid-row: auto; max-width: 760px; }
     .detail-feature.detail-wide > figure { grid-column: auto; grid-row: auto; max-width: none; }
     .detail-feature.detail-wide img { border-radius: 4px; }
+    /* Photos keep their own 16:9 frame instead of the hero's 3:2 crop. */
+    .detail-hero img.nt-photo, .detail-feature img.nt-photo { aspect-ratio: auto; object-fit: contain; border: 0; border-radius: 4px; }
+    .detail-feature.detail-wide figure + figure { margin-top: 8px; }
+    .nt-closer { margin: 56px 0 40px; }
     .nt-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .nt-stats div { min-width: 0; }
     .nt-stats dt { font-size: clamp(30px, 4vw, 44px); font-weight: 600; letter-spacing: -.045em; line-height: 1.05; font-variant-numeric: tabular-nums; }
