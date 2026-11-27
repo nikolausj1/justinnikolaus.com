@@ -7,6 +7,7 @@ const qaMode=new URLSearchParams(location.search).has('qa');
 const storage={getItem:k=>localStorage.getItem(qaMode?k+'-qa':k),setItem:(k,v)=>localStorage.setItem(qaMode?k+'-qa':k,v)};
 const catalog=Object.fromEntries(PRIZES.map(p=>[p.id,p]));
 let store,machine,viewer,screen='start',question,input='',questionTimer,toastTimer;
+let pendingATMRewards=0;const atmFlights=new Set();
 let turnId=null,turnState='idle',page=0,inspection=null,inspectionNew=false,loading=false,justShelved=null;
 function notice(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4000)}
 function reportError(error){
@@ -20,7 +21,7 @@ initStore();
 function refresh(){
  if(!store)return;
  const volume=store.snapshot().deviceSettings.vol;$('muteMusic').textContent=volume.music===0?'Unmute music':'Mute music';$('muteEffects').textContent=volume.sfx===0?'Unmute effects':'Mute effects';
- const p=store.profile(),name=names[p.id];$('playerName').textContent=`${name}’s Arcade`;$('avatar').textContent=name[0];const balance=`${p.money} ${p.money===1?'Token':'Tokens'}`;$('wallet').textContent=balance;$('atmBalance').textContent=balance;
+ const p=store.profile(),name=names[p.id];$('playerName').textContent=`${name}’s Arcade`;$('avatar').textContent=name[0];const balance=`${p.money} ${p.money===1?'Token':'Tokens'}`;$('wallet').textContent=balance;const bankCount=Math.max(0,p.money-pendingATMRewards);$('atmBalance').textContent=`${bankCount} ${bankCount===1?'Token':'Tokens'}`;
  const back=$('backToClaw');back.disabled=p.money===0;back.classList.toggle('token-ready',p.money>=3);$('tokenHint').textContent=p.money===0?'Answer a question to earn your first token.':p.money>=3?'You’re ready for a few rounds!':`${3-p.money} more ${3-p.money===1?'token':'tokens'} to light up your next visit.`;$('collectionCount').textContent=p.collection.length;renderTokenPile(p.money);
  if(screen==='room')renderRoom();machine?.refreshHUD?.();updateRetrieval();
 }
@@ -55,6 +56,33 @@ function animateTokenSpend(source){
   animation.finished.catch(()=>{}).finally(()=>{coin.remove();if(tokenFlight===animation)tokenFlight=null});
  }catch{coin?.remove(); /* A visual failure cannot charge twice or block the machine. */ }
 }
+function settleATMFlights(){for(const flight of [...atmFlights])flight.settle()}
+function animateATMReward(){
+ let coin,entry,settled=false;
+ const settle=()=>{if(settled)return;settled=true;entry?.animation?.cancel();coin?.remove();if(entry)atmFlights.delete(entry);pendingATMRewards=Math.max(0,pendingATMRewards-1);refresh()};
+ try{
+  const sourceImage=$('cashNote').querySelector?.('.dispensed-token img');
+  const targetImage=document.querySelector?.('.bank > .token-art');
+  if(!sourceImage||!targetImage||!document.body?.append){settle();return}
+  $('cashNote').style.animation='none';
+  const source=sourceImage.getBoundingClientRect(),target=targetImage.getBoundingClientRect();
+  if(!source.width||!target.width){settle();return}
+  coin=document.createElement('img');coin.src='assets/arcade-token-n.svg';coin.alt='';coin.className='flying-token atm-reward-flight';coin.setAttribute('aria-hidden','true');
+  coin.style.left=`${source.left+source.width/2-27}px`;coin.style.top=`${source.top+source.height/2-27}px`;document.body.append(coin);
+  if(!coin.animate){settle();return}
+  sourceImage.style.visibility='hidden';
+  const dx=target.left+target.width/2-(source.left+source.width/2),dy=target.top+target.height/2-(source.top+source.height/2);
+  const reduced=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const frames=reduced?[{opacity:1},{opacity:0}]:[
+   {transform:'translate(0,12px) scale(.8)',opacity:0},
+   {transform:'translate(0,-45px) rotate(-25deg) scale(1)',opacity:1,offset:.22},
+   {transform:`translate(${dx*.5}px,${dy*.5-80}px) rotate(140deg) scale(1.1)`,opacity:1,offset:.58},
+   {transform:`translate(${dx}px,${dy}px) rotate(360deg) scale(.55)`,opacity:0}
+  ];
+  entry={animation:coin.animate(frames,{duration:reduced?120:1050,easing:'cubic-bezier(.25,.1,.45,1)',fill:'forwards'}),settle};atmFlights.add(entry);
+  entry.animation.finished.then(settle,settle);
+ }catch{settle()}
+}
 function updateRetrieval(){
  const count=machine?.returned?.().length||0,b=$('retrievePrize');b.hidden=!count||turnState!=='idle';
  b.firstChild.textContent=count>1?`You won ${count} toys! `:'Tap your prize! ';
@@ -71,6 +99,7 @@ window.ClawBridge={
 };
 async function loadMachine(){if(machine||loading)return;loading=true;try{if(!window.THREE||!window.CANNON)throw Error('The 3D engine could not load. Check your connection, then retry.');await import('./machine.js')}catch(e){reportError(e)}finally{loading=false}}
 async function choose(id){
+ settleATMFlights();
  if(!store||!transact(()=>store.select(id)))return;
  // Visual return copies belong to the previous player; the saved toys stay theirs.
  machine?.returned?.().forEach(item=>machine.collectReturned(item.instanceId));
@@ -78,7 +107,7 @@ async function choose(id){
 }
 async function navigate(next){
  if(machine?.isBusy()){notice(turnState==='ready'?'Use DROP to finish this turn before leaving.':'Your claw is coming home. Try again in a moment.');return}
- if(next!=='machine')tokenFlight?.cancel();screen=next;for(const id of ['machine','atm','room'])$(id).hidden=id!==next;
+ if(next!=='machine')tokenFlight?.cancel();if(next!=='atm')settleATMFlights();screen=next;for(const id of ['machine','atm','room'])$(id).hidden=id!==next;
  document.querySelectorAll('[data-screen]').forEach(b=>{if(b.dataset.screen===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  machine?.setVisible(next==='machine');if(next==='machine')await loadMachine();
  if(next==='atm'){if(!question||question.resolved)nextMath();else renderMath()}if(next==='room')renderRoom();refresh();
@@ -91,8 +120,9 @@ function renderMath(){
 }
 function digit(d){if(!question||question.resolved||input.length>=3)return;input=input==='0'?d:input+d;renderMath()}
 function submit(){
- if(!input||question.resolved)return;const result=transact(()=>store.answer(question,Number(input)));if(!result)return;renderMath();
- if(result.correct){$('mathFeedback').textContent='Nice work! +1 token saved for your next play.';$('mathFeedback').className='correct';$('cashNote').innerHTML='<span class="dispensed-token"><img class="token-art" src="assets/arcade-token-n.svg" alt="Gold Nikolaus Arcade token"></span><span>+1 TOKEN</span>';$('cashNote').className='cash-award';machine?.sound('coin');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
+ if(!input||question.resolved)return;const rewardExpected=Number(input)===question.correctAnswer;if(rewardExpected)pendingATMRewards++;
+ const result=transact(()=>store.answer(question,Number(input)));if(!result){if(rewardExpected)pendingATMRewards=Math.max(0,pendingATMRewards-1);refresh();return}renderMath();
+ if(result.correct){$('mathFeedback').textContent='Nice work! +1 token saved for your next play.';$('mathFeedback').className='correct';$('cashNote').innerHTML='<span class="dispensed-token"><img class="token-art" src="assets/arcade-token-n.svg" alt="Gold Nikolaus Arcade token"></span><span>+1 TOKEN</span>';$('cashNote').className='cash-award';animateATMReward();machine?.sound('coin');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
  else{$('mathFeedback').textContent=`The answer is ${question.a} ${question.operation} ${question.b} = ${question.correctAnswer}. Let’s try another!`;$('mathFeedback').className='answer-help'}
 }
 function imageFor(item){const image=document.createElement('img');image.src=machine?.thumbnail(item.prizeId)||item.thumbnail||'';image.alt=catalog[item.prizeId].name;return image}
@@ -133,7 +163,7 @@ $('closePrize').addEventListener('click',()=>$('prizeDialog').close());$('resetP
 document.querySelectorAll('[data-profile]').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.profile)));
 document.querySelectorAll('[data-screen],[data-go]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.screen||b.dataset.go)));
 $('earnLink').addEventListener('click',()=>navigate('atm'));
-$('home').addEventListener('click',()=>{if(machine?.isBusy()){notice(turnState==='ready'?'Use DROP to finish this turn before choosing another player.':'Your claw is coming home. Try again in a moment.');return}clearTimeout(questionTimer);screen='start';machine?.setVisible(false);$('app').hidden=true;$('start').hidden=false});
+$('home').addEventListener('click',()=>{if(machine?.isBusy()){notice(turnState==='ready'?'Use DROP to finish this turn before choosing another player.':'Your claw is coming home. Try again in a moment.');return}settleATMFlights();clearTimeout(questionTimer);screen='start';machine?.setVisible(false);$('app').hidden=true;$('start').hidden=false});
 document.querySelectorAll('[data-digit]').forEach(b=>b.addEventListener('click',()=>digit(b.dataset.digit)));
 $('backspace').addEventListener('click',()=>{input=input.slice(0,-1);renderMath()});$('clearAnswer').addEventListener('click',()=>{input='';renderMath()});$('submitAnswer').addEventListener('click',submit);$('nextQuestion').addEventListener('click',nextMath);
 document.addEventListener('keydown',e=>{if(screen!=='atm'||!$('errorOverlay').hidden||e.target.tagName==='INPUT')return;if(/^\d$/.test(e.key)){e.preventDefault();digit(e.key)}else if(e.key==='Backspace'){e.preventDefault();input=input.slice(0,-1);renderMath()}else if(e.key==='Enter'){e.preventDefault();if(question.resolved)nextMath();else submit()}});
@@ -142,3 +172,5 @@ $('retry').addEventListener('click',()=>{if($('retry').dataset.reload==='true'){
 $('muteMusic').addEventListener('click',()=>{const slider=$('volMusic');slider.value=slider.value==='0'?'50':'0';slider.dispatchEvent(new Event('input'));$('muteMusic').textContent=slider.value==='0'?'Unmute music':'Mute music'});
 $('muteEffects').addEventListener('click',()=>{const slider=$('volSfx');slider.value=slider.value==='0'?'80':'0';slider.dispatchEvent(new Event('input'));$('muteEffects').textContent=slider.value==='0'?'Unmute effects':'Mute effects'});
 refresh();
+
+document.addEventListener('visibilitychange',()=>{if(document.hidden)settleATMFlights()});
