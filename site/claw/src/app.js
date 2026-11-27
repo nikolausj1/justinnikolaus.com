@@ -20,7 +20,8 @@ initStore();
 function refresh(){
  if(!store)return;
  const volume=store.snapshot().deviceSettings.vol;$('muteMusic').textContent=volume.music===0?'Unmute music':'Mute music';$('muteEffects').textContent=volume.sfx===0?'Unmute effects':'Mute effects';
- const p=store.profile(),name=names[p.id];$('playerName').textContent=`${name}’s Arcade`;$('avatar').textContent=name[0];$('wallet').textContent=`$${p.money}`;$('atmBalance').textContent=`$${p.money}`;$('collectionCount').textContent=p.collection.length;
+ const p=store.profile(),name=names[p.id];$('playerName').textContent=`${name}’s Arcade`;$('avatar').textContent=name[0];const balance=`${p.money} ${p.money===1?'Token':'Tokens'}`;$('wallet').textContent=balance;$('atmBalance').textContent=balance;
+ const back=$('backToClaw');back.disabled=p.money===0;back.classList.toggle('token-ready',p.money>=3);$('tokenHint').textContent=p.money===0?'Answer a question to earn your first token.':p.money>=3?'You’re ready for a few rounds!':`${3-p.money} more ${3-p.money===1?'token':'tokens'} to light up your next visit.`;$('collectionCount').textContent=p.collection.length;
  if(screen==='room')renderRoom();machine?.refreshHUD?.();updateRetrieval();
 }
 function updateRetrieval(){
@@ -51,7 +52,7 @@ async function navigate(next){
  machine?.setVisible(next==='machine');if(next==='machine')await loadMachine();
  if(next==='atm'){if(!question||question.resolved)nextMath();else renderMath()}if(next==='room')renderRoom();refresh();
 }
-function nextMath(){clearTimeout(questionTimer);question=generateQuestion(store.profile().id,Math.random,question);input='';$('mathFeedback').textContent='Take your time. There’s no timer.';$('mathFeedback').className='';$('cashNote').textContent='PLAY MONEY COMES OUT HERE';$('cashNote').className='';renderMath()}
+function nextMath(){clearTimeout(questionTimer);question=generateQuestion(store.profile().id,Math.random,question);input='';$('mathFeedback').textContent='Take your time. There’s no timer.';$('mathFeedback').className='';$('cashNote').textContent='TOKENS COME OUT HERE';$('cashNote').className='';renderMath()}
 function renderMath(){
  $('equation').textContent=`${question.a} ${question.operation} ${question.b}`;$('answerDisplay').textContent=input||'?';
  $('submitAnswer').disabled=!input||question.resolved;$('submitAnswer').hidden=question.resolved;$('nextQuestion').hidden=!question.resolved;
@@ -60,7 +61,7 @@ function renderMath(){
 function digit(d){if(!question||question.resolved||input.length>=3)return;input=input==='0'?d:input+d;renderMath()}
 function submit(){
  if(!input||question.resolved)return;const result=transact(()=>store.answer(question,Number(input)));if(!result)return;renderMath();
- if(result.correct){$('mathFeedback').textContent='Nice work! +$1 saved for your next grab.';$('mathFeedback').className='correct';$('cashNote').textContent='$1';$('cashNote').className='cash-award';machine?.sound('cash');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
+ if(result.correct){$('mathFeedback').textContent='Nice work! +1 token saved for your next play.';$('mathFeedback').className='correct';$('cashNote').innerHTML='<span class="dispensed-token"><img class="token-art" src="assets/arcade-token.svg" alt="Gold Nikolaus Arcade token"></span><span>+1 TOKEN</span>';$('cashNote').className='cash-award';machine?.sound('coin');questionTimer=setTimeout(()=>{if(screen==='atm')nextMath()},2000)}
  else{$('mathFeedback').textContent=`The answer is ${question.a} ${question.operation} ${question.b} = ${question.correctAnswer}. Let’s try another!`;$('mathFeedback').className='answer-help'}
 }
 function imageFor(item){const image=document.createElement('img');image.src=machine?.thumbnail(item.prizeId)||item.thumbnail||'';image.alt=catalog[item.prizeId].name;return image}

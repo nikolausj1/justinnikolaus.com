@@ -134,7 +134,7 @@ let signMats=[];
 function makeSigns(){
   signMats.forEach(m=>m.map&&m.map.dispose());
   const a=new THREE.MeshBasicMaterial({map:signTex('CLAW CLUB','PICK A TOY · MAKE IT YOURS','#2c0f22','#ff6aa8')});
-  const b=new THREE.MeshBasicMaterial({map:signTex('$1 A TRY','MATH → PLAYS → PRIZES','#140a1e','#7ff0b0')});
+  const b=new THREE.MeshBasicMaterial({map:signTex('1 TOKEN A TRY','MATH → TOKENS → PRIZES','#140a1e','#7ff0b0')});
   signMats=[a,b];return[a,b];
 }
 const [sA,sB]=makeSigns();
@@ -747,11 +747,11 @@ let hudCache='';
 function hud(){
   const sw=Math.min(1,Math.hypot(C.ax,C.az)/.4),vn=voltsNow();
   const s=[C.state,C.state==='ready'?Math.ceil(C.timer):'',vn|0,Math.round(sw*100),stocking,plushes.length,B.profile().money,returnedPrizes.length].join('|');if(s===hudCache)return;hudCache=s;
-  const t=$('roTime');t.textContent=C.state==='ready'?String(Math.max(0,Math.ceil(C.timer))).padStart(2,'0'):'--';t.classList.toggle('low',C.state==='ready'&&C.timer<=5);
+  const t=$('roTime');t.textContent=C.state==='ready'?String(Math.max(0,Math.ceil(C.timer))).padStart(2,'0'):C.state==='idle'?'30':'--';t.classList.toggle('low',C.state==='ready'&&C.timer<=5);
   $('roStock').textContent=plushes.length;
   $('roSwing').textContent=Math.round(sw*100)+'%';$('swingBar').style.width=sw*100+'%';
   const big=$('big');
-  if(C.state==='idle'){big.innerHTML=returnedPrizes.length?'PRIZE<small>PICK UP</small>':B.profile().money>=1?'PLAY<small>$1</small>':'MATH<small>ATM →</small>';big.disabled=false;big.classList.add('throb')}
+  if(C.state==='idle'){big.innerHTML=returnedPrizes.length?'PRIZE<small>PICK UP</small>':B.profile().money>=1?'PLAY<small>1 TOKEN</small>':'MATH<small>ATM →</small>';big.disabled=false;big.classList.add('throb')}
   else if(C.state==='ready'){big.innerHTML='DROP<small>'+Math.ceil(C.timer)+'s</small>';big.disabled=false;big.classList.add('throb')}
   else{big.innerHTML='WAIT<small>···</small>';big.disabled=true;big.classList.remove('throb')}
   if(C.state==='dead'){big.innerHTML='SOLD<small>·</small>';big.disabled=true;big.classList.remove('throb')}
@@ -779,7 +779,7 @@ function simStep(){
   const target=S.stock;
   if(stocking){
     if(plushes.length<target&&restockT<=0){for(let i=0;i<3&&plushes.length<target;i++){const[x,z]=spawnSpot();spawnPlush(x,rnd(2.4,3.4),z,plushes.length<20?KIND_KEYS[plushes.length]:undefined)}restockT=.09;say(`Stocking the machine · ${plushes.length}/${target}`)}
-    if(plushes.length>=target){stockDoneT+=DT;if(stockDoneT>2.4){stocking=false;say('Ready to play. Earn more at the MATH ATM!')}}
+    if(plushes.length>=target){stockDoneT+=DT;if(stockDoneT>2.4){stocking=false;say('Ready to play. Earn tokens at the MATH ATM!')}}
   }else if(!plushes.length&&C.state==='idle'){stocking=true;stockDoneT=0}
 }
 function frame(now){

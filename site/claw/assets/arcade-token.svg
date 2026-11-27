@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+<title id="title">Nikolaus Arcade gold token</title>
+<defs>
+ <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5b3"/><stop offset=".3" stop-color="#f7ce5a"/><stop offset=".55" stop-color="#ac7417"/><stop offset=".8" stop-color="#ffe791"/><stop offset="1" stop-color="#c58a23"/></linearGradient>
+ <radialGradient id="face" cx=".35" cy=".25" r=".85"><stop stop-color="#fff0a3"/><stop offset=".48" stop-color="#f0bd44"/><stop offset="1" stop-color="#bd821f"/></radialGradient>
+ <path id="top" d="M 31,101 A 69,69 0 0,1 169,101"/>
+ <path id="bottom" d="M 39,116 A 66,66 0 0,0 161,116"/>
+</defs>
+<circle cx="100" cy="103" r="94" fill="#7c4e11"/>
+<circle cx="100" cy="99" r="94" fill="url(#rim)" stroke="#fff1a1" stroke-width="2"/>
+<circle cx="100" cy="99" r="86" fill="none" stroke="#875916" stroke-width="4" stroke-dasharray="2 4"/>
+<circle cx="100" cy="99" r="78" fill="url(#face)" stroke="#ffe397" stroke-width="2"/>
+<circle cx="100" cy="99" r="53" fill="none" stroke="#b58128" stroke-width="1.5"/>
+<g fill="#825214" font-family="Arial,sans-serif" font-weight="900" text-anchor="middle" letter-spacing="3">
+ <text font-size="20"><textPath href="#top" startOffset="50%">NIKOLAUS</textPath></text>
+ <text font-size="21"><textPath href="#bottom" startOffset="50%">ARCADE</textPath></text>
+</g>
+<g stroke="#8f5b14" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M100 58v20m-20 0h40M83 80l-14 25 10 18m38-43 14 25-10 18M100 80v28l-10 16"/>
+</g>
+<path d="m100 125 4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1Z" fill="#8f5b14"/>
+<g fill="#fff0a0"><circle cx="37" cy="101" r="3"/><circle cx="163" cy="101" r="3"/></g>
+</svg>
