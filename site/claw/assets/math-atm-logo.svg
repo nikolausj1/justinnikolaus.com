@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 190" role="img" aria-labelledby="title desc">
+  <title id="title">MATH ATM</title>
+  <desc id="desc">An old-school cash machine sign with glowing green MATH above ATM.</desc>
+  <defs>
+    <linearGradient id="case" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0e6e5"/>
+      <stop offset=".13" stop-color="#7f8a8e"/>
+      <stop offset=".28" stop-color="#c7cecd"/>
+      <stop offset=".58" stop-color="#697579"/>
+      <stop offset=".82" stop-color="#aeb8b8"/>
+      <stop offset="1" stop-color="#556267"/>
+    </linearGradient>
+    <linearGradient id="crt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#061b14"/>
+      <stop offset="1" stop-color="#0b291b"/>
+    </linearGradient>
+    <filter id="phosphor" x="-25%" y="-35%" width="150%" height="170%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="500" height="170" rx="24" fill="url(#case)" stroke="#eef5f2" stroke-width="3"/>
+  <rect x="20" y="20" width="480" height="150" rx="17" fill="#45535a" stroke="#313e44" stroke-width="2"/>
+  <rect x="34" y="31" width="452" height="128" rx="12" fill="url(#crt)" stroke="#d6dfdc" stroke-width="6"/>
+  <path d="M43 40h434M43 46h434M43 52h434" stroke="#60fa89" stroke-opacity=".055" stroke-width="2"/>
+  <circle cx="62" cy="57" r="4" fill="#5bf58b"/>
+  <circle cx="458" cy="57" r="4" fill="#5bf58b"/>
+  <text x="260" y="90" fill="#82ff9d" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="39" font-weight="900" letter-spacing="10" text-anchor="middle" filter="url(#phosphor)">MATH</text>
+  <path d="M112 100h296" stroke="#57d979" stroke-opacity=".65" stroke-width="2"/>
+  <text x="260" y="144" fill="#9cffad" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="51" font-weight="900" letter-spacing="14" text-anchor="middle" filter="url(#phosphor)">ATM</text>
+  <path d="m78 83 5 11 12 1-9 8 3 12-11-6-10 6 2-12-9-8 12-1z" fill="#ff68c7"/>
+  <path d="m442 83 5 11 12 1-9 8 3 12-11-6-10 6 2-12-9-8 12-1z" fill="#45e5ff"/>
+</svg>

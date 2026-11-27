@@ -3,5 +3,6 @@ Disallow: /portfolio/
 Disallow: /misc/
 Disallow: /google/
 Disallow: /new/
+Disallow: /claw/
 
 Sitemap: https://justinnikolaus.com/sitemap.xml
