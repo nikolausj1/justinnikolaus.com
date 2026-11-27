@@ -41,15 +41,14 @@
       <figcaption>Issue 2, the older reader's edition. His brother gets the same news at an easier reading level.</figcaption>
     </figure>
 
-    <section class="detail-feature" aria-labelledby="newsroom-title">
+    <section class="detail-feature detail-wide" aria-labelledby="system-title">
       <div>
-        <h2 id="newsroom-title">Run like a real newsroom</h2>
-        <p>Each week follows the cycle a city paper does. I pick the stories. AI agents write them at two reading levels and check every fact against a source. Code lays the pages out from a library of 59 components, and I edit the proof before anything prints.</p>
-        <p>Every job has one owner, so I always know where to look when something is wrong.</p>
+        <h2 id="system-title">Run like a real newsroom</h2>
+        <p>Every desk of a city paper has an owner here: me, an AI agent, or plain code. Agents draft and check. Code measures and validates. I decide what runs and what prints.</p>
       </div>
       <figure>
-        <img src="assets/nikolaus-times-newsroom.svg" alt="Four steps: I pick the stories, AI agents write and check, code lays out four pages, I edit and approve. My notes loop back as rules." width="600" height="960" loading="lazy">
-        <figcaption>One week at the paper.</figcaption>
+        <img src="assets/nikolaus-times-system.svg" alt="System diagram: AI pitches stories and I mark them; agents judge, write, fact check and brief art against my house rules; code measures slots from the component library and validates every page; an AI reviewer sends me a proof; my edits re-render and my notes become rules; it prints on my go." width="1200" height="540" loading="lazy">
+        <figcaption>One week at the paper. Family photos are halftoned on my Mac and never sent to a model.</figcaption>
       </figure>
     </section>
 
@@ -77,15 +76,43 @@
       </figure>
     </section>
 
-    <section class="detail-feature" aria-labelledby="library-title">
+    <section class="detail-feature detail-wide" aria-labelledby="library-title">
       <div>
-        <h2 id="library-title">59 components, measured to the page</h2>
-        <p>Every box on the page is a component that knows its size on paper, how many words it holds and which reader it is written for. On a quiet week a box shrinks instead of leaving a hole, and text never gets smaller than a comfortable reading size just to fit.</p>
-        <p>The puzzles are drawn by code from the week's own words, and every sudoku is checked so it can be solved without guessing.</p>
+        <h2 id="library-title">A component library for paper</h2>
+        <p>Every box on the page is a component with a print size, a word budget per field and a designed empty state. Puzzles are drawn by code and checked solvable.</p>
+      </div>
+      <dl class="nt-stats">
+        <div><dt>59</dt><dd>components</dd></div>
+        <div><dt>3</dt><dd>print sizes</dd></div>
+        <div><dt>4</dt><dd>content states</dd></div>
+        <div><dt>2</dt><dd>reading levels</dd></div>
+        <div><dt>1,416</dt><dd>renders audited per run</dd></div>
+      </dl>
+      <figure>
+        <img src="assets/nikolaus-times-components.jpg" alt="Fourteen components rendered with sample content: weekend weather, countdown, birthday board, week ahead, by the numbers, fact file, this day in history, illustrated explainer, comic panel, riddle, mini crossword, sudoku, word search and maze" width="2400" height="2606" loading="lazy">
+        <figcaption>A sampling of the library, rendered with invented sample readers.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-feature detail-wide" aria-labelledby="states-title">
+      <div>
+        <h2 id="states-title">Every size, every kind of week</h2>
+        <p>Each component is designed for a normal week, a quiet one, no news at all, and too much copy. The validator catches overflow before I see a proof.</p>
       </div>
       <figure>
-        <img src="assets/nikolaus-times-puzzles.jpg" alt="Page 4 of issue 2: a Thanksgiving crossword, a road trip word search, a joke, a sudoku and a riddle" width="660" height="801" loading="lazy">
-        <figcaption>The puzzle page from issue 2.</figcaption>
+        <img src="assets/nikolaus-times-states.jpg" alt="The weekend weather component at three print sizes and four content states: full, sparse, an empty state that says look out the window, and overflow marked as caught before print" width="2968" height="1759" loading="lazy">
+        <figcaption>Weekend weather, drawn at true relative size.</figcaption>
+      </figure>
+    </section>
+
+    <section class="detail-feature detail-wide" aria-labelledby="readers-title">
+      <div>
+        <h2 id="readers-title">One story, two readers</h2>
+        <p>Same slot, same facts. The younger reader's edition gets larger type and fewer, shorter sentences.</p>
+      </div>
+      <figure>
+        <img src="assets/nikolaus-times-readers.jpg" alt="The same feature story set for a fluent reader and for an emerging reader, with larger type and less text for the emerging reader" width="2712" height="962" loading="lazy">
+        <figcaption>A feature story for each edition, with invented sample content.</figcaption>
       </figure>
     </section>
 
@@ -97,6 +124,11 @@
     .detail-feature.detail-wide > div { grid-column: auto; grid-row: auto; max-width: 760px; }
     .detail-feature.detail-wide > figure { grid-column: auto; grid-row: auto; max-width: none; }
     .detail-feature.detail-wide img { border-radius: 4px; }
+    .nt-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .nt-stats div { min-width: 0; }
+    .nt-stats dt { font-size: clamp(30px, 4vw, 44px); font-weight: 600; letter-spacing: -.045em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+    .nt-stats dd { margin: 6px 0 0; font-size: 14px; color: var(--tertiary); line-height: 1.4; }
+    @media (max-width: 700px) { .nt-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </body>
 </html>
